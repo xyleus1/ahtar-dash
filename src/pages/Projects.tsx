@@ -11,7 +11,7 @@ const projects = [
     name: "Summer 2024 Collection",
     manufacturer: "Apex Textiles",
     status: "In Production",
-    statusColor: "bg-blue-100 text-blue-700",
+    statusColor: "bg-blue-100 text-blue-800",
     progress: 75,
     deadline: "Mar 15, 2024",
     items: 8
@@ -21,7 +21,7 @@ const projects = [
     name: "Denim Jacket Series",
     manufacturer: "Premium Denim Co.",
     status: "Sample Review",
-    statusColor: "bg-yellow-100 text-yellow-700",
+    statusColor: "bg-yellow-100 text-yellow-800",
     progress: 45,
     deadline: "Mar 22, 2024",
     items: 3
@@ -31,7 +31,7 @@ const projects = [
     name: "Sustainable Tees",
     manufacturer: "EcoFab Solutions",
     status: "Shipping",
-    statusColor: "bg-green-100 text-green-700",
+    statusColor: "bg-green-100 text-green-800",
     progress: 90,
     deadline: "Mar 8, 2024",
     items: 12
@@ -41,7 +41,7 @@ const projects = [
     name: "Winter Coat Line",
     manufacturer: "Arctic Manufacturing",
     status: "Design Review",
-    statusColor: "bg-purple-100 text-purple-700",
+    statusColor: "bg-purple-100 text-purple-800",
     progress: 20,
     deadline: "Apr 5, 2024",
     items: 5
