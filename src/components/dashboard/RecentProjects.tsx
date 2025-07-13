@@ -1,5 +1,6 @@
-import { Card } from "@/components/ui/card"
+import { GradientCard } from "@/components/ui/gradient-card"
 import { Badge } from "@/components/ui/badge"
+import { GradientButton } from "@/components/ui/gradient-button"
 import { Button } from "@/components/ui/button"
 import { MoreHorizontal, Clock, Package, Truck } from "lucide-react"
 
@@ -48,19 +49,19 @@ const projects = [
 
 export function RecentProjects() {
   return (
-    <Card className="p-6 card-glass bg-background/80 border border-border/20">
+    <GradientCard className="p-6 card-glass bg-background/80 border border-purple-accent/20">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-lg font-medium text-primary text-heading">Recent Projects</h2>
-        <Button variant="ghost" size="sm" className="text-purple-accent font-light button-glass">
+        <GradientButton variant="default" size="sm" className="text-purple-accent font-light">
           View All
-        </Button>
+        </GradientButton>
       </div>
       
       <div className="space-y-4">
         {projects.map((project) => (
           <div key={project.id} className="flex items-center gap-4 p-3 rounded-xl hover:bg-purple-light/30 transition-all duration-300">
-            <div className="w-12 h-12 bg-purple-glow rounded-xl flex items-center justify-center border border-purple-accent/10">
-              <Package className="h-5 w-5 text-purple-accent" />
+            <div className="w-12 h-12 bg-gradient-to-br from-purple-accent to-purple-dark rounded-xl flex items-center justify-center shadow-sm">
+              <Package className="h-5 w-5 text-white" />
             </div>
             
             <div className="flex-1 min-w-0">
@@ -88,12 +89,12 @@ export function RecentProjects() {
               <span>{project.deadline}</span>
             </div>
             
-            <Button variant="ghost" size="sm" className="button-glass">
+            <GradientButton variant="default" size="sm">
               <MoreHorizontal className="h-4 w-4" />
-            </Button>
+            </GradientButton>
           </div>
         ))}
       </div>
-    </Card>
+    </GradientCard>
   )
 }

@@ -26,6 +26,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import { Button } from "@/components/ui/button"
+import { GradientButton } from "@/components/ui/gradient-button"
 
 const mainItems = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
@@ -53,8 +54,8 @@ export function AppSidebar() {
   const getNavClassName = (path: string) => {
     const baseClasses = "flex items-center gap-3 px-3 py-2 text-sm font-light rounded-xl transition-all duration-300"
     return isActive(path) 
-      ? `${baseClasses} bg-purple-glow text-purple-accent shadow-sm`
-      : `${baseClasses} text-secondary hover:bg-accent hover:text-accent-foreground`
+      ? `${baseClasses} bg-purple-accent text-white shadow-md`
+      : `${baseClasses} text-secondary hover:bg-purple-light/50 hover:text-purple-accent`
   }
 
   return (
@@ -63,8 +64,8 @@ export function AppSidebar() {
         {/* Brand */}
         <div className="mb-8">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-purple-glow rounded-xl flex items-center justify-center">
-              <span className="text-purple-accent font-light text-sm">FP</span>
+            <div className="w-8 h-8 bg-gradient-to-br from-purple-accent to-purple-dark rounded-xl flex items-center justify-center shadow-sm">
+              <span className="text-white font-medium text-sm">FP</span>
             </div>
             {!collapsed && (
               <div>
@@ -77,10 +78,10 @@ export function AppSidebar() {
 
         {/* New Project Button */}
         {!collapsed && (
-          <Button className="w-full mb-6 button-glass font-light" size="sm">
+          <GradientButton variant="primary" className="w-full mb-6" size="sm">
             <Plus className="h-4 w-4 mr-2" />
             New Project
-          </Button>
+          </GradientButton>
         )}
 
         {/* Main Navigation */}

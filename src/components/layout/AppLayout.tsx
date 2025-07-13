@@ -1,6 +1,6 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "./AppSidebar"
-import { Button } from "@/components/ui/button"
+import { GradientButton } from "@/components/ui/gradient-button"
 import { Search, Bell, User } from "lucide-react"
 
 interface AppLayoutProps {
@@ -32,14 +32,14 @@ export function AppLayout({ children }: AppLayoutProps) {
             
             {/* Right side */}
             <div className="flex items-center gap-3">
-              <Button variant="ghost" size="sm" className="relative button-glass">
+              <GradientButton variant="default" size="sm" className="relative">
                 <Bell className="h-4 w-4" />
                 <span className="absolute -top-1 -right-1 h-2 w-2 bg-purple-accent rounded-full"></span>
-              </Button>
+              </GradientButton>
               
-              <Button variant="ghost" size="sm" className="button-glass">
+              <GradientButton variant="default" size="sm">
                 <User className="h-4 w-4" />
-              </Button>
+              </GradientButton>
             </div>
           </header>
           

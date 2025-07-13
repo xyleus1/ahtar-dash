@@ -17,8 +17,8 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 210 6% 12%;
 
-    --primary: 251 91% 95%;
-    --primary-foreground: 251 50% 45%;
+    --primary: 251 70% 85%;
+    --primary-foreground: 251 60% 35%;
 
     --secondary: 210 40% 98%;
     --secondary-foreground: 210 6% 12%;
@@ -26,8 +26,8 @@ All colors MUST be HSL.
     --muted: 210 20% 97%;
     --muted-foreground: 215 13% 55%;
 
-    --accent: 251 91% 97%;
-    --accent-foreground: 251 50% 45%;
+    --accent: 251 70% 88%;
+    --accent-foreground: 251 60% 35%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -42,9 +42,10 @@ All colors MUST be HSL.
     --text-primary: 210 6% 12%;
     --text-secondary: 215 13% 55%;
     --text-muted: 210 9% 75%;
-    --purple-accent: 251 50% 45%;
-    --purple-light: 251 91% 97%;
-    --purple-glow: 251 91% 95%;
+    --purple-accent: 251 60% 35%;
+    --purple-light: 251 70% 90%;
+    --purple-glow: 251 70% 85%;
+    --purple-dark: 251 50% 25%;
     --glass-bg: 0 0% 100% / 0.8;
     --glass-border: 210 20% 90% / 0.5;
     --grey-50: 210 20% 99%;
@@ -53,12 +54,12 @@ All colors MUST be HSL.
 
     --sidebar-background: 0 0% 99%;
     --sidebar-foreground: 210 6% 12%;
-    --sidebar-primary: 251 50% 45%;
+    --sidebar-primary: 251 60% 35%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 251 91% 97%;
-    --sidebar-accent-foreground: 251 50% 45%;
+    --sidebar-accent: 251 70% 90%;
+    --sidebar-accent-foreground: 251 60% 35%;
     --sidebar-border: 214 31% 94%;
-    --sidebar-ring: 251 50% 45%;
+    --sidebar-ring: 251 60% 35%;
 
     /* Glass morphism variables */
     --glass-surface: 0 0% 100% / 0.9;
@@ -234,5 +235,110 @@ All colors MUST be HSL.
     background: hsla(var(--glass-surface));
     backdrop-filter: var(--backdrop-blur);
     border-right: 1px solid hsla(var(--glass-border));
+  }
+  
+  /* Dynamic gradient buttons with mouse tracking */
+  .btn-gradient {
+    position: relative;
+    background: linear-gradient(135deg, hsl(var(--purple-glow)), hsl(var(--purple-light)));
+    border: 1px solid hsl(var(--purple-accent) / 0.3);
+    color: hsl(var(--purple-accent));
+    font-weight: 400;
+    transition: var(--transition-smooth);
+    overflow: hidden;
+    box-shadow: var(--shadow-glass);
+  }
+  
+  .btn-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      hsl(var(--purple-accent) / 0.15),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .btn-gradient:hover::before {
+    opacity: 1;
+  }
+  
+  .btn-gradient:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-glass-hover);
+    border-color: hsl(var(--purple-accent) / 0.5);
+  }
+  
+  /* Primary gradient button variant */
+  .btn-gradient-primary {
+    position: relative;
+    background: linear-gradient(135deg, hsl(var(--purple-accent)), hsl(var(--purple-dark)));
+    border: 1px solid hsl(var(--purple-dark) / 0.5);
+    color: white;
+    font-weight: 400;
+    transition: var(--transition-smooth);
+    overflow: hidden;
+    box-shadow: var(--shadow-glass);
+  }
+  
+  .btn-gradient-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.1),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .btn-gradient-primary:hover::before {
+    opacity: 1;
+  }
+  
+  .btn-gradient-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-glass-hover);
+  }
+  
+  /* Card with gradient hover effect */
+  .card-gradient-hover {
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+  }
+  
+  .card-gradient-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      hsl(var(--purple-accent) / 0.03),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .card-gradient-hover:hover::before {
+    opacity: 1;
   }
 }

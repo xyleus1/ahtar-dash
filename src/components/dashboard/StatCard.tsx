@@ -1,5 +1,5 @@
 import { LucideIcon } from "lucide-react"
-import { Card } from "@/components/ui/card"
+import { GradientCard } from "@/components/ui/gradient-card"
 
 interface StatCardProps {
   title: string
@@ -17,7 +17,7 @@ export function StatCard({ title, value, change, changeType = "neutral", icon: I
   }[changeType]
 
   return (
-    <Card className="p-6 card-glass bg-background/80 border border-border/20">
+    <GradientCard className="p-6 card-glass bg-background/80 border border-purple-accent/20">
       <div className="flex items-center justify-between">
         <div className="space-y-2">
           <p className="text-sm font-light text-secondary">{title}</p>
@@ -26,10 +26,10 @@ export function StatCard({ title, value, change, changeType = "neutral", icon: I
             <p className={`text-sm font-light ${changeColorClass}`}>{change}</p>
           )}
         </div>
-        <div className="p-3 bg-purple-glow rounded-xl border border-purple-accent/10">
-          <Icon className="h-5 w-5 text-purple-accent" />
+        <div className="p-3 bg-gradient-to-br from-purple-accent to-purple-dark rounded-xl shadow-sm">
+          <Icon className="h-5 w-5 text-white" />
         </div>
       </div>
-    </Card>
+    </GradientCard>
   )
 }

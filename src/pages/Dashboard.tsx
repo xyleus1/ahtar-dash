@@ -1,6 +1,7 @@
 import { StatCard } from "@/components/dashboard/StatCard"
 import { RecentProjects } from "@/components/dashboard/RecentProjects"
-import { Card } from "@/components/ui/card"
+import { GradientCard } from "@/components/ui/gradient-card"
+import { GradientButton } from "@/components/ui/gradient-button"
 import { Button } from "@/components/ui/button"
 import { 
   FolderOpen, 
@@ -36,10 +37,10 @@ export default function Dashboard() {
           <h1 className="text-2xl font-light text-primary text-heading">Dashboard</h1>
           <p className="text-secondary font-light">Manage your fashion production pipeline</p>
         </div>
-        <Button className="button-glass font-light">
+        <GradientButton variant="primary" className="font-light">
           <Plus className="h-4 w-4 mr-2" />
           New Project
-        </Button>
+        </GradientButton>
       </div>
 
       {/* Stats Grid */}
@@ -83,7 +84,7 @@ export default function Dashboard() {
         {/* Quick Actions & Alerts */}
         <div className="space-y-6">
           {/* Quick Actions */}
-          <Card className="p-6 card-glass bg-background/80 border border-border/20">
+          <GradientCard className="p-6 card-glass bg-background/80 border border-border/20">
             <h2 className="text-lg font-medium text-primary mb-4 text-heading">Quick Actions</h2>
             <div className="space-y-3">
               {quickActions.map((action, index) => (
@@ -101,10 +102,10 @@ export default function Dashboard() {
                 </Button>
               ))}
             </div>
-          </Card>
+          </GradientCard>
 
           {/* Recent Alerts */}
-          <Card className="p-6 card-glass bg-background/80 border border-border/20">
+          <GradientCard className="p-6 card-glass bg-background/80 border border-border/20">
             <h2 className="text-lg font-medium text-primary mb-4 text-heading">Recent Activity</h2>
             <div className="space-y-3">
               {alerts.map((alert, index) => (
@@ -119,7 +120,7 @@ export default function Dashboard() {
                 </div>
               ))}
             </div>
-          </Card>
+          </GradientCard>
         </div>
       </div>
     </div>
