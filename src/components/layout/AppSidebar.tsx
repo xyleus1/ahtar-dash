@@ -52,10 +52,10 @@ export function AppSidebar() {
   const isActive = (path: string) => location.pathname === path
   
   const getNavClassName = (path: string) => {
-    const baseClasses = "flex items-center gap-3 px-3 py-2 text-sm font-light rounded-xl transition-all duration-300"
+    const baseClasses = "flex items-center gap-3 px-3 py-2 text-sm font-light rounded-xl transition-all duration-300 relative overflow-hidden"
     return isActive(path) 
-      ? `${baseClasses} bg-purple-accent text-white shadow-md`
-      : `${baseClasses} text-primary hover:bg-purple-light/50 hover:text-purple-accent`
+      ? `${baseClasses} bg-gradient-to-r from-purple-accent to-purple-dark text-white shadow-lg transform scale-105 border border-purple-accent/30`
+      : `${baseClasses} text-primary hover:bg-purple-light/30 hover:text-purple-accent hover:transform hover:scale-102`
   }
 
   return (

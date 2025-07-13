@@ -175,8 +175,12 @@ All colors MUST be HSL.
   }
   
   .button-hover:hover {
-    transform: translateY(-1px);
+    transform: translateY(-1px) scale(1.02);
     box-shadow: var(--shadow-glass);
+  }
+  
+  .scale-102 {
+    transform: scale(1.02);
   }
   
   /* Typography improvements */
