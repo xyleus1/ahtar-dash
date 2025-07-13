@@ -39,9 +39,9 @@ All colors MUST be HSL.
     --radius: 1rem;
 
     /* Fashion Production OS glassmorphic colors */
-    --text-primary: 210 20% 8%;
-    --text-secondary: 210 15% 18%;
-    --text-muted: 210 12% 30%;
+    --text-primary: 210 25% 5%;
+    --text-secondary: 210 20% 12%;
+    --text-muted: 210 15% 20%;
     --purple-accent: 251 60% 35%;
     --purple-light: 251 70% 90%;
     --purple-glow: 251 70% 85%;
