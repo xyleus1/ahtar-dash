@@ -33,12 +33,12 @@ export function AppLayout({ children }: AppLayoutProps) {
             {/* Right side */}
             <div className="flex items-center gap-3">
               <GradientButton variant="default" size="sm" className="relative">
-                <Bell className="h-4 w-4" />
+                <Bell className="h-4 w-4 text-purple-accent" />
                 <span className="absolute -top-1 -right-1 h-2 w-2 bg-purple-accent rounded-full"></span>
               </GradientButton>
               
               <GradientButton variant="default" size="sm">
-                <User className="h-4 w-4" />
+                <User className="h-4 w-4 text-purple-accent" />
               </GradientButton>
             </div>
           </header>
