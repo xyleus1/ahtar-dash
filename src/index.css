@@ -345,4 +345,10 @@ All colors MUST be HSL.
   .card-gradient-hover:hover::before {
     opacity: 1;
   }
+  
+  /* Active navigation item styling */
+  .active-nav-item {
+    background: hsl(var(--purple-dark)) !important;
+    color: white !important;
+  }
 }
