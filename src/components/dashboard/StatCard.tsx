@@ -27,7 +27,7 @@ export function StatCard({ title, value, change, changeType = "neutral", icon: I
           )}
         </div>
         <div className="p-3 bg-gradient-to-br from-purple-accent to-purple-dark rounded-xl shadow-sm">
-          <Icon className="h-5 w-5 text-white" />
+          <Icon className="h-5 w-5 text-purple-light" />
         </div>
       </div>
     </GradientCard>

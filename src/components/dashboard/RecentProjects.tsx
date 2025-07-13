@@ -61,7 +61,7 @@ export function RecentProjects() {
         {projects.map((project) => (
           <div key={project.id} className="flex items-center gap-4 p-3 rounded-xl hover:bg-purple-light/30 transition-all duration-300">
             <div className="w-12 h-12 bg-gradient-to-br from-purple-accent to-purple-dark rounded-xl flex items-center justify-center shadow-sm">
-              <Package className="h-5 w-5 text-white" />
+              <Package className="h-5 w-5 text-purple-light" />
             </div>
             
             <div className="flex-1 min-w-0">

@@ -65,7 +65,7 @@ export function AppSidebar() {
         <div className="mb-8">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-gradient-to-br from-purple-accent to-purple-dark rounded-xl flex items-center justify-center shadow-sm">
-              <span className="text-white font-medium text-sm">FP</span>
+              <span className="text-purple-light font-medium text-sm">FP</span>
             </div>
             {!collapsed && (
               <div>
