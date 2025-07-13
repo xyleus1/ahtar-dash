@@ -51,25 +51,25 @@ export function AppSidebar() {
   const isActive = (path: string) => location.pathname === path
   
   const getNavClassName = (path: string) => {
-    const baseClasses = "flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200"
+    const baseClasses = "flex items-center gap-3 px-3 py-2 text-sm font-light rounded-xl transition-all duration-300"
     return isActive(path) 
-      ? `${baseClasses} bg-primary text-primary-foreground shadow-sm`
+      ? `${baseClasses} bg-purple-glow text-purple-accent shadow-sm`
       : `${baseClasses} text-secondary hover:bg-accent hover:text-accent-foreground`
   }
 
   return (
     <Sidebar className={collapsed ? "w-16" : "w-64"}>
-      <SidebarContent className="p-4">
+      <SidebarContent className="p-4 sidebar-glass">
         {/* Brand */}
         <div className="mb-8">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">FP</span>
+            <div className="w-8 h-8 bg-purple-glow rounded-xl flex items-center justify-center">
+              <span className="text-purple-accent font-light text-sm">FP</span>
             </div>
             {!collapsed && (
               <div>
-                <h1 className="font-semibold text-primary">Fashion Production</h1>
-                <p className="text-xs text-muted">OS Platform</p>
+                <h1 className="font-medium text-primary text-heading">Fashion Production</h1>
+                <p className="text-xs text-muted font-light">OS Platform</p>
               </div>
             )}
           </div>
@@ -77,7 +77,7 @@ export function AppSidebar() {
 
         {/* New Project Button */}
         {!collapsed && (
-          <Button className="w-full mb-6 button-hover" size="sm">
+          <Button className="w-full mb-6 button-glass font-light" size="sm">
             <Plus className="h-4 w-4 mr-2" />
             New Project
           </Button>
@@ -108,7 +108,7 @@ export function AppSidebar() {
               className="flex items-center justify-between cursor-pointer"
               onClick={() => setProjectsExpanded(!projectsExpanded)}
             >
-              <span className="text-xs font-medium text-muted uppercase tracking-wider">Recent Projects</span>
+              <span className="text-xs font-light text-muted uppercase tracking-wider">Recent Projects</span>
               {projectsExpanded ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
             </SidebarGroupLabel>
             
@@ -116,9 +116,9 @@ export function AppSidebar() {
               <SidebarGroupContent>
                 <div className="space-y-2 mt-2">
                   {recentProjects.map((project, index) => (
-                    <div key={index} className="p-2 rounded-lg hover:bg-grey-50 transition-colors cursor-pointer">
-                      <p className="text-sm font-medium text-primary truncate">{project.name}</p>
-                      <p className="text-xs text-muted">{project.status}</p>
+                    <div key={index} className="p-2 rounded-xl hover:bg-purple-light transition-colors cursor-pointer">
+                      <p className="text-sm font-light text-primary truncate">{project.name}</p>
+                      <p className="text-xs text-muted font-light">{project.status}</p>
                     </div>
                   ))}
                 </div>

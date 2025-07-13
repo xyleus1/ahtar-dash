@@ -48,48 +48,47 @@ const projects = [
 
 export function RecentProjects() {
   return (
-    <Card className="p-6 bg-background border border-border">
+    <Card className="p-6 card-glass bg-background/80 border border-border/20">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-semibold text-primary">Recent Projects</h2>
-        <Button variant="ghost" size="sm" className="text-primary">
+        <h2 className="text-lg font-medium text-primary text-heading">Recent Projects</h2>
+        <Button variant="ghost" size="sm" className="text-purple-accent font-light button-glass">
           View All
         </Button>
       </div>
       
       <div className="space-y-4">
         {projects.map((project) => (
-          <div key={project.id} className="flex items-center gap-4 p-3 rounded-lg hover:bg-grey-50 transition-colors">
-            <div className="w-12 h-12 bg-grey-100 rounded-lg flex items-center justify-center">
-              <Package className="h-5 w-5 text-muted" />
+          <div key={project.id} className="flex items-center gap-4 p-3 rounded-xl hover:bg-purple-light/30 transition-all duration-300">
+            <div className="w-12 h-12 bg-purple-glow rounded-xl flex items-center justify-center border border-purple-accent/10">
+              <Package className="h-5 w-5 text-purple-accent" />
             </div>
             
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="font-medium text-primary truncate">{project.name}</h3>
-                <Badge variant="secondary" className={`${project.statusColor} text-xs`}>
+                <h3 className="font-light text-primary truncate text-heading">{project.name}</h3>
+                <Badge variant="secondary" className={`${project.statusColor} text-xs font-light`}>
                   {project.status}
                 </Badge>
               </div>
-              <p className="text-sm text-secondary mb-2">{project.manufacturer}</p>
-              
+              <p className="text-sm text-secondary font-light">{project.manufacturer}</p>
               {/* Progress bar */}
-              <div className="flex items-center gap-2">
-                <div className="flex-1 h-1.5 bg-grey-100 rounded-full overflow-hidden">
+              <div className="flex items-center gap-2 mt-2">
+                <div className="flex-1 h-1.5 bg-purple-light/50 rounded-full overflow-hidden">
                   <div 
-                    className="h-full bg-primary rounded-full transition-all duration-300"
+                    className="h-full bg-purple-accent rounded-full transition-all duration-500"
                     style={{ width: `${project.progress}%` }}
                   />
                 </div>
-                <span className="text-xs text-muted">{project.progress}%</span>
+                <span className="text-xs text-muted font-light">{project.progress}%</span>
               </div>
             </div>
             
-            <div className="flex items-center gap-2 text-sm text-secondary">
+            <div className="flex items-center gap-2 text-sm text-secondary font-light">
               <Clock className="h-3 w-3" />
               <span>{project.deadline}</span>
             </div>
             
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" className="button-glass">
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </div>

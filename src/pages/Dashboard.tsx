@@ -33,10 +33,10 @@ export default function Dashboard() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-primary">Dashboard</h1>
-          <p className="text-secondary">Manage your fashion production pipeline</p>
+          <h1 className="text-2xl font-light text-primary text-heading">Dashboard</h1>
+          <p className="text-secondary font-light">Manage your fashion production pipeline</p>
         </div>
-        <Button className="button-hover">
+        <Button className="button-glass font-light">
           <Plus className="h-4 w-4 mr-2" />
           New Project
         </Button>
@@ -83,19 +83,19 @@ export default function Dashboard() {
         {/* Quick Actions & Alerts */}
         <div className="space-y-6">
           {/* Quick Actions */}
-          <Card className="p-6 bg-background border border-border">
-            <h2 className="text-lg font-semibold text-primary mb-4">Quick Actions</h2>
+          <Card className="p-6 card-glass bg-background/80 border border-border/20">
+            <h2 className="text-lg font-medium text-primary mb-4 text-heading">Quick Actions</h2>
             <div className="space-y-3">
               {quickActions.map((action, index) => (
                 <Button
                   key={index}
                   variant="ghost"
-                  className="w-full justify-start h-auto p-3 hover:bg-grey-50"
+                  className="w-full justify-start h-auto p-3 hover:bg-purple-light/30 font-light transition-all duration-300"
                 >
-                  <action.icon className="h-4 w-4 mr-3 text-primary" />
+                  <action.icon className="h-4 w-4 mr-3 text-purple-accent" />
                   <div className="text-left">
-                    <p className="font-medium text-primary">{action.title}</p>
-                    <p className="text-xs text-secondary">{action.description}</p>
+                    <p className="font-light text-primary text-heading">{action.title}</p>
+                    <p className="text-xs text-secondary font-light">{action.description}</p>
                   </div>
                   <ArrowRight className="h-3 w-3 ml-auto text-muted" />
                 </Button>
@@ -104,17 +104,17 @@ export default function Dashboard() {
           </Card>
 
           {/* Recent Alerts */}
-          <Card className="p-6 bg-background border border-border">
-            <h2 className="text-lg font-semibold text-primary mb-4">Recent Activity</h2>
+          <Card className="p-6 card-glass bg-background/80 border border-border/20">
+            <h2 className="text-lg font-medium text-primary mb-4 text-heading">Recent Activity</h2>
             <div className="space-y-3">
               {alerts.map((alert, index) => (
-                <div key={index} className="flex items-start gap-3 p-2 rounded-lg hover:bg-grey-50">
+                <div key={index} className="flex items-start gap-3 p-2 rounded-xl hover:bg-purple-light/30 transition-all duration-300">
                   {alert.type === "warning" && <AlertCircle className="h-4 w-4 text-yellow-600 mt-0.5" />}
                   {alert.type === "success" && <CheckCircle className="h-4 w-4 text-green-600 mt-0.5" />}
                   {alert.type === "info" && <Clock className="h-4 w-4 text-blue-600 mt-0.5" />}
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm text-primary">{alert.message}</p>
-                    <p className="text-xs text-muted">{alert.time}</p>
+                    <p className="text-sm text-primary font-light">{alert.message}</p>
+                    <p className="text-xs text-muted font-light">{alert.time}</p>
                   </div>
                 </div>
               ))}

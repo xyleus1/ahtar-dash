@@ -15,7 +15,7 @@ export function AppLayout({ children }: AppLayoutProps) {
         
         <div className="flex-1 flex flex-col">
           {/* Header */}
-          <header className="h-16 bg-background border-b border-border flex items-center justify-between px-6">
+          <header className="h-16 bg-glass border-b border-border/20 flex items-center justify-between px-6 backdrop-blur-md">
             <div className="flex items-center gap-4">
               <SidebarTrigger />
               
@@ -25,26 +25,26 @@ export function AppLayout({ children }: AppLayoutProps) {
                 <input 
                   type="text" 
                   placeholder="Search projects, manufacturers..."
-                  className="w-80 pl-10 pr-4 py-2 bg-grey-50 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                  className="w-80 pl-10 pr-4 py-2 bg-glass border border-border/30 rounded-xl text-sm font-light placeholder:text-muted/70 focus:outline-none focus:ring-2 focus:ring-purple-accent/20 focus:border-purple-accent/30 backdrop-blur-md"
                 />
               </div>
             </div>
             
             {/* Right side */}
             <div className="flex items-center gap-3">
-              <Button variant="ghost" size="sm" className="relative">
+              <Button variant="ghost" size="sm" className="relative button-glass">
                 <Bell className="h-4 w-4" />
-                <span className="absolute -top-1 -right-1 h-2 w-2 bg-primary rounded-full"></span>
+                <span className="absolute -top-1 -right-1 h-2 w-2 bg-purple-accent rounded-full"></span>
               </Button>
               
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className="button-glass">
                 <User className="h-4 w-4" />
               </Button>
             </div>
           </header>
           
           {/* Main Content */}
-          <main className="flex-1 p-6">
+          <main className="flex-1 p-6 bg-grey-50/50">
             {children}
           </main>
         </div>
