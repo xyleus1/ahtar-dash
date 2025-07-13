@@ -55,7 +55,7 @@ export function AppSidebar() {
     const baseClasses = "flex items-center gap-3 px-3 py-2 text-sm font-light rounded-xl transition-all duration-300"
     return isActive(path) 
       ? `${baseClasses} bg-purple-accent text-white shadow-md`
-      : `${baseClasses} text-secondary hover:bg-purple-light/50 hover:text-purple-accent`
+      : `${baseClasses} text-primary hover:bg-purple-light/50 hover:text-purple-accent`
   }
 
   return (
