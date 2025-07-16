@@ -71,7 +71,7 @@ export function RecentProjects() {
                   {project.status}
                 </Badge>
               </div>
-              <p className="text-sm text-secondary font-light">{project.manufacturer}</p>
+              <p className="text-sm text-secondary font-medium">{project.manufacturer}</p>
               {/* Progress bar */}
               <div className="flex items-center gap-2 mt-2">
                 <div className="flex-1 h-1.5 bg-purple-light/50 rounded-full overflow-hidden">
@@ -80,11 +80,11 @@ export function RecentProjects() {
                     style={{ width: `${project.progress}%` }}
                   />
                 </div>
-                <span className="text-xs text-muted font-light">{project.progress}%</span>
+                <span className="text-xs text-secondary font-medium">{project.progress}%</span>
               </div>
             </div>
             
-            <div className="flex items-center gap-2 text-sm text-secondary font-light">
+            <div className="flex items-center gap-2 text-sm text-secondary font-medium">
               <Clock className="h-3 w-3" />
               <span>{project.deadline}</span>
             </div>
