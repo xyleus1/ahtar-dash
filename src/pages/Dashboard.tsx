@@ -1,8 +1,10 @@
+import { useState } from "react"
 import { StatCard } from "@/components/dashboard/StatCard"
 import { RecentProjects } from "@/components/dashboard/RecentProjects"
 import { GradientCard } from "@/components/ui/gradient-card"
 import { GradientButton } from "@/components/ui/gradient-button"
 import { Button } from "@/components/ui/button"
+import { NewProjectModal } from "@/components/project/NewProjectModal"
 import { 
   FolderOpen, 
   Users, 
@@ -29,6 +31,8 @@ const alerts = [
 ]
 
 export default function Dashboard() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -37,7 +41,7 @@ export default function Dashboard() {
           <h1 className="text-2xl font-light text-primary text-heading">Dashboard</h1>
           <p className="text-secondary font-light">Manage your fashion production pipeline</p>
         </div>
-        <GradientButton variant="primary" className="font-light">
+        <GradientButton variant="primary" className="font-light" onClick={() => setIsModalOpen(true)}>
           <Plus className="h-4 w-4 mr-2" />
           New Project
         </GradientButton>
@@ -123,6 +127,11 @@ export default function Dashboard() {
           </GradientCard>
         </div>
       </div>
+
+      <NewProjectModal 
+        open={isModalOpen} 
+        onOpenChange={setIsModalOpen} 
+      />
     </div>
   )
 }
