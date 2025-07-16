@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/sidebar"
 import { Button } from "@/components/ui/button"
 import { GradientButton } from "@/components/ui/gradient-button"
+import { NewProjectModal } from "@/components/project/NewProjectModal"
 
 const mainItems = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
@@ -47,6 +48,7 @@ export function AppSidebar() {
   const { state } = useSidebar()
   const location = useLocation()
   const [projectsExpanded, setProjectsExpanded] = useState(true)
+  const [showNewProjectModal, setShowNewProjectModal] = useState(false)
   const collapsed = state === "collapsed"
   
   const isActive = (path: string) => location.pathname === path
@@ -78,7 +80,12 @@ export function AppSidebar() {
 
         {/* New Project Button */}
         {!collapsed && (
-          <GradientButton variant="primary" className="w-full mb-6" size="sm">
+          <GradientButton 
+            variant="primary" 
+            className="w-full mb-6" 
+            size="sm"
+            onClick={() => setShowNewProjectModal(true)}
+          >
             <Plus className="h-4 w-4 mr-2" />
             New Project
           </GradientButton>
@@ -140,6 +147,11 @@ export function AppSidebar() {
           </SidebarMenuItem>
         </div>
       </SidebarContent>
+      
+      <NewProjectModal 
+        open={showNewProjectModal} 
+        onOpenChange={setShowNewProjectModal} 
+      />
     </Sidebar>
   )
 }
