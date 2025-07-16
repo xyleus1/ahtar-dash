@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Upload, FileText, Package, ArrowRight, ArrowLeft, X } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { useNavigate } from "react-router-dom"
+import { useToast } from "@/hooks/use-toast"
 
 interface NewProjectModalProps {
   open: boolean
@@ -17,7 +18,10 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
     sizing: false,
     materials: false
   })
+  const [uploadedFiles, setUploadedFiles] = useState<Record<string, File>>({})
+  const fileInputRefs = useRef<Record<string, HTMLInputElement | null>>({})
   const navigate = useNavigate()
+  const { toast } = useToast()
 
   const steps = [
     {
@@ -43,8 +47,59 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
     }
   ]
 
+  const validateFile = (file: File): boolean => {
+    const allowedTypes = ['.pdf', '.ai', '.xlsx']
+    const maxSize = 50 * 1024 * 1024 // 50MB
+    
+    const fileExtension = '.' + file.name.split('.').pop()?.toLowerCase()
+    
+    if (!allowedTypes.includes(fileExtension)) {
+      toast({
+        title: "Invalid file type",
+        description: "Please upload a PDF, AI, or XLSX file only.",
+        variant: "destructive"
+      })
+      return false
+    }
+    
+    if (file.size > maxSize) {
+      toast({
+        title: "File too large",
+        description: "Please upload a file smaller than 50MB.",
+        variant: "destructive"
+      })
+      return false
+    }
+    
+    return true
+  }
+
   const handleFileUpload = (stepKey: keyof typeof uploads) => {
-    setUploads(prev => ({ ...prev, [stepKey]: true }))
+    const input = document.createElement('input')
+    input.type = 'file'
+    input.accept = '.pdf,.ai,.xlsx'
+    
+    input.onchange = (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0]
+      if (file && validateFile(file)) {
+        setUploadedFiles(prev => ({ ...prev, [stepKey]: file }))
+        setUploads(prev => ({ ...prev, [stepKey]: true }))
+        
+        toast({
+          title: "File uploaded successfully",
+          description: `${file.name} has been uploaded.`
+        })
+        
+        // Auto-advance to next step
+        setTimeout(() => {
+          if (currentStep < 3) {
+            setCurrentStep(currentStep + 1)
+          }
+        }, 1500)
+      }
+    }
+    
+    input.click()
   }
 
   const handleNext = () => {
@@ -119,9 +174,21 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
                       <div className="space-y-4">
                         <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
                           <p className="text-green-700 font-medium">✓ File uploaded successfully</p>
+                          {uploadedFiles[step.key] && (
+                            <p className="text-green-600 text-sm mt-1">
+                              {uploadedFiles[step.key].name}
+                            </p>
+                          )}
                         </div>
                         <Button 
-                          onClick={() => setUploads(prev => ({ ...prev, [step.key]: false }))}
+                          onClick={() => {
+                            setUploads(prev => ({ ...prev, [step.key]: false }))
+                            setUploadedFiles(prev => {
+                              const newFiles = { ...prev }
+                              delete newFiles[step.key]
+                              return newFiles
+                            })
+                          }}
                           variant="outline"
                         >
                           Upload Different File
