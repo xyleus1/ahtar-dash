@@ -70,7 +70,7 @@ export function AppSidebar() {
             {!collapsed && (
               <div>
                 <h1 className="font-medium text-primary text-heading">Fashion Production</h1>
-                <p className="text-xs text-secondary font-medium">OS Platform</p>
+                <p className="text-xs text-muted font-light">OS Platform</p>
               </div>
             )}
           </div>
@@ -109,7 +109,7 @@ export function AppSidebar() {
               className="flex items-center justify-between cursor-pointer"
               onClick={() => setProjectsExpanded(!projectsExpanded)}
             >
-              <span className="text-xs font-medium text-secondary uppercase tracking-wider">Recent Projects</span>
+              <span className="text-xs font-light text-muted uppercase tracking-wider">Recent Projects</span>
               {projectsExpanded ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
             </SidebarGroupLabel>
             
@@ -118,8 +118,8 @@ export function AppSidebar() {
                 <div className="space-y-2 mt-2">
                   {recentProjects.map((project, index) => (
                     <div key={index} className="p-2 rounded-xl hover:bg-purple-light transition-colors cursor-pointer">
-                      <p className="text-sm font-medium text-primary truncate">{project.name}</p>
-                      <p className="text-xs text-secondary font-medium">{project.status}</p>
+                      <p className="text-sm font-light text-primary truncate">{project.name}</p>
+                      <p className="text-xs text-muted font-light">{project.status}</p>
                     </div>
                   ))}
                 </div>
