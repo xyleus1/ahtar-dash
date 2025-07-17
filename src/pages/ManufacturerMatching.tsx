@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator"
 import { GradientCard } from "@/components/ui/gradient-card"
 import { GradientButton } from "@/components/ui/gradient-button"
 import { useNavigate } from "react-router-dom"
+import { ContactPopup } from "@/components/manufacturer/ContactPopup"
 
 const blueprintSteps = [
   { id: 1, title: "Design", completed: true },
@@ -133,7 +134,19 @@ export default function ManufacturerMatching() {
   const [manufacturers, setManufacturers] = useState(initialManufacturers)
   const [loading, setLoading] = useState(false)
   const [hasMore, setHasMore] = useState(true)
+  const [selectedManufacturer, setSelectedManufacturer] = useState<typeof initialManufacturers[0] | null>(null)
+  const [isContactPopupOpen, setIsContactPopupOpen] = useState(false)
   const navigate = useNavigate()
+
+  const handleContactClick = (manufacturer: typeof initialManufacturers[0]) => {
+    setSelectedManufacturer(manufacturer)
+    setIsContactPopupOpen(true)
+  }
+
+  const handleCloseContactPopup = () => {
+    setIsContactPopupOpen(false)
+    setSelectedManufacturer(null)
+  }
 
   const toggleFilter = (category: string, value: string) => {
     setSelectedFilters(prev => ({
@@ -180,8 +193,9 @@ export default function ManufacturerMatching() {
   }, [loadMoreManufacturers])
 
   return (
-    <div className="space-y-6 px-6">
-      {/* Header */}
+    <>
+      <div className="space-y-6 px-6">
+        {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-light text-primary text-heading">Find Manufacturers</h1>
@@ -342,7 +356,12 @@ export default function ManufacturerMatching() {
                             <Phone className="h-4 w-4 mr-1" />
                             Call
                           </Button>
-                          <GradientButton size="sm" variant="primary" className="font-light">
+                          <GradientButton 
+                            size="sm" 
+                            variant="primary" 
+                            className="font-light"
+                            onClick={() => handleContactClick(manufacturer)}
+                          >
                             <Mail className="h-4 w-4 mr-1" />
                             Contact
                           </GradientButton>
@@ -387,6 +406,16 @@ export default function ManufacturerMatching() {
           )}
         </div>
       </div>
-    </div>
+      </div>
+
+      {/* Contact Popup */}
+      {selectedManufacturer && (
+        <ContactPopup
+          manufacturer={selectedManufacturer}
+          isOpen={isContactPopupOpen}
+          onClose={handleCloseContactPopup}
+        />
+      )}
+    </>
   )
 }
