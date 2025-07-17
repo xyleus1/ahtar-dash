@@ -3,51 +3,11 @@ import { Badge } from "@/components/ui/badge"
 import { GradientButton } from "@/components/ui/gradient-button"
 import { Button } from "@/components/ui/button"
 import { MoreHorizontal, Clock, Package, Truck } from "lucide-react"
+import { useProject } from "@/contexts/ProjectContext"
 
-const projects = [
-  {
-    id: 1,
-    name: "Summer 2024 Collection",
-    manufacturer: "Apex Textiles",
-    status: "In Production",
-    statusColor: "bg-blue-100 text-blue-800",
-    progress: 75,
-    deadline: "Mar 15, 2024",
-    image: "/api/placeholder/60/60"
-  },
-  {
-    id: 2,
-    name: "Denim Jacket Series",
-    manufacturer: "Premium Denim Co.",
-    status: "Sample Review",
-    statusColor: "bg-yellow-100 text-yellow-800",
-    progress: 45,
-    deadline: "Mar 22, 2024",
-    image: "/api/placeholder/60/60"
-  },
-  {
-    id: 3,
-    name: "Sustainable Tees",
-    manufacturer: "EcoFab Solutions",
-    status: "Shipping",
-    statusColor: "bg-green-100 text-green-800",
-    progress: 90,
-    deadline: "Mar 8, 2024",
-    image: "/api/placeholder/60/60"
-  },
-  {
-    id: 4,
-    name: "Winter Coat Line",
-    manufacturer: "Arctic Manufacturing",
-    status: "Design Review",
-    statusColor: "bg-purple-100 text-purple-800",
-    progress: 20,
-    deadline: "Apr 5, 2024",
-    image: "/api/placeholder/60/60"
-  }
-]
 
 export function RecentProjects() {
+  const { recentProjects } = useProject()
   return (
     <GradientCard className="p-6 card-glass bg-background/80 border border-purple-accent/20">
       <div className="flex items-center justify-between mb-6">
@@ -58,42 +18,55 @@ export function RecentProjects() {
       </div>
       
       <div className="space-y-4">
-        {projects.map((project) => (
-          <div key={project.id} className="flex items-center gap-4 p-3 rounded-xl hover:bg-purple-light/30 transition-all duration-300">
-            <div className="w-12 h-12 bg-gradient-to-br from-purple-accent to-purple-dark rounded-xl flex items-center justify-center shadow-sm">
-              <Package className="h-5 w-5 text-purple-light" />
-            </div>
-            
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-1">
-                <h3 className="font-light text-primary truncate text-heading">{project.name}</h3>
-                <Badge variant="secondary" className={`${project.statusColor} text-xs font-light`}>
-                  {project.status}
-                </Badge>
+        {recentProjects.length > 0 ? (
+          recentProjects.map((project) => (
+            <div key={project.id} className="flex items-center gap-4 p-3 rounded-xl hover:bg-purple-light/30 transition-all duration-300">
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-accent to-purple-dark rounded-xl flex items-center justify-center shadow-sm">
+                <Package className="h-5 w-5 text-purple-light" />
               </div>
-              <p className="text-sm text-secondary font-light">{project.manufacturer}</p>
-              {/* Progress bar */}
-              <div className="flex items-center gap-2 mt-2">
-                <div className="flex-1 h-1.5 bg-purple-light/50 rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-purple-accent rounded-full transition-all duration-500"
-                    style={{ width: `${project.progress}%` }}
-                  />
+              
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <h3 className="font-light text-primary truncate text-heading">{project.name}</h3>
+                  <Badge variant="secondary" className={`${project.statusColor} text-xs font-light`}>
+                    {project.currentStage}
+                  </Badge>
                 </div>
-                <span className="text-xs text-muted font-light">{project.progress}%</span>
+                <p className="text-sm text-secondary font-light mb-1">
+                  {project.manufacturer || "Finding manufacturers..."}
+                </p>
+                <p className="text-xs text-muted font-light overflow-hidden">
+                  <span className="block truncate">{project.aiDescription}</span>
+                </p>
+                {/* Progress bar */}
+                <div className="flex items-center gap-2 mt-2">
+                  <div className="flex-1 h-1.5 bg-purple-light/50 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-purple-accent rounded-full transition-all duration-500"
+                      style={{ width: `${project.progress}%` }}
+                    />
+                  </div>
+                  <span className="text-xs text-muted font-light">{project.progress}%</span>
+                </div>
               </div>
+              
+              <div className="flex items-center gap-2 text-sm text-secondary font-light">
+                <Clock className="h-3 w-3" />
+                <span>{new Date(project.createdAt).toLocaleDateString()}</span>
+              </div>
+              
+              <GradientButton variant="default" size="sm">
+                <MoreHorizontal className="h-4 w-4" />
+              </GradientButton>
             </div>
-            
-            <div className="flex items-center gap-2 text-sm text-secondary font-light">
-              <Clock className="h-3 w-3" />
-              <span>{project.deadline}</span>
-            </div>
-            
-            <GradientButton variant="default" size="sm">
-              <MoreHorizontal className="h-4 w-4" />
-            </GradientButton>
+          ))
+        ) : (
+          <div className="text-center py-8">
+            <Package className="h-12 w-12 text-muted mx-auto mb-3" />
+            <p className="text-secondary font-light">No recent projects</p>
+            <p className="text-xs text-muted font-light">Start a new project to see it here</p>
           </div>
-        ))}
+        )}
       </div>
     </GradientCard>
   )

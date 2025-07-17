@@ -4,6 +4,7 @@ import { GradientButton } from "@/components/ui/gradient-button"
 import { GradientCard } from "@/components/ui/gradient-card"
 import { Badge } from "@/components/ui/badge"
 import { Textarea } from "@/components/ui/textarea"
+import { useProject } from "@/contexts/ProjectContext"
 
 interface Manufacturer {
   id: number
@@ -24,10 +25,22 @@ interface ContactPopupProps {
 }
 
 export function ContactPopup({ manufacturer, isOpen, onClose }: ContactPopupProps) {
+  const { updateProject, currentProject } = useProject()
+  
   if (!isOpen) return null
 
   const handleContact = () => {
-    // Handle contact submission here
+    // Update project to next stage when contact is made
+    if (currentProject) {
+      updateProject({
+        ...currentProject,
+        currentStage: "Order Samples",
+        progress: 50,
+        manufacturer: manufacturer.name,
+        aiDescription: `Connected with ${manufacturer.name} for production partnership. Project requirements shared and initial discussions completed. Moving to sample ordering phase to validate quality and specifications.`,
+        statusColor: "bg-yellow-100 text-yellow-800"
+      })
+    }
     onClose()
   }
 

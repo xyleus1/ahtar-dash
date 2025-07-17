@@ -9,6 +9,7 @@ import { GradientCard } from "@/components/ui/gradient-card"
 import { GradientButton } from "@/components/ui/gradient-button"
 import { useNavigate } from "react-router-dom"
 import { ContactPopup } from "@/components/manufacturer/ContactPopup"
+import { useProject } from "@/contexts/ProjectContext"
 
 const blueprintSteps = [
   { id: 1, title: "Design", completed: true },
@@ -137,6 +138,26 @@ export default function ManufacturerMatching() {
   const [selectedManufacturer, setSelectedManufacturer] = useState<typeof initialManufacturers[0] | null>(null)
   const [isContactPopupOpen, setIsContactPopupOpen] = useState(false)
   const navigate = useNavigate()
+  const { addProject, updateProject, currentProject } = useProject()
+
+  // Create or update project when component mounts (user reaches manufacturer matching stage)
+  useEffect(() => {
+    const projectData = {
+      id: currentProject?.id || `project-${Date.now()}`,
+      name: currentProject?.name || "New Fashion Project",
+      currentStage: "Find Manufacturers",
+      progress: 25,
+      aiDescription: "Project initiated and design phase completed. Currently in manufacturer discovery phase to find suitable production partners. AI recommendation system is analyzing requirements and matching with verified manufacturers.",
+      createdAt: currentProject?.createdAt || new Date().toISOString().split('T')[0],
+      statusColor: "bg-blue-100 text-blue-800"
+    }
+
+    if (currentProject?.id) {
+      updateProject(projectData)
+    } else {
+      addProject(projectData)
+    }
+  }, []) // Run only once when component mounts
 
   const handleContactClick = (manufacturer: typeof initialManufacturers[0]) => {
     setSelectedManufacturer(manufacturer)
