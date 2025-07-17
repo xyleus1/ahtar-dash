@@ -106,9 +106,9 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
     if (currentStep < 3) {
       setCurrentStep(currentStep + 1)
     } else {
-      // All steps completed, navigate to manufacturer search
+      // All steps completed, navigate to manufacturer matching
       onOpenChange(false)
-      navigate("/manufacturer-search")
+      navigate("/manufacturer-matching")
     }
   }
 

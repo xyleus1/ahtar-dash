@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Projects from "./pages/Projects";
 import MarketplacePage from "./pages/MarketplacePage";
 import ManufacturerSearch from "./pages/ManufacturerSearch";
+import ManufacturerMatching from "./pages/ManufacturerMatching";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/projects" element={<Projects />} />
           <Route path="/marketplace" element={<MarketplacePage />} />
           <Route path="/manufacturer-search" element={<ManufacturerSearch />} />
+          <Route path="/manufacturer-matching" element={<ManufacturerMatching />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
