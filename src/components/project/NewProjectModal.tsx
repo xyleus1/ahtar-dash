@@ -90,9 +90,17 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
           description: `${file.name} has been uploaded.`
         })
         
-        // Auto-advance to next step
+        // Check if all steps are complete after this upload
+        const updatedUploads = { ...uploads, [stepKey]: true }
+        const allComplete = Object.values(updatedUploads).every(Boolean)
+        
+        // Auto-advance to next step or navigate to manufacturer matching
         setTimeout(() => {
-          if (currentStep < 3) {
+          if (allComplete) {
+            // All steps complete, navigate to manufacturer matching
+            onOpenChange(false)
+            navigate("/manufacturer-matching")
+          } else if (currentStep < 3) {
             setCurrentStep(currentStep + 1)
           }
         }, 1500)
