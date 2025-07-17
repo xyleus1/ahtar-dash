@@ -28,9 +28,9 @@ const initialManufacturers = [
     specialties: ["Apparel", "Custom Design", "Sustainable"],
     suggested: true,
     images: [
-      "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=400&h=300&fit=crop"
+      "https://images.unsplash.com/photo-1445205170230-053b83016050?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1621799521295-10f1723b2c5a?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop"
     ],
     description: "Leading manufacturer specializing in premium textiles with 15 years of experience."
   },
@@ -44,9 +44,9 @@ const initialManufacturers = [
     specialties: ["Fashion", "Rapid Prototyping", "Quality Control"],
     suggested: true,
     images: [
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop"
+      "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1524502397800-2eeaad7c3fe5?w=400&h=300&fit=crop"
     ],
     description: "High-end fashion manufacturer with state-of-the-art facilities and expert craftsmanship."
   },
@@ -60,9 +60,9 @@ const initialManufacturers = [
     specialties: ["Mass Production", "Cost Effective", "Export Ready"],
     suggested: true,
     images: [
-      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop"
+      "https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1581783898377-1d4920134112?w=400&h=300&fit=crop"
     ],
     description: "Large-scale manufacturer with extensive global supply chain capabilities."
   },
@@ -76,9 +76,9 @@ const initialManufacturers = [
     specialties: ["Handcrafted", "Luxury", "Small Batch"],
     suggested: false,
     images: [
-      "https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop"
+      "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&h=300&fit=crop"
     ],
     description: "Boutique manufacturer focusing on high-quality, artisanal textile production."
   }
@@ -96,9 +96,9 @@ const generateMoreManufacturers = (startId: number) => [
     specialties: ["Activewear", "Technical Fabrics", "Quick Turnaround"],
     suggested: false,
     images: [
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1493238792000-8113da705763?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop"
+      "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1609205260088-38eef5a8bbfa?w=400&h=300&fit=crop"
     ],
     description: "Innovative manufacturer focusing on technical apparel and sustainable practices."
   },
@@ -112,9 +112,9 @@ const generateMoreManufacturers = (startId: number) => [
     specialties: ["Cotton", "Traditional Crafts", "Ethical Production"],
     suggested: false,
     images: [
-      "https://images.unsplash.com/photo-1519749002036-403430de3d4b?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop"
+      "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop"
     ],
     description: "Traditional textile manufacturer with modern quality standards and ethical practices."
   }
@@ -180,7 +180,7 @@ export default function ManufacturerMatching() {
   }, [loadMoreManufacturers])
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 px-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -275,7 +275,7 @@ export default function ManufacturerMatching() {
                           onChange={() => toggleFilter(category, option)}
                           className="rounded accent-purple-accent"
                         />
-                        <span className="text-sm font-light text-secondary group-hover:text-primary transition-colors">{option}</span>
+                        <span className="text-sm font-light text-muted-foreground group-hover:text-primary transition-colors">{option}</span>
                       </label>
                     ))}
                   </div>
