@@ -1,10 +1,12 @@
-import { useState } from "react"
-import { ArrowLeft, Search, Sparkles, MapPin, Star, Users, MessageCircle, Phone, Mail } from "lucide-react"
+import { useState, useEffect, useCallback } from "react"
+import { ArrowLeft, Search, Sparkles, MapPin, Star, Users, MessageCircle, Phone, Mail, Filter } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
+import { GradientCard } from "@/components/ui/gradient-card"
+import { GradientButton } from "@/components/ui/gradient-button"
 import { useNavigate } from "react-router-dom"
 
 const blueprintSteps = [
@@ -15,7 +17,7 @@ const blueprintSteps = [
   { id: 5, title: "Place Order", completed: false }
 ]
 
-const manufacturers = [
+const initialManufacturers = [
   {
     id: 1,
     name: "Premium Textile Solutions Ltd.",
@@ -82,6 +84,42 @@ const manufacturers = [
   }
 ]
 
+// Additional manufacturers for infinite scroll
+const generateMoreManufacturers = (startId: number) => [
+  {
+    id: startId,
+    name: "Modern Manufacturing Co.",
+    location: "Ho Chi Minh City, Vietnam",
+    rating: 4.5,
+    reviews: 92,
+    employees: "300-500",
+    specialties: ["Activewear", "Technical Fabrics", "Quick Turnaround"],
+    suggested: false,
+    images: [
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1493238792000-8113da705763?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop"
+    ],
+    description: "Innovative manufacturer focusing on technical apparel and sustainable practices."
+  },
+  {
+    id: startId + 1,
+    name: "Heritage Textiles Ltd.",
+    location: "Mumbai, India",
+    rating: 4.4,
+    reviews: 156,
+    employees: "200-300",
+    specialties: ["Cotton", "Traditional Crafts", "Ethical Production"],
+    suggested: false,
+    images: [
+      "https://images.unsplash.com/photo-1519749002036-403430de3d4b?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=400&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=300&fit=crop"
+    ],
+    description: "Traditional textile manufacturer with modern quality standards and ethical practices."
+  }
+]
+
 const filters = {
   location: ["China", "India", "Vietnam", "Bangladesh", "Turkey"],
   employees: ["1-50", "50-200", "200-500", "500-1000", "1000+"],
@@ -92,6 +130,9 @@ const filters = {
 export default function ManufacturerMatching() {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({})
+  const [manufacturers, setManufacturers] = useState(initialManufacturers)
+  const [loading, setLoading] = useState(false)
+  const [hasMore, setHasMore] = useState(true)
   const navigate = useNavigate()
 
   const toggleFilter = (category: string, value: string) => {
@@ -103,194 +144,247 @@ export default function ManufacturerMatching() {
     }))
   }
 
-  return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between mb-6">
-            <Button 
-              variant="ghost" 
-              onClick={() => navigate("/")}
-              className="flex items-center gap-2"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Back to Dashboard
-            </Button>
-          </div>
+  // Infinite scroll handler
+  const loadMoreManufacturers = useCallback(async () => {
+    if (loading || !hasMore) return
+    
+    setLoading(true)
+    
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    
+    const nextId = manufacturers.length + 1
+    const newManufacturers = generateMoreManufacturers(nextId)
+    
+    setManufacturers(prev => [...prev, ...newManufacturers])
+    
+    // Stop loading more after 10 total manufacturers
+    if (manufacturers.length >= 8) {
+      setHasMore(false)
+    }
+    
+    setLoading(false)
+  }, [manufacturers.length, loading, hasMore])
 
-          {/* Blueprint Steps */}
-          <div className="flex justify-center mb-6">
-            <div className="flex items-center space-x-4">
-              {blueprintSteps.map((step, index) => (
-                <div key={step.id} className="flex items-center">
-                  <div className={`
-                    flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all
-                    ${step.completed 
-                      ? 'bg-green-500 border-green-500 text-white' 
-                      : step.current
-                      ? 'bg-primary border-primary text-primary-foreground'
-                      : 'border-muted-foreground text-muted-foreground'
-                    }
-                  `}>
-                    {step.completed ? (
-                      <span className="text-sm font-medium">✓</span>
-                    ) : (
-                      <span className="text-sm font-medium">{step.id}</span>
-                    )}
-                  </div>
-                  <span className={`ml-2 text-sm ${step.current ? 'font-medium' : ''}`}>
-                    {step.title}
-                  </span>
-                  {index < blueprintSteps.length - 1 && (
-                    <div className={`
-                      w-16 h-0.5 mx-4 transition-all
-                      ${step.completed ? 'bg-green-500' : 'bg-muted'}
-                    `} />
+  // Scroll event listener
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + document.documentElement.scrollTop 
+          >= document.documentElement.offsetHeight - 1000) {
+        loadMoreManufacturers()
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [loadMoreManufacturers])
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-light text-primary text-heading">Find Manufacturers</h1>
+          <p className="text-secondary font-light">Discover verified manufacturing partners</p>
+        </div>
+        <Button 
+          variant="ghost" 
+          onClick={() => navigate("/")}
+          className="flex items-center gap-2 font-light"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to Dashboard
+        </Button>
+      </div>
+
+      {/* Blueprint Steps */}
+      <GradientCard className="p-6 card-glass bg-background/80 border border-border/20">
+        <div className="flex justify-center">
+          <div className="flex items-center space-x-4">
+            {blueprintSteps.map((step, index) => (
+              <div key={step.id} className="flex items-center">
+                <div className={`
+                  flex items-center justify-center w-8 h-8 rounded-full border-2 transition-all font-light
+                  ${step.completed 
+                    ? 'bg-purple-accent border-purple-accent text-white' 
+                    : step.current
+                    ? 'bg-purple-accent/20 border-purple-accent text-purple-accent'
+                    : 'border-border text-muted'
+                  }
+                `}>
+                  {step.completed ? (
+                    <span className="text-xs">✓</span>
+                  ) : (
+                    <span className="text-xs">{step.id}</span>
                   )}
                 </div>
-              ))}
-            </div>
+                <span className={`ml-2 text-sm font-light ${step.current ? 'text-primary' : 'text-muted'}`}>
+                  {step.title}
+                </span>
+                {index < blueprintSteps.length - 1 && (
+                  <div className={`
+                    w-12 h-0.5 mx-4 transition-all
+                    ${step.completed ? 'bg-purple-accent' : 'bg-border'}
+                  `} />
+                )}
+              </div>
+            ))}
           </div>
+        </div>
+      </GradientCard>
 
-          {/* Search Bar */}
-          <div className="relative max-w-2xl mx-auto">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search manufacturers or describe what you're looking for..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 pr-12"
-              />
-              <Button
-                size="sm"
-                className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8"
-              >
-                <Sparkles className="h-4 w-4 mr-1" />
-                AI
-              </Button>
-            </div>
-          </div>
+      {/* Search Section */}
+      <div className="relative max-w-2xl mx-auto">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted" />
+          <Input
+            placeholder="Search manufacturers or describe what you're looking for..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10 pr-16 font-light bg-background/50 border-border/50 focus:bg-background/80"
+          />
+          <GradientButton
+            variant="primary"
+            size="sm"
+            className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 font-light"
+          >
+            <Sparkles className="h-4 w-4 mr-1" />
+            AI
+          </GradientButton>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-6">
-        <div className="flex gap-6">
-          {/* Sidebar Filters */}
-          <div className="w-64 shrink-0">
-            <Card>
-              <CardHeader>
-                <h3 className="text-lg font-semibold">Filters</h3>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {Object.entries(filters).map(([category, options]) => (
-                  <div key={category}>
-                    <h4 className="font-medium mb-2 capitalize">{category}</h4>
-                    <div className="space-y-2">
-                      {options.map((option) => (
-                        <label key={option} className="flex items-center space-x-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={selectedFilters[category]?.includes(option) || false}
-                            onChange={() => toggleFilter(category, option)}
-                            className="rounded"
-                          />
-                          <span className="text-sm">{option}</span>
-                        </label>
-                      ))}
-                    </div>
-                    <Separator className="mt-4" />
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Manufacturer Cards */}
-          <div className="flex-1">
-            <div className="mb-4">
-              <h2 className="text-2xl font-semibold">Recommended Manufacturers</h2>
-              <p className="text-muted-foreground">Based on your project requirements</p>
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        {/* Sidebar Filters */}
+        <div className="lg:col-span-1">
+          <GradientCard className="p-6 card-glass bg-background/80 border border-border/20 sticky top-6">
+            <div className="flex items-center gap-2 mb-4">
+              <Filter className="h-4 w-4 text-purple-accent" />
+              <h3 className="text-lg font-light text-primary text-heading">Filters</h3>
             </div>
-
-            <div className="grid gap-6">
-              {manufacturers.map((manufacturer) => (
-                <Card 
-                  key={manufacturer.id} 
-                  className={`${manufacturer.suggested ? 'ring-2 ring-primary bg-primary/5' : ''}`}
-                >
-                  {manufacturer.suggested && (
-                    <div className="bg-primary text-primary-foreground px-4 py-2 text-sm font-medium">
-                      ⭐ Recommended Match
-                    </div>
-                  )}
-                  <CardContent className="p-6">
-                    <div className="flex gap-6">
-                      {/* Images */}
-                      <div className="flex gap-2">
-                        {manufacturer.images.map((image, index) => (
-                          <img
-                            key={index}
-                            src={image}
-                            alt={`${manufacturer.name} facility ${index + 1}`}
-                            className="w-24 h-24 rounded-lg object-cover"
-                          />
-                        ))}
-                      </div>
-
-                      {/* Info */}
-                      <div className="flex-1">
-                        <div className="flex items-start justify-between mb-2">
-                          <div>
-                            <h3 className="text-xl font-semibold">{manufacturer.name}</h3>
-                            <div className="flex items-center gap-2 text-muted-foreground">
-                              <MapPin className="h-4 w-4" />
-                              <span>{manufacturer.location}</span>
-                              <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                              <span>{manufacturer.rating}</span>
-                              <span>({manufacturer.reviews} reviews)</span>
-                            </div>
-                          </div>
-                          <div className="flex gap-2">
-                            <Button size="sm" variant="outline">
-                              <MessageCircle className="h-4 w-4 mr-1" />
-                              Chat
-                            </Button>
-                            <Button size="sm" variant="outline">
-                              <Phone className="h-4 w-4 mr-1" />
-                              Call
-                            </Button>
-                            <Button size="sm">
-                              <Mail className="h-4 w-4 mr-1" />
-                              Contact
-                            </Button>
-                          </div>
-                        </div>
-
-                        <p className="text-muted-foreground mb-3">{manufacturer.description}</p>
-
-                        <div className="flex items-center gap-4 mb-3">
-                          <div className="flex items-center gap-1">
-                            <Users className="h-4 w-4 text-muted-foreground" />
-                            <span className="text-sm">{manufacturer.employees} employees</span>
-                          </div>
-                        </div>
-
-                        <div className="flex flex-wrap gap-2">
-                          {manufacturer.specialties.map((specialty) => (
-                            <Badge key={specialty} variant="secondary">
-                              {specialty}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+            <div className="space-y-6">
+              {Object.entries(filters).map(([category, options]) => (
+                <div key={category}>
+                  <h4 className="font-light text-primary mb-2 capitalize text-heading">{category}</h4>
+                  <div className="space-y-2">
+                    {options.map((option) => (
+                      <label key={option} className="flex items-center space-x-2 cursor-pointer group">
+                        <input
+                          type="checkbox"
+                          checked={selectedFilters[category]?.includes(option) || false}
+                          onChange={() => toggleFilter(category, option)}
+                          className="rounded accent-purple-accent"
+                        />
+                        <span className="text-sm font-light text-secondary group-hover:text-primary transition-colors">{option}</span>
+                      </label>
+                    ))}
+                  </div>
+                  {category !== "rating" && <Separator className="mt-4 bg-border/50" />}
+                </div>
               ))}
             </div>
+          </GradientCard>
+        </div>
+
+        {/* Manufacturer Cards */}
+        <div className="lg:col-span-3 space-y-6">
+          <div className="mb-6">
+            <h2 className="text-xl font-light text-primary text-heading">Recommended Manufacturers</h2>
+            <p className="text-secondary font-light">Based on your project requirements</p>
           </div>
+
+          <div className="space-y-6">
+            {manufacturers.map((manufacturer) => (
+              <GradientCard 
+                key={manufacturer.id} 
+                className={`card-glass bg-background/80 border border-border/20 transition-all duration-300 hover:shadow-lg hover:shadow-purple-accent/10 ${
+                  manufacturer.suggested ? 'ring-1 ring-purple-accent/30 bg-purple-light/5' : ''
+                }`}
+              >
+                {manufacturer.suggested && (
+                  <div className="bg-gradient-primary text-white px-4 py-2 text-sm font-light rounded-t-xl">
+                    ⭐ Recommended Match
+                  </div>
+                )}
+                <div className="p-6">
+                  <div className="flex gap-6">
+                    {/* Images */}
+                    <div className="flex gap-2">
+                      {manufacturer.images.map((image, index) => (
+                        <img
+                          key={index}
+                          src={image}
+                          alt={`${manufacturer.name} facility ${index + 1}`}
+                          className="w-20 h-20 rounded-xl object-cover border border-border/20"
+                        />
+                      ))}
+                    </div>
+
+                    {/* Info */}
+                    <div className="flex-1">
+                      <div className="flex items-start justify-between mb-3">
+                        <div>
+                          <h3 className="text-lg font-light text-primary text-heading">{manufacturer.name}</h3>
+                          <div className="flex items-center gap-2 text-secondary">
+                            <MapPin className="h-3 w-3" />
+                            <span className="text-sm font-light">{manufacturer.location}</span>
+                            <Star className="h-3 w-3 fill-yellow-400 text-yellow-400 ml-2" />
+                            <span className="text-sm font-light">{manufacturer.rating}</span>
+                            <span className="text-sm font-light">({manufacturer.reviews} reviews)</span>
+                          </div>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button size="sm" variant="ghost" className="font-light hover:bg-purple-light/30">
+                            <MessageCircle className="h-4 w-4 mr-1" />
+                            Chat
+                          </Button>
+                          <Button size="sm" variant="ghost" className="font-light hover:bg-purple-light/30">
+                            <Phone className="h-4 w-4 mr-1" />
+                            Call
+                          </Button>
+                          <GradientButton size="sm" variant="primary" className="font-light">
+                            <Mail className="h-4 w-4 mr-1" />
+                            Contact
+                          </GradientButton>
+                        </div>
+                      </div>
+
+                      <p className="text-secondary font-light mb-4 text-sm">{manufacturer.description}</p>
+
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="flex items-center gap-1">
+                          <Users className="h-4 w-4 text-muted" />
+                          <span className="text-sm font-light text-secondary">{manufacturer.employees} employees</span>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
+                        {manufacturer.specialties.map((specialty) => (
+                          <Badge key={specialty} variant="secondary" className="font-light text-xs bg-purple-light/30 text-purple-accent border-purple-accent/20">
+                            {specialty}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </GradientCard>
+            ))}
+          </div>
+
+          {/* Loading indicator */}
+          {loading && (
+            <div className="flex justify-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-accent"></div>
+            </div>
+          )}
+
+          {/* End of results */}
+          {!hasMore && manufacturers.length > 4 && (
+            <div className="text-center py-8">
+              <p className="text-secondary font-light">You've reached the end of the results</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
