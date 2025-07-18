@@ -67,18 +67,18 @@ export function RecentProjects() {
                   <span className="block truncate">{project.aiDescription}</span>
                 </p>
                 {/* Progress bar */}
-                <div className="flex items-center gap-2 mt-2">
-                  <div className="flex-1 h-1.5 bg-purple-light/50 rounded-full overflow-hidden">
+                <div className="flex items-center gap-2 mt-3">
+                  <div className="flex-1 h-2 bg-purple-light/30 rounded-full overflow-hidden">
                     <div 
-                      className="h-full bg-purple-accent rounded-full transition-all duration-500"
+                      className="h-full bg-gradient-to-r from-purple-accent to-purple-dark rounded-full transition-all duration-500"
                       style={{ width: `${project.progress}%` }}
                     />
                   </div>
-                  <div className="flex items-center gap-1">
-                    <span className="text-xs text-gray-800 dark:text-gray-200 font-medium">{project.progress}%</span>
-                    <div className="w-8 h-1 bg-purple-light/50 rounded-full overflow-hidden">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-gray-800 dark:text-gray-200 font-medium">{project.progress}%</span>
+                    <div className="w-12 h-2 bg-purple-light/30 rounded-full overflow-hidden">
                       <div 
-                        className="h-full bg-purple-accent rounded-full transition-all duration-500"
+                        className="h-full bg-gradient-to-r from-purple-accent to-purple-dark rounded-full transition-all duration-500"
                         style={{ width: `${project.progress}%` }}
                       />
                     </div>
