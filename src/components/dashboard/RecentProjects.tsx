@@ -38,13 +38,19 @@ export function RecentProjects() {
               
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <h3 className="font-medium text-primary truncate text-heading">{project.name}</h3>
+                  <h3 className="font-medium text-gray-800 dark:text-gray-200 truncate">{project.name}</h3>
                   <Badge 
                     variant="secondary" 
                     className={
                       project.currentStage === "Order Samples" 
-                        ? "bg-green-100/50 text-green-700 border border-green-200/50"
-                        : `${project.statusColor} text-xs font-light`
+                        ? "bg-green-100/50 text-green-800 border border-green-200/50"
+                        : project.currentStage === "In Production"
+                        ? "bg-blue-100/50 text-blue-800 border border-blue-200/50"
+                        : project.currentStage === "Sample Review"  
+                        ? "bg-yellow-100/50 text-yellow-800 border border-yellow-200/50"
+                        : project.currentStage === "Shipping"
+                        ? "bg-green-100/50 text-green-800 border border-green-200/50"
+                        : `${project.statusColor} text-xs font-medium`
                     }
                   >
                     {project.currentStage === "Order Samples" 
