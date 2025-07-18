@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { NavLink, useLocation } from "react-router-dom"
+import { useProject } from "@/contexts/ProjectContext"
 import {
   LayoutDashboard,
   FolderOpen,
@@ -28,6 +29,8 @@ import {
 import { Button } from "@/components/ui/button"
 import { GradientButton } from "@/components/ui/gradient-button"
 import { NewProjectModal } from "@/components/project/NewProjectModal"
+import { ProjectDetailsModal } from "@/components/project/ProjectDetailsModal"
+import { Badge } from "@/components/ui/badge"
 
 const mainItems = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
@@ -38,17 +41,15 @@ const mainItems = [
   { title: "Blueprints", url: "/blueprints", icon: FileText },
 ]
 
-const recentProjects = [
-  { name: "Summer 2024 Collection", status: "In Production" },
-  { name: "Denim Jacket Series", status: "Sample Review" },
-  { name: "Sustainable Tees", status: "Completed" },
-]
 
 export function AppSidebar() {
   const { state } = useSidebar()
+  const { recentProjects } = useProject()
   const location = useLocation()
   const [projectsExpanded, setProjectsExpanded] = useState(true)
   const [showNewProjectModal, setShowNewProjectModal] = useState(false)
+  const [selectedProject, setSelectedProject] = useState(null)
+  const [showProjectModal, setShowProjectModal] = useState(false)
   const collapsed = state === "collapsed"
   
   const isActive = (path: string) => location.pathname === path
@@ -123,10 +124,24 @@ export function AppSidebar() {
             {projectsExpanded && (
               <SidebarGroupContent>
                 <div className="space-y-2 mt-2">
-                  {recentProjects.map((project, index) => (
-                    <div key={index} className="p-2 rounded-xl hover:bg-purple-light transition-colors cursor-pointer">
-                      <p className="text-sm font-light text-primary truncate">{project.name}</p>
-                      <p className="text-xs text-muted font-light">{project.status}</p>
+                  {recentProjects.map((project) => (
+                    <div 
+                      key={project.id} 
+                      className="p-3 rounded-xl hover:bg-purple-light/30 transition-colors cursor-pointer border border-transparent hover:border-purple-accent/20"
+                      onClick={() => {
+                        setSelectedProject(project)
+                        setShowProjectModal(true)
+                      }}
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <p className="text-sm font-light text-foreground truncate">{project.name}</p>
+                        {project.currentStage === "Order Samples" && (
+                          <Badge variant="secondary" className="text-xs bg-green-100/50 text-green-700 border border-green-200/50">
+                            Active
+                          </Badge>
+                        )}
+                      </div>
+                      <p className="text-xs text-muted-foreground font-light">{project.currentStage}</p>
                     </div>
                   ))}
                 </div>
@@ -151,6 +166,11 @@ export function AppSidebar() {
       <NewProjectModal 
         open={showNewProjectModal} 
         onOpenChange={setShowNewProjectModal} 
+      />
+      <ProjectDetailsModal 
+        project={selectedProject}
+        open={showProjectModal}
+        onOpenChange={setShowProjectModal}
       />
     </Sidebar>
   )

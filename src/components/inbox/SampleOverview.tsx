@@ -1,10 +1,11 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ArrowLeft, MapPin, Star, Users, Clock, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { GradientCard } from "@/components/ui/gradient-card"
 import { Badge } from "@/components/ui/badge"
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
+import { useProject } from "@/contexts/ProjectContext"
 
 interface Manufacturer {
   id: number
@@ -31,10 +32,16 @@ interface SampleOverviewProps {
 }
 
 export function SampleOverview({ manufacturers, onBack }: SampleOverviewProps) {
+  const { addInboxProject } = useProject()
   const [selectedManufacturer, setSelectedManufacturer] = useState<Manufacturer | null>(
     manufacturers.length > 0 ? manufacturers[0] : null
   )
   const [newMessage, setNewMessage] = useState("")
+
+  // Add project to dashboard when component mounts
+  useEffect(() => {
+    addInboxProject()
+  }, [])
 
   // Mock messages for the selected manufacturer
   const messages: Message[] = [

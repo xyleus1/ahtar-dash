@@ -16,6 +16,7 @@ interface ProjectContextType {
   recentProjects: ProjectData[]
   updateProject: (project: ProjectData) => void
   addProject: (project: ProjectData) => void
+  addInboxProject: () => void
 }
 
 const ProjectContext = createContext<ProjectContextType | undefined>(undefined)
@@ -80,12 +81,27 @@ export function ProjectProvider({ children }: { children: ReactNode }) {
     setRecentProjects(prev => [project, ...prev.slice(0, 3)])
   }
 
+  const addInboxProject = () => {
+    const newProject: ProjectData = {
+      id: Date.now().toString(),
+      name: "Urban Streetwear Collection",
+      currentStage: "Order Samples",
+      progress: 35,
+      aiDescription: "Contemporary streetwear line featuring oversized silhouettes and urban-inspired graphics. Currently awaiting sample responses from contacted manufacturers to proceed with production.",
+      createdAt: new Date().toISOString(),
+      manufacturer: "Apex Textiles",
+      statusColor: "bg-green-100 text-green-800"
+    }
+    addProject(newProject)
+  }
+
   return (
     <ProjectContext.Provider value={{
       currentProject,
       recentProjects,
       updateProject,
-      addProject
+      addProject,
+      addInboxProject
     }}>
       {children}
     </ProjectContext.Provider>
