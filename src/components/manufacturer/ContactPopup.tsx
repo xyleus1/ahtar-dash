@@ -100,7 +100,7 @@ Looking for a long-term manufacturing partner for ongoing seasonal collections. 
                   <div className="absolute inset-0 h-20 w-20 border-4 border-green-500/30 rounded-full animate-ping" />
                 </div>
                 <h3 className="text-3xl font-light text-foreground">Message Sent!</h3>
-                <p className="text-muted-foreground font-light max-w-md">
+                <p className="text-gray-600 dark:text-gray-400 font-light max-w-md">
                   Your inquiry has been sent to {manufacturer.name}. They typically respond within 24 hours.
                 </p>
               </div>
@@ -136,7 +136,7 @@ Looking for a long-term manufacturing partner for ongoing seasonal collections. 
                 {/* Info */}
                 <div className="flex-1">
                   <h3 className="text-xl font-light text-foreground mb-2">{manufacturer.name}</h3>
-                  <div className="flex items-center gap-4 text-muted-foreground mb-3">
+                  <div className="flex items-center gap-4 text-gray-600 dark:text-gray-400 mb-3">
                     <div className="flex items-center gap-1">
                       <MapPin className="h-4 w-4" />
                       <span className="text-sm font-light">{manufacturer.location}</span>
@@ -152,7 +152,7 @@ Looking for a long-term manufacturing partner for ongoing seasonal collections. 
                     </div>
                   </div>
 
-                  <p className="text-foreground font-light mb-4">{manufacturer.description}</p>
+                  <p className="text-gray-700 dark:text-gray-300 font-light mb-4">{manufacturer.description}</p>
 
                   <div className="flex flex-wrap gap-2">
                     {manufacturer.specialties.map((specialty) => (
@@ -167,13 +167,13 @@ Looking for a long-term manufacturing partner for ongoing seasonal collections. 
               {/* Services Description */}
               <div className="space-y-3">
                 <h4 className="text-lg font-light text-foreground">What We Provide</h4>
-                <p className="text-foreground font-light">
+                <p className="text-gray-700 dark:text-gray-300 font-light">
                   {manufacturer.name} specializes in high-quality textile manufacturing with comprehensive services including design consultation, material sourcing, prototyping, mass production, and quality assurance. We maintain strict quality standards and offer competitive pricing with flexible MOQs to support businesses of all sizes.
                 </p>
                 <div className="grid grid-cols-2 gap-4 mt-4">
                   <div className="space-y-2">
                     <h5 className="font-light text-foreground">Core Services:</h5>
-                    <ul className="text-sm text-muted-foreground space-y-1">
+                    <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
                       <li>• Custom design development</li>
                       <li>• Sample production & prototyping</li>
                       <li>• Bulk manufacturing</li>
@@ -182,7 +182,7 @@ Looking for a long-term manufacturing partner for ongoing seasonal collections. 
                   </div>
                   <div className="space-y-2">
                     <h5 className="font-light text-foreground">Additional Benefits:</h5>
-                    <ul className="text-sm text-muted-foreground space-y-1">
+                    <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
                       <li>• Competitive pricing</li>
                       <li>• Flexible MOQs</li>
                       <li>• Fast turnaround times</li>
@@ -195,7 +195,7 @@ Looking for a long-term manufacturing partner for ongoing seasonal collections. 
               {/* Request Details */}
               <div className="space-y-3">
                 <h4 className="text-lg font-light text-foreground">Your Request Details</h4>
-                <p className="text-sm text-muted-foreground font-light">
+                <p className="text-sm text-gray-600 dark:text-gray-400 font-light">
                   The following details have been automatically populated based on your project requirements. You can edit them before sending.
                 </p>
                 <Textarea

@@ -242,10 +242,10 @@ export default function ManufacturerMatching() {
     <>
       <div className="space-y-6 px-6">
         {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between px-6">
         <div>
-          <h1 className="text-2xl font-light text-primary text-heading">Find Manufacturers</h1>
-          <p className="text-secondary font-light">Discover verified manufacturing partners</p>
+          <h1 className="text-2xl font-light text-foreground">Find Manufacturers</h1>
+          <p className="text-gray-600 dark:text-gray-400 font-light">Discover verified manufacturing partners</p>
         </div>
         <Button 
           variant="ghost" 
@@ -269,7 +269,7 @@ export default function ManufacturerMatching() {
                     ? 'bg-purple-accent border-purple-accent text-white' 
                     : step.current
                     ? 'bg-purple-accent/20 border-purple-accent text-purple-accent'
-                    : 'border-border text-muted'
+                    : 'border-border text-gray-500 dark:text-gray-400'
                   }
                 `}>
                   {step.completed ? (
@@ -278,7 +278,7 @@ export default function ManufacturerMatching() {
                     <span className="text-xs">{step.id}</span>
                   )}
                 </div>
-                <span className={`ml-2 text-sm font-light ${step.current ? 'text-primary' : 'text-muted'}`}>
+                <span className={`ml-2 text-sm font-light ${step.current ? 'text-foreground' : 'text-gray-500 dark:text-gray-400'}`}>
                   {step.title}
                 </span>
                 {index < blueprintSteps.length - 1 && (
@@ -296,7 +296,7 @@ export default function ManufacturerMatching() {
       {/* Search Section */}
       <div className="relative max-w-2xl mx-auto">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500 dark:text-gray-400" />
           <Input
             placeholder="Search manufacturers or describe what you're looking for..."
             value={searchQuery}
@@ -320,12 +320,12 @@ export default function ManufacturerMatching() {
           <GradientCard className="p-6 card-glass bg-background/80 border border-border/20 sticky top-6">
             <div className="flex items-center gap-2 mb-4">
               <Filter className="h-4 w-4 text-purple-accent" />
-              <h3 className="text-lg font-light text-primary text-heading">Filters</h3>
+              <h3 className="text-lg font-light text-foreground">Filters</h3>
             </div>
             <div className="space-y-6">
               {Object.entries(filters).map(([category, options]) => (
                 <div key={category}>
-                  <h4 className="font-light text-primary mb-2 capitalize text-heading">{category}</h4>
+                  <h4 className="font-light text-foreground mb-2 capitalize">{category}</h4>
                   <div className="space-y-2">
                     {options.map((option) => (
                       <label key={option} className="flex items-center space-x-2 cursor-pointer group">
@@ -335,7 +335,7 @@ export default function ManufacturerMatching() {
                           onChange={() => toggleFilter(category, option)}
                           className="rounded accent-purple-accent"
                         />
-                        <span className="text-sm font-light text-muted-foreground group-hover:text-primary transition-colors">{option}</span>
+                        <span className="text-sm font-light text-gray-700 dark:text-gray-300 group-hover:text-foreground transition-colors">{option}</span>
                       </label>
                     ))}
                   </div>
@@ -349,8 +349,8 @@ export default function ManufacturerMatching() {
         {/* Manufacturer Cards */}
         <div className="lg:col-span-3 space-y-6">
           <div className="mb-6">
-            <h2 className="text-xl font-light text-primary text-heading">Recommended Manufacturers</h2>
-            <p className="text-secondary font-light">Based on your project requirements</p>
+            <h2 className="text-xl font-light text-foreground">Recommended Manufacturers</h2>
+            <p className="text-gray-600 dark:text-gray-400 font-light">Based on your project requirements</p>
           </div>
 
           <div className="space-y-6">
@@ -384,8 +384,8 @@ export default function ManufacturerMatching() {
                     <div className="flex-1">
                       <div className="flex items-start justify-between mb-3">
                         <div>
-                          <h3 className="text-lg font-light text-primary text-heading">{manufacturer.name}</h3>
-                          <div className="flex items-center gap-2 text-secondary">
+                          <h3 className="text-lg font-light text-foreground">{manufacturer.name}</h3>
+                          <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
                             <MapPin className="h-3 w-3" />
                             <span className="text-sm font-light">{manufacturer.location}</span>
                             <Star className="h-3 w-3 fill-yellow-400 text-yellow-400 ml-2" />
@@ -414,12 +414,12 @@ export default function ManufacturerMatching() {
                         </div>
                       </div>
 
-                      <p className="text-secondary font-light mb-4 text-sm">{manufacturer.description}</p>
+                      <p className="text-gray-700 dark:text-gray-300 font-light mb-4 text-sm">{manufacturer.description}</p>
 
                       <div className="flex items-center gap-4 mb-4">
                         <div className="flex items-center gap-1">
-                          <Users className="h-4 w-4 text-muted" />
-                          <span className="text-sm font-light text-secondary">{manufacturer.employees} employees</span>
+                          <Users className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                          <span className="text-sm font-light text-gray-600 dark:text-gray-400">{manufacturer.employees} employees</span>
                         </div>
                       </div>
 
@@ -447,7 +447,7 @@ export default function ManufacturerMatching() {
           {/* End of results */}
           {!hasMore && manufacturers.length > 4 && (
             <div className="text-center py-8">
-              <p className="text-secondary font-light">You've reached the end of the results</p>
+              <p className="text-gray-600 dark:text-gray-400 font-light">You've reached the end of the results</p>
             </div>
           )}
         </div>
