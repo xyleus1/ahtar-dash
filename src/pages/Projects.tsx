@@ -56,7 +56,7 @@ export default function Projects() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-primary">Projects</h1>
-            <p className="text-gray-600">Manage your production pipeline</p>
+            <p className="text-gray-700 dark:text-gray-300">Manage your production pipeline</p>
           </div>
           <Button className="button-hover">
             <Plus className="h-4 w-4 mr-2" />
@@ -87,7 +87,7 @@ export default function Projects() {
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
                   <h3 className="font-semibold text-primary mb-1">{project.name}</h3>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                     <User className="h-3 w-3" />
                     <span>{project.manufacturer}</span>
                   </div>
@@ -106,7 +106,7 @@ export default function Projects() {
               {/* Progress */}
               <div className="mb-4">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-gray-600">Progress</span>
+                  <span className="text-sm text-gray-700 dark:text-gray-300">Progress</span>
                   <span className="text-sm font-medium text-primary">{project.progress}%</span>
                 </div>
                 <div className="h-2 bg-grey-100 rounded-full overflow-hidden">
@@ -122,14 +122,14 @@ export default function Projects() {
                 <div className="flex items-center gap-2">
                   <Package className="h-4 w-4 text-gray-500" />
                   <div>
-                    <p className="text-xs text-gray-600">Items</p>
+                    <p className="text-xs text-gray-700 dark:text-gray-300">Items</p>
                     <p className="text-sm font-medium text-primary">{project.items}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-gray-500" />
                   <div>
-                    <p className="text-xs text-gray-600">Deadline</p>
+                    <p className="text-xs text-gray-700 dark:text-gray-300">Deadline</p>
                     <p className="text-sm font-medium text-primary">{project.deadline}</p>
                   </div>
                 </div>

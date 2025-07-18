@@ -13,7 +13,7 @@ export function StatCard({ title, value, change, changeType = "neutral", icon: I
   const changeColorClass = {
     positive: "text-green-600",
     negative: "text-red-600", 
-    neutral: "text-muted"
+    neutral: "text-gray-700 dark:text-gray-300"
   }[changeType]
 
   return (
