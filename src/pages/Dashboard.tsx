@@ -89,7 +89,7 @@ export default function Dashboard() {
         <div className="space-y-6">
           {/* Quick Actions */}
           <GradientCard className="p-6 card-glass bg-background/80 border border-border/20">
-            <h2 className="text-lg font-medium text-primary mb-4 text-heading">Quick Actions</h2>
+            <h2 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-4">Quick Actions</h2>
             <div className="space-y-3">
               {quickActions.map((action, index) => (
                 <Button
@@ -99,8 +99,8 @@ export default function Dashboard() {
                 >
                   <action.icon className="h-4 w-4 mr-3 text-purple-accent" />
                   <div className="text-left">
-                    <p className="font-light text-primary text-heading">{action.title}</p>
-                    <p className="text-xs text-gray-600 font-light">{action.description}</p>
+                    <p className="font-medium text-gray-800 dark:text-gray-200">{action.title}</p>
+                    <p className="text-xs text-gray-700 dark:text-gray-300 font-light">{action.description}</p>
                   </div>
                   <ArrowRight className="h-3 w-3 ml-auto text-gray-500" />
                 </Button>
@@ -110,7 +110,7 @@ export default function Dashboard() {
 
           {/* Recent Alerts */}
           <GradientCard className="p-6 card-glass bg-background/80 border border-border/20">
-            <h2 className="text-lg font-medium text-primary mb-4 text-heading">Recent Activity</h2>
+            <h2 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-4">Recent Activity</h2>
             <div className="space-y-3">
               {alerts.map((alert, index) => (
                 <div key={index} className="flex items-start gap-3 p-2 rounded-xl hover:bg-purple-light/30 transition-all duration-300">
@@ -118,8 +118,8 @@ export default function Dashboard() {
                   {alert.type === "success" && <CheckCircle className="h-4 w-4 text-green-600 mt-0.5" />}
                   {alert.type === "info" && <Clock className="h-4 w-4 text-blue-600 mt-0.5" />}
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm text-primary font-light">{alert.message}</p>
-                    <p className="text-xs text-gray-600 font-light">{alert.time}</p>
+                    <p className="text-sm text-gray-800 dark:text-gray-200 font-medium">{alert.message}</p>
+                    <p className="text-xs text-gray-700 dark:text-gray-300 font-light">{alert.time}</p>
                   </div>
                 </div>
               ))}
