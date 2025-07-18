@@ -73,7 +73,7 @@ export function AppSidebar() {
             {!collapsed && (
               <div>
                 <h1 className="font-medium text-primary text-heading">Fashion Production</h1>
-                <p className="text-xs text-muted font-light">OS Platform</p>
+                <p className="text-xs text-gray-700 dark:text-gray-300 font-light">OS Platform</p>
               </div>
             )}
           </div>
@@ -117,7 +117,7 @@ export function AppSidebar() {
               className="flex items-center justify-between cursor-pointer"
               onClick={() => setProjectsExpanded(!projectsExpanded)}
             >
-              <span className="text-xs font-light text-muted uppercase tracking-wider">Recent Projects</span>
+              <span className="text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">Recent Projects</span>
               {projectsExpanded ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
             </SidebarGroupLabel>
             
@@ -134,14 +134,14 @@ export function AppSidebar() {
                       }}
                     >
                       <div className="flex items-center justify-between mb-1">
-                        <p className="text-sm font-medium text-primary truncate">{project.name}</p>
+                        <p className="text-sm font-medium text-gray-800 dark:text-gray-200 truncate">{project.name}</p>
                         {project.currentStage === "Order Samples" && (
                           <Badge variant="secondary" className="text-xs bg-green-100/50 text-green-700 border border-green-200/50">
                             Active
                           </Badge>
                         )}
                       </div>
-                      <p className="text-xs text-muted font-light">{project.currentStage}</p>
+                      <p className="text-xs text-gray-700 dark:text-gray-300 font-medium">{project.currentStage}</p>
                     </div>
                   ))}
                 </div>
