@@ -1,3 +1,4 @@
+
 import { useState } from "react"
 import { GradientCard } from "@/components/ui/gradient-card"
 import { Badge } from "@/components/ui/badge"
@@ -73,11 +74,19 @@ export function RecentProjects() {
                       style={{ width: `${project.progress}%` }}
                     />
                   </div>
-                  <span className="text-xs text-gray-800 dark:text-gray-200 font-medium">{project.progress}%</span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs text-gray-800 dark:text-gray-200 font-medium">{project.progress}%</span>
+                    <div className="w-8 h-1 bg-purple-light/50 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-purple-accent rounded-full transition-all duration-500"
+                        style={{ width: `${project.progress}%` }}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
               
-              <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 font-light">
+              <div className="flex items-center gap-2 text-sm text-gray-800 dark:text-gray-200 font-light">
                 <Clock className="h-3 w-3" />
                 <span>{new Date(project.createdAt).toLocaleDateString()}</span>
               </div>
