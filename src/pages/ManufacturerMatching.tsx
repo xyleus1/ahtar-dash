@@ -242,7 +242,7 @@ export default function ManufacturerMatching() {
     <>
       <div className="space-y-6 px-6">
         {/* Header */}
-      <div className="flex items-center justify-between px-6">
+      <div className="flex items-center justify-between px-6 pt-6">
         <div>
           <h1 className="text-2xl font-light text-foreground">Find Manufacturers</h1>
           <p className="text-gray-600 dark:text-gray-400 font-light">Discover verified manufacturing partners</p>
@@ -362,7 +362,7 @@ export default function ManufacturerMatching() {
                 }`}
               >
                 {manufacturer.suggested && (
-                  <div className="bg-gradient-primary text-white px-4 py-2 text-sm font-light rounded-t-xl">
+                  <div className="bg-gradient-primary text-white px-4 py-2 text-sm font-medium rounded-t-xl">
                     ⭐ Recommended Match
                   </div>
                 )}
