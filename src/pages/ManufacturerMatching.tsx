@@ -9,6 +9,7 @@ import { GradientCard } from "@/components/ui/gradient-card"
 import { GradientButton } from "@/components/ui/gradient-button"
 import { useNavigate } from "react-router-dom"
 import { ContactPopup } from "@/components/manufacturer/ContactPopup"
+import { SampleOverview } from "@/components/inbox/SampleOverview"
 import { useProject } from "@/contexts/ProjectContext"
 
 const blueprintSteps = [
@@ -137,6 +138,8 @@ export default function ManufacturerMatching() {
   const [hasMore, setHasMore] = useState(true)
   const [selectedManufacturer, setSelectedManufacturer] = useState<typeof initialManufacturers[0] | null>(null)
   const [isContactPopupOpen, setIsContactPopupOpen] = useState(false)
+  const [viewMode, setViewMode] = useState<'manufacturers' | 'samples'>('manufacturers')
+  const [contactedManufacturers, setContactedManufacturers] = useState<typeof initialManufacturers>([])
   const navigate = useNavigate()
   const { addProject, updateProject, currentProject } = useProject()
 
@@ -167,6 +170,17 @@ export default function ManufacturerMatching() {
   const handleCloseContactPopup = () => {
     setIsContactPopupOpen(false)
     setSelectedManufacturer(null)
+  }
+
+  const handleProceedToSamples = () => {
+    if (selectedManufacturer && !contactedManufacturers.find(m => m.id === selectedManufacturer.id)) {
+      setContactedManufacturers(prev => [...prev, selectedManufacturer])
+    }
+    setViewMode('samples')
+  }
+
+  const handleBackToManufacturers = () => {
+    setViewMode('manufacturers')
   }
 
   const toggleFilter = (category: string, value: string) => {
@@ -213,6 +227,17 @@ export default function ManufacturerMatching() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [loadMoreManufacturers])
 
+  // Render sample overview mode
+  if (viewMode === 'samples') {
+    return (
+      <SampleOverview 
+        manufacturers={contactedManufacturers}
+        onBack={handleBackToManufacturers}
+      />
+    )
+  }
+
+  // Render manufacturer matching mode
   return (
     <>
       <div className="space-y-6 px-6">
@@ -435,6 +460,7 @@ export default function ManufacturerMatching() {
           manufacturer={selectedManufacturer}
           isOpen={isContactPopupOpen}
           onClose={handleCloseContactPopup}
+          onProceedToSamples={handleProceedToSamples}
         />
       )}
     </>
