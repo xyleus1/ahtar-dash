@@ -68,7 +68,7 @@ Looking for a long-term manufacturing partner for ongoing seasonal collections. 
         <GradientCard className="card-glass bg-background/95 border border-border/20 animate-scale-in">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-border/20">
-            <h2 className="text-2xl font-light text-primary text-heading">Contact Manufacturer</h2>
+            <h2 className="text-2xl font-light text-foreground">Contact Manufacturer</h2>
             <Button
               variant="ghost"
               size="sm"
@@ -96,8 +96,8 @@ Looking for a long-term manufacturing partner for ongoing seasonal collections. 
 
               {/* Info */}
               <div className="flex-1">
-                <h3 className="text-xl font-light text-primary text-heading mb-2">{manufacturer.name}</h3>
-                <div className="flex items-center gap-4 text-secondary mb-3">
+                <h3 className="text-xl font-light text-foreground mb-2">{manufacturer.name}</h3>
+                <div className="flex items-center gap-4 text-muted-foreground mb-3">
                   <div className="flex items-center gap-1">
                     <MapPin className="h-4 w-4" />
                     <span className="text-sm font-light">{manufacturer.location}</span>
@@ -113,7 +113,7 @@ Looking for a long-term manufacturing partner for ongoing seasonal collections. 
                   </div>
                 </div>
 
-                <p className="text-secondary font-light mb-4">{manufacturer.description}</p>
+                <p className="text-foreground font-light mb-4">{manufacturer.description}</p>
 
                 <div className="flex flex-wrap gap-2">
                   {manufacturer.specialties.map((specialty) => (
@@ -127,14 +127,14 @@ Looking for a long-term manufacturing partner for ongoing seasonal collections. 
 
             {/* Services Description */}
             <div className="space-y-3">
-              <h4 className="text-lg font-light text-primary text-heading">What We Provide</h4>
-              <p className="text-secondary font-light">
+              <h4 className="text-lg font-light text-foreground">What We Provide</h4>
+              <p className="text-foreground font-light">
                 {manufacturer.name} specializes in high-quality textile manufacturing with comprehensive services including design consultation, material sourcing, prototyping, mass production, and quality assurance. We maintain strict quality standards and offer competitive pricing with flexible MOQs to support businesses of all sizes.
               </p>
               <div className="grid grid-cols-2 gap-4 mt-4">
                 <div className="space-y-2">
-                  <h5 className="font-light text-primary">Core Services:</h5>
-                  <ul className="text-sm text-secondary space-y-1">
+                  <h5 className="font-light text-foreground">Core Services:</h5>
+                  <ul className="text-sm text-muted-foreground space-y-1">
                     <li>• Custom design development</li>
                     <li>• Sample production & prototyping</li>
                     <li>• Bulk manufacturing</li>
@@ -142,8 +142,8 @@ Looking for a long-term manufacturing partner for ongoing seasonal collections. 
                   </ul>
                 </div>
                 <div className="space-y-2">
-                  <h5 className="font-light text-primary">Additional Benefits:</h5>
-                  <ul className="text-sm text-secondary space-y-1">
+                  <h5 className="font-light text-foreground">Additional Benefits:</h5>
+                  <ul className="text-sm text-muted-foreground space-y-1">
                     <li>• Competitive pricing</li>
                     <li>• Flexible MOQs</li>
                     <li>• Fast turnaround times</li>
@@ -155,8 +155,8 @@ Looking for a long-term manufacturing partner for ongoing seasonal collections. 
 
             {/* Request Details */}
             <div className="space-y-3">
-              <h4 className="text-lg font-light text-primary text-heading">Your Request Details</h4>
-              <p className="text-sm text-secondary font-light">
+              <h4 className="text-lg font-light text-foreground">Your Request Details</h4>
+              <p className="text-sm text-muted-foreground font-light">
                 The following details have been automatically populated based on your project requirements. You can edit them before sending.
               </p>
               <Textarea
