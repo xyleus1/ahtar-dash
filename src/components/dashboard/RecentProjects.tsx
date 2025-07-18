@@ -59,10 +59,10 @@ export function RecentProjects() {
                     }
                   </Badge>
                 </div>
-                <p className="text-sm text-gray-700 dark:text-gray-300 font-light mb-1">
+                <p className="text-sm text-gray-800 dark:text-gray-200 font-medium mb-1">
                   {project.manufacturer || "Finding manufacturers..."}
                 </p>
-                <p className="text-xs text-gray-700 dark:text-gray-300 font-light overflow-hidden">
+                <p className="text-xs text-gray-800 dark:text-gray-200 font-medium overflow-hidden">
                   <span className="block truncate">{project.aiDescription}</span>
                 </p>
                 {/* Progress bar */}
