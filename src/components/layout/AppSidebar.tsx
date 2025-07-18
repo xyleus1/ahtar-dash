@@ -134,14 +134,14 @@ export function AppSidebar() {
                       }}
                     >
                       <div className="flex items-center justify-between mb-1">
-                        <p className="text-sm font-light text-foreground truncate">{project.name}</p>
+                        <p className="text-sm font-medium text-primary truncate">{project.name}</p>
                         {project.currentStage === "Order Samples" && (
                           <Badge variant="secondary" className="text-xs bg-green-100/50 text-green-700 border border-green-200/50">
                             Active
                           </Badge>
                         )}
                       </div>
-                      <p className="text-xs text-muted-foreground font-light">{project.currentStage}</p>
+                      <p className="text-xs text-muted font-light">{project.currentStage}</p>
                     </div>
                   ))}
                 </div>

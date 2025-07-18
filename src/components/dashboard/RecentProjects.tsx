@@ -38,7 +38,7 @@ export function RecentProjects() {
               
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <h3 className="font-light text-foreground truncate text-heading">{project.name}</h3>
+                  <h3 className="font-medium text-primary truncate text-heading">{project.name}</h3>
                   <Badge 
                     variant="secondary" 
                     className={
@@ -53,10 +53,10 @@ export function RecentProjects() {
                     }
                   </Badge>
                 </div>
-                <p className="text-sm text-muted-foreground font-light mb-1">
+                <p className="text-sm text-muted font-light mb-1">
                   {project.manufacturer || "Finding manufacturers..."}
                 </p>
-                <p className="text-xs text-muted-foreground font-light overflow-hidden">
+                <p className="text-xs text-muted font-light overflow-hidden">
                   <span className="block truncate">{project.aiDescription}</span>
                 </p>
                 {/* Progress bar */}
@@ -67,11 +67,11 @@ export function RecentProjects() {
                       style={{ width: `${project.progress}%` }}
                     />
                   </div>
-                  <span className="text-xs text-muted-foreground font-light">{project.progress}%</span>
+                  <span className="text-xs text-muted font-light">{project.progress}%</span>
                 </div>
               </div>
               
-              <div className="flex items-center gap-2 text-sm text-muted-foreground font-light">
+              <div className="flex items-center gap-2 text-sm text-muted font-light">
                 <Clock className="h-3 w-3" />
                 <span>{new Date(project.createdAt).toLocaleDateString()}</span>
               </div>
@@ -91,9 +91,9 @@ export function RecentProjects() {
           ))
         ) : (
           <div className="text-center py-8">
-            <Package className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
-            <p className="text-muted-foreground font-light">No recent projects</p>
-            <p className="text-xs text-muted-foreground font-light">Start a new project to see it here</p>
+            <Package className="h-12 w-12 text-muted mx-auto mb-3" />
+            <p className="text-muted font-light">No recent projects</p>
+            <p className="text-xs text-muted font-light">Start a new project to see it here</p>
           </div>
         )}
       </div>
