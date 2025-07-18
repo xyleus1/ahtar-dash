@@ -39,7 +39,7 @@ export default function Dashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-light text-primary text-heading">Dashboard</h1>
-          <p className="text-gray-600 font-light">Manage your fashion production pipeline</p>
+          <p className="text-gray-700 dark:text-gray-300 font-light">Manage your fashion production pipeline</p>
         </div>
         <GradientButton variant="primary" className="font-light" onClick={() => setIsModalOpen(true)}>
           <Plus className="h-4 w-4 mr-2" />

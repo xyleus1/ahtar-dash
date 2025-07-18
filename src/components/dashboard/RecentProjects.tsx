@@ -15,7 +15,7 @@ export function RecentProjects() {
   return (
     <GradientCard className="p-6 card-glass bg-background/80 border border-purple-accent/20">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-lg font-medium text-primary text-heading">Recent Projects</h2>
+        <h2 className="text-lg font-medium text-gray-800 dark:text-gray-200">Recent Projects</h2>
         <GradientButton variant="default" size="sm" className="text-purple-accent font-light">
           View All
         </GradientButton>
@@ -53,10 +53,10 @@ export function RecentProjects() {
                     }
                   </Badge>
                 </div>
-                <p className="text-sm text-muted font-light mb-1">
+                <p className="text-sm text-gray-700 dark:text-gray-300 font-light mb-1">
                   {project.manufacturer || "Finding manufacturers..."}
                 </p>
-                <p className="text-xs text-muted font-light overflow-hidden">
+                <p className="text-xs text-gray-700 dark:text-gray-300 font-light overflow-hidden">
                   <span className="block truncate">{project.aiDescription}</span>
                 </p>
                 {/* Progress bar */}
@@ -67,11 +67,11 @@ export function RecentProjects() {
                       style={{ width: `${project.progress}%` }}
                     />
                   </div>
-                  <span className="text-xs text-muted font-light">{project.progress}%</span>
+                  <span className="text-xs text-gray-700 dark:text-gray-300 font-light">{project.progress}%</span>
                 </div>
               </div>
               
-              <div className="flex items-center gap-2 text-sm text-muted font-light">
+              <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300 font-light">
                 <Clock className="h-3 w-3" />
                 <span>{new Date(project.createdAt).toLocaleDateString()}</span>
               </div>
