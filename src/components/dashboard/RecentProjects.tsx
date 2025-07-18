@@ -73,7 +73,7 @@ export function RecentProjects() {
                       style={{ width: `${project.progress}%` }}
                     />
                   </div>
-                  <span className="text-xs text-gray-700 dark:text-gray-300 font-light">{project.progress}%</span>
+                  <span className="text-xs text-gray-800 dark:text-gray-200 font-medium">{project.progress}%</span>
                 </div>
               </div>
               
