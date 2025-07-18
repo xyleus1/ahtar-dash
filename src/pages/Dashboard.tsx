@@ -39,7 +39,7 @@ export default function Dashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-light text-primary text-heading">Dashboard</h1>
-          <p className="text-secondary font-light">Manage your fashion production pipeline</p>
+          <p className="text-gray-600 font-light">Manage your fashion production pipeline</p>
         </div>
         <GradientButton variant="primary" className="font-light" onClick={() => setIsModalOpen(true)}>
           <Plus className="h-4 w-4 mr-2" />
@@ -100,9 +100,9 @@ export default function Dashboard() {
                   <action.icon className="h-4 w-4 mr-3 text-purple-accent" />
                   <div className="text-left">
                     <p className="font-light text-primary text-heading">{action.title}</p>
-                    <p className="text-xs text-secondary font-light">{action.description}</p>
+                    <p className="text-xs text-gray-600 font-light">{action.description}</p>
                   </div>
-                  <ArrowRight className="h-3 w-3 ml-auto text-muted" />
+                  <ArrowRight className="h-3 w-3 ml-auto text-gray-500" />
                 </Button>
               ))}
             </div>
@@ -119,7 +119,7 @@ export default function Dashboard() {
                   {alert.type === "info" && <Clock className="h-4 w-4 text-blue-600 mt-0.5" />}
                   <div className="flex-1 min-w-0">
                     <p className="text-sm text-primary font-light">{alert.message}</p>
-                    <p className="text-xs text-muted font-light">{alert.time}</p>
+                    <p className="text-xs text-gray-600 font-light">{alert.time}</p>
                   </div>
                 </div>
               ))}

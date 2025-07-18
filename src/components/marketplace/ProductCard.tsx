@@ -31,7 +31,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <div className="p-4 space-y-3">
         <div>
           <h3 className="font-semibold text-primary mb-1">{product.name}</h3>
-          <p className="text-sm text-secondary">{product.brand}</p>
+          <p className="text-sm text-gray-600">{product.brand}</p>
         </div>
         
         <div className="flex flex-wrap gap-1">
@@ -45,15 +45,15 @@ export function ProductCard({ product }: ProductCardProps) {
         
         <div className="space-y-1">
           <div className="flex justify-between text-sm">
-            <span className="text-secondary">MOQ:</span>
+            <span className="text-gray-600">MOQ:</span>
             <span className="text-primary font-medium">{product.moq}</span>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-secondary">Lead Time:</span>
+            <span className="text-gray-600">Lead Time:</span>
             <span className="text-primary font-medium">{product.leadTime}</span>
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-secondary">Origin:</span>
+            <span className="text-gray-600">Origin:</span>
             <span className="text-primary font-medium">{product.supplierCountry}</span>
           </div>
         </div>

@@ -96,7 +96,7 @@ export default function Marketplace() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-primary">Marketplace</h1>
-          <p className="text-secondary">Discover recent drops and production inspiration</p>
+          <p className="text-gray-600">Discover recent drops and production inspiration</p>
         </div>
         
         <div className="flex items-center gap-2">
@@ -120,7 +120,7 @@ export default function Marketplace() {
       {/* Search and Filters */}
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500" />
           <Input
             placeholder="Search products, brands..."
             value={searchQuery}
@@ -152,11 +152,11 @@ export default function Marketplace() {
 
       {/* Results Header */}
       <div className="flex items-center justify-between">
-        <p className="text-sm text-secondary">
+        <p className="text-sm text-gray-600">
           Showing {filteredProducts.length} products
         </p>
         <div className="flex items-center gap-2">
-          <span className="text-sm text-secondary">Sort by:</span>
+          <span className="text-sm text-gray-600">Sort by:</span>
           <Button variant="ghost" size="sm">
             Most Recent
           </Button>
