@@ -1,3 +1,4 @@
+
 import { useState, useRef } from "react"
 import { Upload, FileText, Package, ArrowRight, ArrowLeft, X, SkipForward } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
@@ -102,14 +103,26 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
         // Only auto-advance if all steps are complete, otherwise let user decide
         if (allComplete) {
           setTimeout(() => {
-            onOpenChange(false)
-            navigate("/manufacturer-matching")
+            navigateToManufacturerMatching()
           }, 1500)
         }
       }
     }
     
     input.click()
+  }
+
+  const navigateToManufacturerMatching = () => {
+    onOpenChange(false)
+    // Pass workflow data via navigation state
+    navigate("/manufacturer-matching", { 
+      state: { 
+        workflowData: {
+          uploadedFiles,
+          skippedSteps
+        }
+      }
+    })
   }
 
   const handleSkipRemainingSteps = () => {
@@ -124,8 +137,7 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
     })
     
     setTimeout(() => {
-      onOpenChange(false)
-      navigate("/manufacturer-matching")
+      navigateToManufacturerMatching()
     }, 1000)
   }
 
@@ -134,8 +146,7 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
       setCurrentStep(currentStep + 1)
     } else {
       // All steps completed, navigate to manufacturer matching
-      onOpenChange(false)
-      navigate("/manufacturer-matching")
+      navigateToManufacturerMatching()
     }
   }
 

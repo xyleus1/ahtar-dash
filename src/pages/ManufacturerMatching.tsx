@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { GradientCard } from "@/components/ui/gradient-card"
 import { GradientButton } from "@/components/ui/gradient-button"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import { ContactPopup } from "@/components/manufacturer/ContactPopup"
 import { SampleOverview } from "@/components/inbox/SampleOverview"
 import { useProject } from "@/contexts/ProjectContext"
@@ -141,26 +141,11 @@ export default function ManufacturerMatching() {
   const [viewMode, setViewMode] = useState<'manufacturers' | 'samples'>('manufacturers')
   const [contactedManufacturers, setContactedManufacturers] = useState<typeof initialManufacturers>([])
   const navigate = useNavigate()
-  const { addProject, updateProject, currentProject } = useProject()
+  const location = useLocation()
+  const { createProjectFromContact } = useProject()
 
-  // Create or update project when component mounts (user reaches manufacturer matching stage)
-  useEffect(() => {
-    const projectData = {
-      id: currentProject?.id || `project-${Date.now()}`,
-      name: currentProject?.name || "New Fashion Project",
-      currentStage: "Find Manufacturers",
-      progress: 25,
-      aiDescription: "Project initiated and design phase completed. Currently in manufacturer discovery phase to find suitable production partners. AI recommendation system is analyzing requirements and matching with verified manufacturers.",
-      createdAt: currentProject?.createdAt || new Date().toISOString().split('T')[0],
-      statusColor: "bg-blue-100 text-blue-800"
-    }
-
-    if (currentProject?.id) {
-      updateProject(projectData)
-    } else {
-      addProject(projectData)
-    }
-  }, []) // Run only once when component mounts
+  // Get workflow data from navigation state
+  const workflowData = location.state?.workflowData || null
 
   const handleContactClick = (manufacturer: typeof initialManufacturers[0]) => {
     setSelectedManufacturer(manufacturer)
@@ -172,10 +157,19 @@ export default function ManufacturerMatching() {
     setSelectedManufacturer(null)
   }
 
-  const handleProceedToSamples = () => {
-    if (selectedManufacturer && !contactedManufacturers.find(m => m.id === selectedManufacturer.id)) {
-      setContactedManufacturers(prev => [...prev, selectedManufacturer])
+  const handleSuccessfulContact = (manufacturer: typeof initialManufacturers[0]) => {
+    // Create a new project for each successful contact
+    if (workflowData?.uploadedFiles) {
+      createProjectFromContact(manufacturer.name, workflowData.uploadedFiles)
     }
+    
+    // Add to contacted manufacturers for sample overview
+    if (!contactedManufacturers.find(m => m.id === manufacturer.id)) {
+      setContactedManufacturers(prev => [...prev, manufacturer])
+    }
+  }
+
+  const handleProceedToSamples = () => {
     setViewMode('samples')
   }
 
@@ -192,7 +186,6 @@ export default function ManufacturerMatching() {
     }))
   }
 
-  // Infinite scroll handler
   const loadMoreManufacturers = useCallback(async () => {
     if (loading || !hasMore) return
     
@@ -461,6 +454,7 @@ export default function ManufacturerMatching() {
           isOpen={isContactPopupOpen}
           onClose={handleCloseContactPopup}
           onProceedToSamples={handleProceedToSamples}
+          onSuccessfulContact={handleSuccessfulContact}
         />
       )}
     </>

@@ -1,3 +1,4 @@
+
 import { createContext, useContext, useState, ReactNode } from "react"
 
 export interface ProjectData {
@@ -9,6 +10,7 @@ export interface ProjectData {
   createdAt: string
   manufacturer?: string
   statusColor: string
+  uploadedFiles?: Record<string, File>
 }
 
 interface ProjectContextType {
@@ -17,6 +19,7 @@ interface ProjectContextType {
   updateProject: (project: ProjectData) => void
   addProject: (project: ProjectData) => void
   addInboxProject: () => void
+  createProjectFromContact: (manufacturerName: string, uploadedFiles: Record<string, File>) => ProjectData
 }
 
 const ProjectContext = createContext<ProjectContextType | undefined>(undefined)
@@ -81,6 +84,26 @@ export function ProjectProvider({ children }: { children: ReactNode }) {
     setRecentProjects(prev => [project, ...prev.slice(0, 3)])
   }
 
+  const createProjectFromContact = (manufacturerName: string, uploadedFiles: Record<string, File>) => {
+    const timestamp = Date.now()
+    const projectName = `New Project - ${manufacturerName}`
+    
+    const newProject: ProjectData = {
+      id: `project-${timestamp}`,
+      name: projectName,
+      currentStage: "Order Samples",
+      progress: 50,
+      aiDescription: `Project created through manufacturer contact workflow. Successfully connected with ${manufacturerName} for production partnership. Project requirements and design files have been shared. Moving to sample ordering phase to validate quality and specifications.`,
+      createdAt: new Date().toISOString().split('T')[0],
+      manufacturer: manufacturerName,
+      statusColor: "bg-yellow-100 text-yellow-800",
+      uploadedFiles
+    }
+    
+    addProject(newProject)
+    return newProject
+  }
+
   const addInboxProject = () => {
     const newProject: ProjectData = {
       id: Date.now().toString(),
@@ -101,7 +124,8 @@ export function ProjectProvider({ children }: { children: ReactNode }) {
       recentProjects,
       updateProject,
       addProject,
-      addInboxProject
+      addInboxProject,
+      createProjectFromContact
     }}>
       {children}
     </ProjectContext.Provider>
