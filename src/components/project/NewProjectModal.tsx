@@ -99,16 +99,13 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
         const allComplete = Object.values(updatedUploads).every(Boolean) || 
                           (updatedUploads.techPack && skippedSteps.sizing && skippedSteps.materials)
         
-        // Auto-advance to next step or navigate to manufacturer matching
-        setTimeout(() => {
-          if (allComplete) {
-            // All steps complete, navigate to manufacturer matching
+        // Only auto-advance if all steps are complete, otherwise let user decide
+        if (allComplete) {
+          setTimeout(() => {
             onOpenChange(false)
             navigate("/manufacturer-matching")
-          } else if (currentStep < 3) {
-            setCurrentStep(currentStep + 1)
-          }
-        }, 1500)
+          }, 1500)
+        }
       }
     }
     
@@ -151,7 +148,7 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
   const canProceed = uploads[steps[currentStep - 1].key]
   const allStepsComplete = Object.values(uploads).every(Boolean) || 
                           (uploads.techPack && skippedSteps.sizing && skippedSteps.materials)
-  const canSkip = currentStep === 1 && uploads.techPack
+  const canSkip = uploads.techPack && !allStepsComplete
 
   const getStepStatus = (step: typeof steps[0]) => {
     if (uploads[step.key]) return 'completed'
@@ -246,24 +243,6 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
                         >
                           Upload Different File
                         </Button>
-                        
-                        {/* Skip Button - Only show after tech pack upload */}
-                        {canSkip && (
-                          <div className="pt-3 sm:pt-4 border-t">
-                            <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3">
-                              Tech pack includes all sizing and materials info?
-                            </p>
-                            <Button 
-                              onClick={handleSkipRemainingSteps}
-                              variant="outline"
-                              className="w-full flex items-center gap-2"
-                              size="sm"
-                            >
-                              <SkipForward className="h-3 w-3 sm:h-4 sm:w-4" />
-                              Skip Remaining Steps
-                            </Button>
-                          </div>
-                        )}
                       </div>
                     ) : (
                       <div className="space-y-2 sm:space-y-3">
@@ -290,31 +269,49 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
           </div>
 
           {/* Navigation */}
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 p-4 sm:p-6 border-t shrink-0">
-            <Button 
-              onClick={handlePrevious}
-              variant="outline"
-              disabled={currentStep === 1}
-              className="flex items-center order-2 sm:order-1"
-              size="sm"
-            >
-              <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
-              Previous
-            </Button>
+          <div className="flex flex-col gap-3 p-4 sm:p-6 border-t shrink-0">
+            {/* Skip Button - Show prominently when available */}
+            {canSkip && (
+              <div className="flex justify-center">
+                <Button 
+                  onClick={handleSkipRemainingSteps}
+                  variant="outline"
+                  className="flex items-center gap-2 bg-muted/50"
+                  size="sm"
+                >
+                  <SkipForward className="h-3 w-3 sm:h-4 sm:w-4" />
+                  Skip Remaining Steps & Find Manufacturers
+                </Button>
+              </div>
+            )}
+            
+            {/* Regular Navigation */}
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
+              <Button 
+                onClick={handlePrevious}
+                variant="outline"
+                disabled={currentStep === 1}
+                className="flex items-center order-2 sm:order-1"
+                size="sm"
+              >
+                <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
+                Previous
+              </Button>
 
-            <div className="text-xs sm:text-sm text-muted-foreground order-1 sm:order-2">
-              Step {currentStep} of {steps.length}
+              <div className="text-xs sm:text-sm text-muted-foreground order-1 sm:order-2">
+                Step {currentStep} of {steps.length}
+              </div>
+
+              <Button 
+                onClick={handleNext}
+                disabled={!canProceed}
+                className="flex items-center order-3"
+                size="sm"
+              >
+                {currentStep === 3 && allStepsComplete ? 'Find Manufacturers' : 'Next'}
+                <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 ml-2" />
+              </Button>
             </div>
-
-            <Button 
-              onClick={handleNext}
-              disabled={!canProceed}
-              className="flex items-center order-3"
-              size="sm"
-            >
-              {currentStep === 3 && allStepsComplete ? 'Find Manufacturers' : 'Next'}
-              <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 ml-2" />
-            </Button>
           </div>
         </div>
       </DialogContent>
