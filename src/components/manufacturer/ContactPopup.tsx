@@ -192,31 +192,26 @@ Looking for a long-term manufacturing partner for ongoing seasonal collections. 
                 </div>
               </div>
 
-              {/* Attachments Bar */}
-              <div className="space-y-3">
-                <h4 className="text-lg font-light text-foreground">Attachments</h4>
-                <div className="bg-background/50 border border-border/50 rounded-lg p-3 space-y-2">
-                  {/* Tech Pack - Already Attached */}
-                  <div className="flex items-center gap-2 text-sm">
-                    <FileText className="h-4 w-4 text-green-600 dark:text-green-400" />
-                    <span className="text-foreground">Tech Pack.pdf</span>
-                    <CheckCircle className="h-3 w-3 text-green-600 dark:text-green-400" />
-                  </div>
-                  
-                  {/* Additional Files Upload - Compact */}
-                  <button className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors">
-                    <Paperclip className="h-4 w-4" />
-                    <span>Attach additional files</span>
-                  </button>
-                </div>
-              </div>
-
               {/* Request Details */}
               <div className="space-y-3">
                 <h4 className="text-lg font-light text-foreground">Your Request Details</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-400 font-light">
                   The following details have been automatically populated based on your project requirements. You can edit them before sending.
                 </p>
+                
+                {/* Attachments */}
+                <div className="bg-background/50 border border-border/50 rounded-lg p-3 space-y-2">
+                  <div className="flex items-center gap-2 text-sm">
+                    <FileText className="h-4 w-4 text-green-600 dark:text-green-400" />
+                    <span className="text-foreground">Tech Pack.pdf</span>
+                    <CheckCircle className="h-3 w-3 text-green-600 dark:text-green-400" />
+                  </div>
+                  <button className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors">
+                    <Paperclip className="h-4 w-4" />
+                    <span>Attach additional files</span>
+                  </button>
+                </div>
+                
                 <Textarea
                   className="min-h-[200px] font-mono text-sm bg-background/50 border-border/50 focus:bg-background/80"
                   defaultValue={defaultRequestDetails}
