@@ -1,4 +1,4 @@
-import { X, MapPin, Star, Users, Mail, CheckCircle, ArrowRight, RotateCcw } from "lucide-react"
+import { X, MapPin, Star, Users, Mail, CheckCircle, ArrowRight, RotateCcw, Paperclip, FileText, Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { GradientButton } from "@/components/ui/gradient-button"
 import { GradientCard } from "@/components/ui/gradient-card"
@@ -188,6 +188,33 @@ Looking for a long-term manufacturing partner for ongoing seasonal collections. 
                       <li>• Fast turnaround times</li>
                       <li>• International shipping</li>
                     </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Attachments Bar */}
+              <div className="space-y-3">
+                <h4 className="text-lg font-light text-foreground">Attachments</h4>
+                <div className="bg-background/50 border border-border/50 rounded-lg p-4 space-y-3">
+                  {/* Tech Pack - Already Attached */}
+                  <div className="flex items-center gap-3 p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+                    <FileText className="h-5 w-5 text-green-600 dark:text-green-400" />
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-green-800 dark:text-green-200">Tech Pack.pdf</p>
+                      <p className="text-xs text-green-600 dark:text-green-400">Automatically attached from your project</p>
+                    </div>
+                    <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
+                  </div>
+                  
+                  {/* Additional Files Upload */}
+                  <div className="border-2 border-dashed border-border/50 rounded-lg p-4 text-center hover:border-primary/50 transition-colors cursor-pointer">
+                    <Plus className="h-6 w-6 text-gray-400 mx-auto mb-2" />
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <span className="text-primary font-medium">Click to upload</span> additional files
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                      Reference images, CAD files, or other specifications
+                    </p>
                   </div>
                 </div>
               </div>
