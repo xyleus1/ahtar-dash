@@ -17,6 +17,7 @@ import {
   CheckCircle,
   AlertCircle
 } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 const quickActions = [
   { title: "Start New Project", icon: Plus, description: "Upload designs and find manufacturers" },
@@ -33,6 +34,26 @@ const alerts = [
 
 export default function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const navigate = useNavigate()
+
+  const handleQuickAction = (title: string) => {
+    switch (title) {
+      case "Start New Project":
+        setIsModalOpen(true)
+        break
+      case "Browse Marketplace":
+        navigate("/marketplace")
+        break
+      case "Message Manufacturers":
+        navigate("/inbox")
+        break
+      case "Track Shipments":
+        // Future functionality
+        break
+      default:
+        break
+    }
+  }
 
   return (
     <div className="space-y-4 md:space-y-6">
@@ -101,6 +122,7 @@ export default function Dashboard() {
                   key={index}
                   variant="ghost"
                   className="w-full justify-start h-auto p-3 hover:bg-purple-light/30 font-light transition-all duration-300 text-left"
+                  onClick={() => handleQuickAction(action.title)}
                 >
                   <action.icon className="h-4 w-4 mr-3 text-purple-accent flex-shrink-0" />
                   <div className="flex-1 min-w-0">
