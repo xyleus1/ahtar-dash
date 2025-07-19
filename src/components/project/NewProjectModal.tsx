@@ -1,5 +1,6 @@
+
 import { useState, useRef } from "react"
-import { Upload, FileText, Package, ArrowRight, ArrowLeft, X } from "lucide-react"
+import { Upload, FileText, Package, ArrowRight, ArrowLeft, X, SkipForward } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -15,6 +16,10 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
   const [currentStep, setCurrentStep] = useState(1)
   const [uploads, setUploads] = useState({
     techPack: false,
+    sizing: false,
+    materials: false
+  })
+  const [skippedSteps, setSkippedSteps] = useState({
     sizing: false,
     materials: false
   })
@@ -92,7 +97,8 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
         
         // Check if all steps are complete after this upload
         const updatedUploads = { ...uploads, [stepKey]: true }
-        const allComplete = Object.values(updatedUploads).every(Boolean)
+        const allComplete = Object.values(updatedUploads).every(Boolean) || 
+                          (updatedUploads.techPack && skippedSteps.sizing && skippedSteps.materials)
         
         // Auto-advance to next step or navigate to manufacturer matching
         setTimeout(() => {
@@ -108,6 +114,23 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
     }
     
     input.click()
+  }
+
+  const handleSkipRemainingSteps = () => {
+    setSkippedSteps({
+      sizing: true,
+      materials: true
+    })
+    
+    toast({
+      title: "Steps skipped successfully",
+      description: "Proceeding to manufacturer matching with tech pack only.",
+    })
+    
+    setTimeout(() => {
+      onOpenChange(false)
+      navigate("/manufacturer-matching")
+    }, 1000)
   }
 
   const handleNext = () => {
@@ -127,7 +150,16 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
   }
 
   const canProceed = uploads[steps[currentStep - 1].key]
-  const allStepsComplete = Object.values(uploads).every(Boolean)
+  const allStepsComplete = Object.values(uploads).every(Boolean) || 
+                          (uploads.techPack && skippedSteps.sizing && skippedSteps.materials)
+  const canSkip = currentStep === 1 && uploads.techPack
+
+  const getStepStatus = (step: typeof steps[0]) => {
+    if (uploads[step.key]) return 'completed'
+    if ((step.key === 'sizing' && skippedSteps.sizing) || 
+        (step.key === 'materials' && skippedSteps.materials)) return 'skipped'
+    return 'pending'
+  }
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -142,29 +174,41 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
           {/* Progress Steps */}
           <div className="flex justify-center px-6 py-4">
             <div className="flex items-center space-x-4">
-              {steps.map((step, index) => (
-                <div key={step.id} className="flex items-center">
-                  <div className={`
-                    flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all
-                    ${currentStep >= step.id 
-                      ? 'bg-primary border-primary text-primary-foreground' 
-                      : 'border-muted-foreground text-muted-foreground'
-                    }
-                  `}>
-                    {uploads[step.key] ? (
-                      <X className="h-5 w-5 rotate-45" />
-                    ) : (
-                      <span className="text-sm font-medium">{step.id}</span>
+              {steps.map((step, index) => {
+                const status = getStepStatus(step)
+                return (
+                  <div key={step.id} className="flex items-center">
+                    <div className={`
+                      flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all
+                      ${status === 'completed'
+                        ? 'bg-primary border-primary text-primary-foreground' 
+                        : status === 'skipped'
+                        ? 'bg-muted border-muted-foreground text-muted-foreground'
+                        : currentStep >= step.id
+                        ? 'bg-primary border-primary text-primary-foreground'
+                        : 'border-muted-foreground text-muted-foreground'
+                      }
+                    `}>
+                      {status === 'completed' ? (
+                        <X className="h-5 w-5 rotate-45" />
+                      ) : status === 'skipped' ? (
+                        <SkipForward className="h-4 w-4" />
+                      ) : (
+                        <span className="text-sm font-medium">{step.id}</span>
+                      )}
+                    </div>
+                    {index < steps.length - 1 && (
+                      <div className={`
+                        w-16 h-0.5 mx-2 transition-all
+                        ${currentStep > step.id || status === 'completed' || status === 'skipped' 
+                          ? 'bg-primary' 
+                          : 'bg-muted'
+                        }
+                      `} />
                     )}
                   </div>
-                  {index < steps.length - 1 && (
-                    <div className={`
-                      w-16 h-0.5 mx-2 transition-all
-                      ${currentStep > step.id ? 'bg-primary' : 'bg-muted'}
-                    `} />
-                  )}
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
 
@@ -201,6 +245,23 @@ export function NewProjectModal({ open, onOpenChange }: NewProjectModalProps) {
                         >
                           Upload Different File
                         </Button>
+                        
+                        {/* Skip Button - Only show after tech pack upload */}
+                        {canSkip && (
+                          <div className="pt-4 border-t">
+                            <p className="text-sm text-muted-foreground mb-3">
+                              Tech pack includes all sizing and materials info?
+                            </p>
+                            <Button 
+                              onClick={handleSkipRemainingSteps}
+                              variant="outline"
+                              className="w-full flex items-center gap-2"
+                            >
+                              <SkipForward className="h-4 w-4" />
+                              Skip Remaining Steps
+                            </Button>
+                          </div>
+                        )}
                       </div>
                     ) : (
                       <div className="space-y-4">
