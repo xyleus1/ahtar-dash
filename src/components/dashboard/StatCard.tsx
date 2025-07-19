@@ -1,3 +1,4 @@
+
 import { LucideIcon } from "lucide-react"
 import { GradientCard } from "@/components/ui/gradient-card"
 
@@ -17,17 +18,17 @@ export function StatCard({ title, value, change, changeType = "neutral", icon: I
   }[changeType]
 
   return (
-    <GradientCard className="p-6 card-glass bg-background/80 border border-purple-accent/20">
+    <GradientCard className="p-4 md:p-6 card-glass bg-background/80 border border-purple-accent/20">
       <div className="flex items-center justify-between">
-        <div className="space-y-2">
-          <p className="text-sm font-light text-gray-700 dark:text-gray-300">{title}</p>
-          <p className="text-2xl font-semibold text-primary text-heading">{value}</p>
+        <div className="space-y-1 md:space-y-2 flex-1 min-w-0">
+          <p className="text-xs md:text-sm font-light text-gray-700 dark:text-gray-300 truncate">{title}</p>
+          <p className="text-xl md:text-2xl font-semibold text-primary text-heading">{value}</p>
           {change && (
-            <p className={`text-sm font-light ${changeColorClass}`}>{change}</p>
+            <p className={`text-xs md:text-sm font-light ${changeColorClass} truncate`}>{change}</p>
           )}
         </div>
-        <div className="p-3 bg-gradient-to-br from-purple-accent to-purple-dark rounded-xl shadow-sm">
-          <Icon className="h-5 w-5 text-purple-light" />
+        <div className="p-2 md:p-3 bg-gradient-to-br from-purple-accent to-purple-dark rounded-xl shadow-sm flex-shrink-0">
+          <Icon className="h-4 w-4 md:h-5 md:w-5 text-purple-light" />
         </div>
       </div>
     </GradientCard>
