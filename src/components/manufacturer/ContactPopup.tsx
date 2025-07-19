@@ -195,27 +195,19 @@ Looking for a long-term manufacturing partner for ongoing seasonal collections. 
               {/* Attachments Bar */}
               <div className="space-y-3">
                 <h4 className="text-lg font-light text-foreground">Attachments</h4>
-                <div className="bg-background/50 border border-border/50 rounded-lg p-4 space-y-3">
+                <div className="bg-background/50 border border-border/50 rounded-lg p-3 space-y-2">
                   {/* Tech Pack - Already Attached */}
-                  <div className="flex items-center gap-3 p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
-                    <FileText className="h-5 w-5 text-green-600 dark:text-green-400" />
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-green-800 dark:text-green-200">Tech Pack.pdf</p>
-                      <p className="text-xs text-green-600 dark:text-green-400">Automatically attached from your project</p>
-                    </div>
-                    <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
+                  <div className="flex items-center gap-2 text-sm">
+                    <FileText className="h-4 w-4 text-green-600 dark:text-green-400" />
+                    <span className="text-foreground">Tech Pack.pdf</span>
+                    <CheckCircle className="h-3 w-3 text-green-600 dark:text-green-400" />
                   </div>
                   
-                  {/* Additional Files Upload */}
-                  <div className="border-2 border-dashed border-border/50 rounded-lg p-4 text-center hover:border-primary/50 transition-colors cursor-pointer">
-                    <Plus className="h-6 w-6 text-gray-400 mx-auto mb-2" />
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      <span className="text-primary font-medium">Click to upload</span> additional files
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">
-                      Reference images, CAD files, or other specifications
-                    </p>
-                  </div>
+                  {/* Additional Files Upload - Compact */}
+                  <button className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors">
+                    <Paperclip className="h-4 w-4" />
+                    <span>Attach additional files</span>
+                  </button>
                 </div>
               </div>
 
