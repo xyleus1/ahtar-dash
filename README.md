@@ -103,6 +103,10 @@ an actual Git-triggered deployment before relying on it.
 Before publication, check native navigation, direct section URLs, browser back,
 long and empty lists, link focus, desktop pane scrolling, and stacked mobile
 scrolling. Confirm that the home head stays within its right column and section
-artwork areas contain only the placeholder text. Final verification and
-deployment of this revision are pending. See the
+artwork areas contain only the placeholder text.
+
+The plain-text redesign was published and verified on 2026-09-17. Lint, all 15
+tests, the production build, and GitHub CI passed. Live checks confirmed all
+five pages, navigation and refresh, desktop/mobile layout, production asset
+hashes, redirects, and custom 404 responses. See the
 [implementation brief](docs/website-plan.md).

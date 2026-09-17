@@ -47,7 +47,12 @@ and explains which references still influence the implementation.
 - Confirm that only the home page shows the existing head and topic artwork
   areas contain only their plain-text placeholder.
 - Complete visual review, lint, relevant tests, and the production build.
-  Final verification and deployment of this revision remain pending.
+
+Completed on 2026-09-17: lint, all 15 tests, the production build, GitHub CI,
+desktop/mobile visual review, keyboard and long-list checks, and live checks
+of navigation, direct URLs, refresh, asset hashes, redirects, and custom 404s.
+The redesign is live at https://ahtar.dev, deployed from commit `5e4bd11` as
+`dpl_CQ3xQdWpuN6ee3ckpnwbMYbedgJ5`.
 
 ## Publishing
 
