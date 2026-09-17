@@ -96,11 +96,11 @@ describe('the personal document network', () => {
     expect(within(screen.getByRole('region', { name: 'Contact' })).getByText(data.name)).toBeVisible()
   })
 
-  it('keeps all documents and entries available as the mobile connection layout changes', () => {
+  it('keeps all documents and entries available when motion preferences change', () => {
     render(<App />)
 
-    for (const narrow of [true, false]) {
-      act(() => setMediaQuery('(max-width: 600px)', narrow))
+    for (const reducedMotion of [false, true]) {
+      act(() => setMediaQuery('(prefers-reduced-motion: reduce)', reducedMotion))
 
       expect(screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent))
         .toEqual(sectionLabels)

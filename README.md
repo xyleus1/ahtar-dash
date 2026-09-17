@@ -1,9 +1,10 @@
 # ahtar.dev
 
-A static personal link diagram: four connected wireframe boxes for Enjoying,
-Reading, Writing, and Building, plus a distinct Contact box. Pure white, native
-serif text, and thin lines. No hero, biography, animation, or smooth scrolling.
-Personal content intentionally starts with placeholders.
+A personal hypertext desktop: Enjoying, Reading, Writing, and Building surround
+one red Contact window. Pure white, early Macintosh frames, serif links, and a
+network that follows each window's restrained hover movement. All five windows
+fit the viewport; the page itself does not scroll. Personal content intentionally
+starts with placeholders.
 
 ## Edit the page
 
@@ -50,20 +51,25 @@ build on pushes and pull requests.
 
 ## Design and dependencies
 
-The design follows [Ted Nelson's Xanadu diagram](https://xanadu.com.au/ted/XUsurvey/HARTadj5in.JPG):
-sharp document outlines, labels above the edges, and visible connections.
-Small Times text uses local system fonts; no font assets are downloaded.
+The structure follows [Ted Nelson's Xanadu diagram](https://xanadu.com.au/ted/XUsurvey/HARTadj5in.JPG)
+and its historical transpointing-window demos. The selected window/title-bar skin
+and self-hosted ChiKareGo2 caption font come from [System.css 0.1.11](https://github.com/sakofchit/system.css).
+Body text uses native Times. Only the relevant skin is adapted; the library's
+full global stylesheet is not shipped.
 
-[react-archer 5.1.0](https://github.com/pierpo/react-archer) positions the static
-connections. Every viewport has six dotted edges joining every pair of interest
-boxes and one solid edge from Building to Contact. At 600px and below, the boxes
-stack in a staggered arrangement; adjusted anchors preserve all seven edges.
-Contact has a muted red `#9B2228` double border.
-Links use conventional blue and visited purple with visible keyboard focus.
+[react-archer 5.1.0](https://github.com/pierpo/react-archer) draws six dotted
+connections between topic windows and four solid connections to Contact.
+[GSAP 3.15.0](https://gsap.com/) and `@gsap/react` handle bounded hover movement.
+Connected edges turn red and stay attached as a document moves. Idle pages stay
+still. Keyboard focus highlights without moving; touch and reduced-motion users
+get stationary windows. Contact uses a muted `#9B2228` red.
 
-GSAP, Lenis, React Bits, and Fontsource components are no longer shipped. The
-existing Lucide favicon remains a licensed asset. See
-[design direction](docs/design-direction.md) and
+Responsive CSS recomposes the windows without shrinking the entire canvas.
+Longer lists scroll inside their keyboard-accessible panes, preserving the
+single-screen composition. Real links use conventional blue and visited purple.
+Lenis and React Bits are not shipped; this page needs neither smooth scrolling
+nor a second animation effect. The existing Lucide favicon remains a licensed
+asset. See [design direction](docs/design-direction.md) and
 [third-party notices](THIRD_PARTY_NOTICES.md).
 
 ## Publish
@@ -95,7 +101,7 @@ an actual Git-triggered deployment before relying on it.
 
 ## Validation
 
-Check all five boxes, desktop and mobile connections, real versus placeholder
-links, long titles, empty lists, keyboard focus, and narrow-screen overflow.
-Verify that resizing keeps lines attached and content remains readable above
-connections. See the [implementation brief](docs/website-plan.md).
+Check all five windows, attached connectors during hover/resize, pointer-down
+click stability, reduced-motion changes, touch, keyboard focus, long titles,
+empty lists, and short-screen layouts. Confirm the outer page never scrolls and
+long content remains reachable inside its own pane. See the [implementation brief](docs/website-plan.md).

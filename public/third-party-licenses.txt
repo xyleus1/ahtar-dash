@@ -114,3 +114,66 @@ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
 WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+
+--- GSAP 3.15.0 ---
+GSAP Standard No Charge License
+https://gsap.com/standard-license
+
+Copyright 2008-2026, GreenSock. All rights reserved.
+Subject to the terms at https://gsap.com/standard-license
+Author: Jack Doyle
+Source: https://github.com/greensock/GSAP
+
+
+--- @gsap/react 2.1.2 ---
+GSAP Standard No Charge License
+https://gsap.com/standard-license
+
+Copyright 2008-2025, GreenSock. All rights reserved.
+Subject to the terms at https://gsap.com/standard-license or for
+Club GSAP members, the agreement issued with that membership.
+Author: Jack Doyle
+Source: https://github.com/greensock/react
+
+
+--- @sakun/system.css 0.1.11 (adapted window and title-bar CSS) ---
+Source: https://github.com/sakofchit/system.css
+MIT License
+Copyright (c) 2022 Sakun Acharige
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+--- ChiKareGo2 font ---
+Author: Giles Booth (@blogmywiki)
+Font copyright metadata: GilesBooth
+
+Original font and license source:
+https://www.pentacom.jp/pentacom/bitfontmaker2/gallery/?id=3780
+License designation on the original listing: Creative Commons Attribution.
+The original listing does not identify a license version.
+
+Source within @sakun/system.css 0.1.11:
+fonts/ChiKareGo2.woff2 (the package also supplies fonts/ChiKareGo2.woff)
+Package source: https://github.com/sakofchit/system.css
+
+This project uses the packaged web-font files unchanged and does not modify
+or subset the glyphs. The upstream conversion to web-font formats is retained.
+This attribution applies to the font separately from System.css's MIT license.

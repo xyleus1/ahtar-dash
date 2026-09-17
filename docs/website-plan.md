@@ -1,55 +1,62 @@
 # ahtar.dev implementation brief
 
-## Intent
+## Current intent
 
-A static personal link diagram on pure white: four connected boxes for
-Enjoying, Reading, Writing, and Building, plus a differentiated Contact box.
-This direction replaces the previous large biography and animated layout.
-Personal data remains editable in one file and starts with placeholders.
+Create a more deliberate, retro personal desktop: four connected topic windows
+and a distinct red Contact window on pure white. Keep all five inside one
+viewport across desktop and mobile, with no outer-page scrolling or hero.
+Hover should move windows and their attached connections. This supersedes the
+static, vertically stacked wireframe version. The selected layout uses asymmetrical placement and thin Macintosh caption rules.
 
-## Implemented structure
+## Implementation direction
 
-1. Retain React, TypeScript, Vite, plain CSS, and the npm lockfile.
-2. Render four sharp, thin-bordered document boxes in a staggered desktop
-   arrangement. Small italic titles sit above the borders. Use native Times
-   text at 16px, a white background, and conventional underlined links.
-3. Use react-archer 5.1.0 for six dotted pairwise connections between the four
-   interest boxes. Draw one solid connection from Building to Contact, without
-   arrowheads. White box backgrounds keep lines behind the content.
-4. Give Contact a muted red `#9B2228` double border and include the name, email,
-   and profile entries inside. At 600px and below, stack the boxes in a
-   staggered arrangement and adjust anchors while preserving all seven edges.
-5. Keep `name`, four section arrays, and contact entries in `src/content.ts`.
-   Entries accept a title and optional URL; missing URLs stay text and empty
-   lists display "To come." Keep section IDs stable for the connector graph.
-6. Remove the hero, biography field, animation components, smooth scrolling,
-   downloaded fonts, and their dependencies. Preserve the licensed favicon,
-   semantic headings, skip link, visible focus, and mobile tap targets.
-7. Preserve metadata, canonical URL, legacy `/dash` redirects, and the 404 page.
+1. Retain React, TypeScript, Vite, plain CSS, and one npm lockfile. Use
+   `@sakun/system.css` for monochrome Macintosh window framing, `react-archer`
+   for connections, and GSAP with `@gsap/react` for hover motion and cleanup.
+2. Arrange Enjoying, Reading, Writing, and Building at the corners of a compact
+   composition with Contact as the red central hub. Use small serif contents
+   and compact library caption bars. Include the name inside Contact.
+3. Size the composition against the viewport and recompose it at narrow or
+   short sizes so all windows remain visible. Keep overflow inside individual
+   content panes when lists outgrow them; do not expand the outer document.
+4. Preserve the topic relationships while windows move. Use bounded hover
+   offsets and update connector geometry throughout movement. Keep lines behind
+   content and hit targets stable. Avoid idle loops and entrance choreography.
+5. Give reduced-motion users a static layout with clear focus/state feedback.
+   Touch interaction must work without hover. Maintain semantic headings,
+   keyboard access, visible focus, and usable link targets.
+6. Keep `name`, the four section arrays, and contact entries in `src/content.ts`.
+   Entries accept a title and optional URL; absent URLs remain text. Keep the
+   section IDs stable. Do not restore a bio field or invent personal content.
+7. Exclude fake status metadata, nonfunctional close/minimize controls, photos,
+   glow, and extra decorative widgets. Lenis and React Bits reveal components
+   remain excluded. Preserve the licensed favicon and existing route behavior.
 
-The [design direction](design-direction.md) records the Xanadu reference,
-secondary influences, and the reasons for using explicitly requested boxes.
+The [design direction](design-direction.md) records all reference sources,
+comparison rationale, and the boundaries of the selected window treatment.
+
+## Verification before publication
+
+- Check all five windows fit at desktop, mobile, short-height, and landscape
+  sizes, with no document scrolling or horizontal overflow.
+- Exercise window hover, exit, interruption, resize, and repeated movement;
+  lines must remain attached and readable links must remain easy to select.
+- Check populated and empty lists, long titles, internal pane overflow,
+  keyboard navigation, reduced motion, and touch behavior.
+- Complete visual review, lint, tests, and the production build for each change.
+  The initial iteration passed lint, five component tests, production build, and
+  fresh-browser checks for viewport fit, motion, native clicks, keyboard, touch,
+  reduced motion, and connector alignment.
 
 ## Publishing
 
-Validate lint, tests, and the production build. Deploy a preview with Vercel CLI
-**59.20.0** from the checkout linked to the existing ahtar.dev project, then
-publish the validated version with `npx vercel@59.20.0 --prod`.
+Deploy a preview using Vercel CLI **59.20.0** from the checkout linked to the
+existing ahtar.dev project. After validation, publish the reviewed version with
+`npx vercel@59.20.0 --prod` and record the previous deployment for rollback.
 
-GitHub pushes currently run CI only. Automatic Vercel Git deployment is pending
-GitHub app access to `xyleus1/ahtar-dash`; a push does not publish the domain.
-Once access is granted, connect branch `main` and verify an actual deployment.
+GitHub pushes run CI only. Vercel Git deployment remains pending GitHub app
+access to `xyleus1/ahtar-dash`; do not treat a push as publication. Once access
+is granted, connect production branch `main` and verify an actual deployment.
 
-Record the previous production deployment for rollback. Verify the intended
-version at ahtar.dev, production assets, HTTPS, the `www` redirect, legacy
-redirects, and unknown-route 404 status after publishing.
-
-## Acceptance
-
-- Exactly four interest boxes and one distinct Contact box; no hero or animation.
-- Desktop and mobile both have six dotted pairwise interest connections and
-  one solid Contact connection, with legible lines and attached endpoints.
-- Long titles, multiple entries, and empty lists remain inside their boxes.
-- Real links, email links, placeholders, keyboard focus, and mobile targets work.
-- No horizontal overflow at narrow widths; connectors stay behind readable text.
-- Build, lint, relevant tests, and production verification pass.
+After publishing, verify the intended version at ahtar.dev, production assets,
+HTTPS, the `www` redirect, legacy `/dash` redirects, and unknown-route 404 status.
