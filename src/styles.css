@@ -64,6 +64,7 @@ a:focus-visible {
   line-height: 1.35;
 }
 .stage {
+  isolation: isolate;
   width: min(100%, 1000px);
   height: min(100%, 640px);
 }
@@ -104,13 +105,47 @@ a:focus-visible {
   background-clip: content-box;
 }
 .title-bar h2 {
-  padding: 0 7px;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
   font-family: 'Chicago 12', sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 18px;
+}
+.drag-handle {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  line-height: inherit;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.drag-handle span {
+  padding: 0 7px;
   background: #fff;
+}
+.drag-handle:focus-visible {
+  outline: 1px dotted var(--red);
+  outline-offset: 3px;
+}
+.node-hitbox[data-dragging] .drag-handle {
+  cursor: grabbing;
+}
+.corner-art {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  width: 100px;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
 }
 .window-pane {
   flex: 1;
@@ -189,7 +224,7 @@ a:focus-visible {
   background: var(--red);
   color: #fff;
 }
-.document-contact h2 {
+.document-contact .drag-handle span {
   background: var(--red);
 }
 .document-contact .window-pane {
@@ -244,6 +279,11 @@ a:focus-visible {
   clip-path: none;
 }
 @media (max-width: 650px) {
+  .corner-art {
+    top: 8px;
+    right: 10px;
+    width: 54px;
+  }
   .page {
     padding: 20px 8px;
   }
@@ -288,6 +328,11 @@ a:focus-visible {
   }
 }
 @media (max-height: 560px) and (min-width: 651px) {
+  .corner-art {
+    width: 46px;
+    top: 8px;
+    right: 10px;
+  }
   .page {
     padding: 12px;
   }
@@ -297,6 +342,9 @@ a:focus-visible {
   .node-enjoying,
   .node-reading {
     top: 0;
+  }
+  .node-reading {
+    top: 46px;
   }
   .node-writing,
   .node-building {
@@ -308,11 +356,19 @@ a:focus-visible {
     width: 28%;
     left: 36%;
   }
-  .window-pane {
-    padding: 8px;
+  .window-pane,
+  .document-contact .window-pane {
+    padding: 6px 8px;
+    font-size: 15px;
+    line-height: 1.25;
   }
 }
 @media (max-height: 620px) and (max-width: 650px) {
+  .corner-art {
+    width: 36px;
+    top: 4px;
+    right: 4px;
+  }
   .page {
     padding-block: 8px;
   }
@@ -322,6 +378,10 @@ a:focus-visible {
   .node-enjoying,
   .node-reading {
     top: 0;
+  }
+  .node-reading {
+    right: 34px;
+    width: calc(46% - 34px);
   }
   .node-writing,
   .node-building {

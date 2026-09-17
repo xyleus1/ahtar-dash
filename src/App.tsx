@@ -1,4 +1,4 @@
-import { useRef, type ComponentProps } from 'react'
+import { useCallback, useRef, useState, type ComponentProps } from 'react'
 import {
   ArcherContainer,
   ArcherElement,
@@ -11,6 +11,7 @@ import {
   type SiteContent,
 } from './content'
 import useNetworkMotion from './hooks/useNetworkMotion'
+import { connectionAnchors } from './lib/connectionAnchors'
 
 type Relations = NonNullable<ComponentProps<typeof ArcherElement>['relations']>
 type NodeId = SectionId | 'contact'
@@ -38,7 +39,7 @@ function relation(
   }
 }
 
-const connections: Record<SectionId, Relations> = {
+const initialConnections: Record<SectionId, Relations> = {
   enjoying: [
     relation('enjoying', 'reading', 'right', 'left'),
     relation('enjoying', 'writing', 'bottom', 'top'),
@@ -55,13 +56,6 @@ const connections: Record<SectionId, Relations> = {
     relation('writing', 'contact', 'right', 'left'),
   ],
   building: [relation('building', 'contact', 'left', 'right')],
-}
-const vectors: Record<NodeId, [number, number]> = {
-  enjoying: [-9, -6],
-  reading: [10, -8],
-  writing: [-8, 8],
-  building: [9, 7],
-  contact: [3, -5],
 }
 
 function Entries({ entries }: { entries: Entry[] }) {
@@ -84,7 +78,37 @@ function Entries({ entries }: { entries: Entry[] }) {
 export default function App({ data = content }: { data?: SiteContent }) {
   const boardRef = useRef<HTMLDivElement>(null)
   const archerRef = useRef<ArcherContainerRef>(null)
-  useNetworkMotion(boardRef, archerRef)
+  const [connections, setConnections] = useState(initialConnections)
+  const updateConnections = useCallback(() => {
+    const board = boardRef.current
+    if (!board) return
+    const boxes = new Map(
+      Array.from(board.querySelectorAll<HTMLElement>('.document')).map(
+        (node) => [node.id, node.getBoundingClientRect()],
+      ),
+    )
+    setConnections((previous) => {
+      let changed = false
+      const next = { ...previous }
+      for (const source of Object.keys(previous) as SectionId[]) {
+        next[source] = previous[source].map((edge) => {
+          const start = boxes.get(source)
+          const end = boxes.get(edge.targetId)
+          if (!start?.width || !end?.width) return edge
+          const [sourceAnchor, targetAnchor] = connectionAnchors(start, end)
+          if (
+            sourceAnchor === edge.sourceAnchor &&
+            targetAnchor === edge.targetAnchor
+          )
+            return edge
+          changed = true
+          return { ...edge, sourceAnchor, targetAnchor }
+        })
+      }
+      return changed ? next : previous
+    })
+  }, [])
+  useNetworkMotion(boardRef, archerRef, updateConnections)
 
   return (
     <>
@@ -93,6 +117,19 @@ export default function App({ data = content }: { data?: SiteContent }) {
       </a>
       <main id="main" className="page" tabIndex={-1}>
         <h1 className="sr-only">{data.name}</h1>
+        <p id="drag-help" className="sr-only">
+          Drag a title bar to move its window. Use arrow keys to move by ten
+          pixels, or Shift and arrow keys for one pixel. Home resets this
+          window. Escape cancels a drag.
+        </p>
+        <img
+          className="corner-art"
+          src="/art/brancusi-wireframe-v2.png"
+          width="1086"
+          height="1448"
+          alt="Wireframe interpretation of Constantin Brâncuși’s Danaïde"
+          draggable={false}
+        />
         <div className="stage" ref={boardRef}>
           <ArcherContainer
             ref={archerRef}
@@ -103,15 +140,13 @@ export default function App({ data = content }: { data?: SiteContent }) {
             lineStyle="straight"
             endMarker={false}
             startMarker={false}
-            svgContainerStyle={{ strokeLinecap: 'round' }}
+            svgContainerStyle={{ strokeLinecap: 'round', overflow: 'visible' }}
           >
             <div className="documents">
               {data.sections.map((section) => (
                 <div
                   className={`node-hitbox node-${section.id}`}
                   data-node={section.id}
-                  data-hover-x={vectors[section.id][0]}
-                  data-hover-y={vectors[section.id][1]}
                   key={section.id}
                 >
                   <ArcherElement
@@ -124,7 +159,20 @@ export default function App({ data = content }: { data?: SiteContent }) {
                       aria-labelledby={`${section.id}-heading`}
                     >
                       <header className="title-bar">
-                        <h2 id={`${section.id}-heading`}>{section.label}</h2>
+                        <h2
+                          id={`${section.id}-heading`}
+                          aria-label={section.label}
+                        >
+                          <button
+                            type="button"
+                            className="drag-handle"
+                            aria-label={`Move ${section.label} window`}
+                            aria-describedby="drag-help"
+                            title="Drag to move · Arrow keys to adjust · Home to reset"
+                          >
+                            <span>{section.label}</span>
+                          </button>
+                        </h2>
                       </header>
                       <div
                         className="window-pane"
@@ -138,12 +186,7 @@ export default function App({ data = content }: { data?: SiteContent }) {
                   </ArcherElement>
                 </div>
               ))}
-              <div
-                className="node-hitbox node-contact"
-                data-node="contact"
-                data-hover-x={vectors.contact[0]}
-                data-hover-y={vectors.contact[1]}
-              >
+              <div className="node-hitbox node-contact" data-node="contact">
                 <ArcherElement id="contact">
                   <section
                     className="document document-contact"
@@ -151,7 +194,17 @@ export default function App({ data = content }: { data?: SiteContent }) {
                     aria-labelledby="contact-heading"
                   >
                     <header className="title-bar">
-                      <h2 id="contact-heading">Contact</h2>
+                      <h2 id="contact-heading" aria-label="Contact">
+                        <button
+                          type="button"
+                          className="drag-handle"
+                          aria-label="Move Contact window"
+                          aria-describedby="drag-help"
+                          title="Drag to move · Arrow keys to adjust · Home to reset"
+                        >
+                          <span>Contact</span>
+                        </button>
+                      </h2>
                     </header>
                     <div
                       className="window-pane"

@@ -1,6 +1,29 @@
 Third-party software and assets distributed with ahtar.dev
 
 
+--- Brancusi head interpretation ---
+Transparent PNG wireframe interpretation after Constantin Brancusi, Danaïde,
+c.1918 (Tate T00296), generated with the built-in image tool from the
+user-supplied Tate exhibition photograph.
+
+Source photograph:
+https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-840_fK7Ago5.format-webp.webp
+Exhibition:
+https://www.tate.org.uk/whats-on/tate-modern/constantin-brancusi-essence-things
+Tate object page:
+https://www.tate.org.uk/art/artworks/brancusi-danaide-t00296
+Tate collection metadata:
+https://github.com/tategallery/collection/blob/master/artworks/t/002/t00296-1430.json
+
+Bronze on limestone base, presented by Sir Charles Clore 1959.
+Tate's historical metadata credits ADAGP, Paris and DACS, London; it does not
+identify a photographer. No photographer or current copyright year is asserted
+here. The artwork reference is separate from the software licenses below.
+The original source photograph is not shipped as a page asset.
+Exact generation prompts and the selected asset are documented in the
+repository's docs/artwork.md.
+
+
 --- react 19.3.0 / react-dom 19.3.0 / scheduler 0.28.0 / react-compiler-runtime 1.0.0 ---
 MIT License
 
@@ -116,7 +139,7 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 
---- GSAP 3.15.0 ---
+--- GSAP 3.15.0 (including Draggable) ---
 GSAP Standard No Charge License
 https://gsap.com/standard-license
 

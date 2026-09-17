@@ -2,9 +2,10 @@
 
 A personal hypertext desktop: Enjoying, Reading, Writing, and Building surround
 one red Contact window. Pure white, early Macintosh frames, serif links, and a
-network that follows each window's restrained hover movement. All five windows
-fit the viewport; the page itself does not scroll. Personal content intentionally
-starts with placeholders.
+network that follows windows dragged by their title bars. All five windows fit
+the viewport; the page itself does not scroll. A small wireframe interpretation
+of Brancusi's *Danaïde* sits in the upper-right corner. Personal content
+intentionally starts with placeholders.
 
 ## Edit the page
 
@@ -59,18 +60,27 @@ full global stylesheet is not shipped.
 
 [react-archer 5.1.0](https://github.com/pierpo/react-archer) draws six dotted
 connections between topic windows and four solid connections to Contact.
-[GSAP 3.15.0](https://gsap.com/) and `@gsap/react` handle bounded hover movement.
-Connected edges turn red and stay attached as a document moves. Idle pages stay
-still. Keyboard focus highlights without moving; touch and reduced-motion users
-get stationary windows. Contact uses a muted `#9B2228` red.
+[GSAP 3.15.0 Draggable](https://gsap.com/docs/v3/Plugins/Draggable/) and
+`@gsap/react` handle title-bar dragging and cleanup. Drag with a mouse or touch;
+positions last until reload. Bounds keep windows inside the viewport, and
+resizing clamps their positions. A geometry helper chooses the nearest facing
+sides for attached connections as windows move. Hover and focus highlight the
+window and its connected edges without nudging it. Contact uses `#9B2228` red.
+
+With a title bar focused, arrow keys move its window 10px, Shift+arrow moves it
+1px, and Home restores its initial position. Escape cancels an active drag.
+Direct dragging and keyboard positioning remain available with reduced motion;
+there is no automatic window movement or idle animation.
 
 Responsive CSS recomposes the windows without shrinking the entire canvas.
 Longer lists scroll inside their keyboard-accessible panes, preserving the
 single-screen composition. Real links use conventional blue and visited purple.
 Lenis and React Bits are not shipped; this page needs neither smooth scrolling
 nor a second animation effect. The existing Lucide favicon remains a licensed
-asset. See [design direction](docs/design-direction.md) and
-[third-party notices](THIRD_PARTY_NOTICES.md).
+asset. The transparent head image was generated with the built-in image tool
+from the user-supplied Tate reference; [artwork provenance](docs/artwork.md)
+records the selected asset and prompts. See [design direction](docs/design-direction.md)
+and [third-party notices](THIRD_PARTY_NOTICES.md).
 
 ## Publish
 
@@ -101,7 +111,10 @@ an actual Git-triggered deployment before relying on it.
 
 ## Validation
 
-Check all five windows, attached connectors during hover/resize, pointer-down
-click stability, reduced-motion changes, touch, keyboard focus, long titles,
-empty lists, and short-screen layouts. Confirm the outer page never scrolls and
-long content remains reachable inside its own pane. See the [implementation brief](docs/website-plan.md).
+Before publishing this revision, check mouse/touch title-bar dragging, retained
+positions, keyboard moves, Home reset, Escape cancellation, viewport bounds,
+resize clamping, and connector side changes. Check real link clicks, long titles,
+empty lists, pane scrolling, reduced motion, and short-screen layouts. Confirm
+the head does not obscure window controls or content and the outer page never
+scrolls. See the [implementation brief](docs/website-plan.md). Final verification
+and deployment of this revision are pending.

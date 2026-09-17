@@ -1,8 +1,7 @@
-import { act, render, screen, within } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import App from '../App'
 import { content, type SiteContent } from '../content'
-import { setMediaQuery } from './media'
 
 const sectionLabels = ['Enjoying', 'Reading', 'Writing', 'Building', 'Contact']
 
@@ -96,25 +95,14 @@ describe('the personal document network', () => {
     expect(within(screen.getByRole('region', { name: 'Contact' })).getByText(data.name)).toBeVisible()
   })
 
-  it('keeps all documents and entries available when motion preferences change', () => {
+  it('provides a named drag handle and keyboard instructions for every window', () => {
     render(<App />)
 
-    for (const reducedMotion of [false, true]) {
-      act(() => setMediaQuery('(prefers-reduced-motion: reduce)', reducedMotion))
-
-      expect(screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent))
-        .toEqual(sectionLabels)
-      for (const section of content.sections) {
-        const document = screen.getByRole('region', { name: section.label })
-        for (const entry of section.entries) {
-          expect(within(document).getByText(entry.title)).toBeVisible()
-        }
-      }
-      const contact = screen.getByRole('region', { name: 'Contact' })
-      expect(within(contact).getByText(content.name)).toBeVisible()
-      for (const entry of content.contact) {
-        expect(within(contact).getByText(entry.title)).toBeVisible()
-      }
+    expect(screen.getAllByRole('button')).toHaveLength(5)
+    for (const label of sectionLabels) {
+      const handle = screen.getByRole('button', { name: `Move ${label} window` })
+      expect(handle).toBeVisible()
+      expect(handle).toHaveAccessibleDescription(/Drag a title bar.*arrow keys.*Home.*Escape/)
     }
   })
 })
