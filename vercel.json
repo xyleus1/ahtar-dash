@@ -9,7 +9,6 @@
     { "source": "/dash", "destination": "/", "permanent": true },
     { "source": "/dash/:path*", "destination": "/", "permanent": true }
   ],
-  "rewrites": [{ "source": "/", "destination": "/index.html" }],
   "headers": [
     {
       "source": "/(.*)",
