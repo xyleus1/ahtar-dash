@@ -1,53 +1,58 @@
-# ahtar.dev — personal website
+# ahtar.dev implementation brief
 
 ## Intent
 
-Replace the previous fashion dashboard with one personal index: name, a
-three-sentence introduction, Enjoying, Reading, Writing, Building, and Contact.
-Use the compact format of https://jstwng.com/ and the typographic confidence of
-https://athenashiravi.com/about. Publish placeholders throughout initially.
+A personal introduction followed by Enjoying, Reading, Writing, Building, and
+contact links. Keep every part editable in one content file and publish
+placeholders until the owner supplies personal details.
 
-## Design
+This redesign replaces the initial centered card layout. It follows the
+full-width typography and alignment of [Athena's About page](https://athenashiravi.com/about)
+with fewer elements and a near-white canvas. The crimson `#B3262D` is an
+interpretation of the requested fashion references, not an official brand color.
+See [design-direction.md](design-direction.md) for research and visual rationale.
 
-- A centered 720px column, left-aligned contents, 24px mobile gutters.
-- Paper #F5F2EC, text #191817, crimson #B3262D, hover #8F1D24.
-- Red inspired by archival fashion references including Helmut Lang and
-  A.F. Vandevorst; it is an interpreted accent, not an official brand color.
-- Restrained red section labels, icons, focus outlines, and hover illumination.
-- Self-hosted Host Grotesk and existing Lucide icon assets.
-- All four collections remain visible in a vertical stack; no tabs or filters.
+## Implemented structure
 
-## Implementation sequence
+1. Retain React, TypeScript, Vite, plain CSS, and the npm lockfile.
+2. Keep the name small. Join the three bio strings into one prominent Host
+   Grotesk paragraph; use a desktop first-line indent and remove it on mobile.
+3. Render the four interests as plain definition-list rows, followed by small
+   contact links. Entries accept only a title and optional URL; missing URLs
+   remain text. Empty lists get a short text fallback.
+4. Replace NameReveal and SpotlightCard with one BioReveal adapted from React
+   Bits SplitText. GSAP reveals masked lines once and restores native text.
+5. Retain Lenis for desktop wheel scrolling through a single GSAP ticker.
+   Respect reduced motion and native touch scrolling. Preserve visible focus,
+   readable text during font loading, responsive reflow, and cleanup.
+6. Remove card styling, hover glow, interface icons, descriptive subtitles,
+   section headings, and the footer slogan. Retain the licensed Lucide favicon.
+7. Preserve metadata, canonical URL, legacy `/dash` redirects, and the 404 page.
 
-1. Record the old commit and production deployment. Replace tracked app contents
-   on feat/personal-site while retaining Git history and external data.
-2. Build with React, TypeScript, Vite, plain CSS, and one npm lockfile.
-3. Put name, three bio sentences, section entries, and contact details into
-   src/content.ts. Each entry accepts title, optional description, optional URL.
-4. Render Introduction, Enjoying, Reading, Writing, Building, Contact in order.
-   Missing URLs are plain text. Use placeholders without invented identity.
-5. Adapt official React Bits SplitText and SpotlightCard components with source
-   and license notices. Limit custom work to composition and integration.
-6. Use GSAP/@gsap/react for a 0.6s, 12px word reveal, and one ticker for Lenis.
-   Respect reduced motion, native touch scrolling, keyboard focus, and cleanup.
-7. Add metadata, canonical URL, library favicon, legacy /dash redirects, and 404.
-8. Identify the Vercel project that actually owns ahtar.dev; record settings and
-   link xyleus1/ahtar-dash with main as production, Vite, root '.', npm ci,
-   npm run build, dist output. Validate a preview before production cutover.
-9. Publish the placeholder site, verify source commit/domain/TLS, fix the www
-   redirect if necessary, and retain the previous deployment for rollback.
+## Publishing
+
+Validate with lint, tests, and the production build. Use Vercel CLI **59.20.0**
+to deploy a preview from the checkout linked to the existing ahtar.dev project,
+then publish the validated version with `npx vercel@59.20.0 --prod`.
+
+GitHub pushes currently run CI only. Automatic Vercel Git deployment is pending
+GitHub app access to `xyleus1/ahtar-dash`; do not assume a push publishes the
+domain. After access is granted, connect production branch `main` and verify
+the connection with an actual deployment.
+
+Record the previous production deployment for rollback. Verify ahtar.dev serves
+the intended version with working assets and HTTPS, `www` redirects securely,
+and unknown paths return 404. The pre-redesign site remains at commit `e22dddb`.
 
 ## Acceptance
 
-- Build, TypeScript, lint, and meaningful content/motion tests pass.
-- Four collections display in order and work with missing and long content.
-- Placeholder rows are not fake links; populated rows and mailto links work.
-- Mobile layout, keyboard focus, reduced motion, and touch scrolling work.
-- No dashboard branding, Supabase requests, or former tracking remains.
-- ahtar.dev serves the replacement; www redirects with a valid certificate.
-
-## Access
-
-Repository push access, the Vercel account owning ahtar.dev, and DNS access if
-corrections are necessary. The first public version intentionally uses
-placeholders. All subsequent content edits use one file and deploy from main.
+- One clear focal point: the bio, with generous empty space and no competing
+  decorative components.
+- Enjoying, Reading, Writing, and Building appear in order; long titles and
+  multiple entries wrap without overflow.
+- Placeholder text, real links, email links, and empty lists work correctly.
+- Mobile, desktop, keyboard, reduced motion, font loading, and viewport changes
+  preserve the content and layout.
+- Build, lint, and relevant content/motion tests pass.
+- Production domain, assets, redirects, HTTPS, and 404 behavior are verified
+  after publication.

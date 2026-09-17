@@ -2,10 +2,9 @@
 
 ## React Bits
 
-The following components are adapted from [DavidHDev/react-bits](https://github.com/DavidHDev/react-bits) at commit [`c49d6978d2496660f0f0c5a3b3ca77a059566a93`](https://github.com/DavidHDev/react-bits/tree/c49d6978d2496660f0f0c5a3b3ca77a059566a93):
+`src/components/BioReveal.tsx` is adapted from [DavidHDev/react-bits](https://github.com/DavidHDev/react-bits) at commit [`c49d6978d2496660f0f0c5a3b3ca77a059566a93`](https://github.com/DavidHDev/react-bits/tree/c49d6978d2496660f0f0c5a3b3ca77a059566a93): [SplitText TypeScript source](https://github.com/DavidHDev/react-bits/blob/c49d6978d2496660f0f0c5a3b3ca77a059566a93/src/ts-default/TextAnimations/SplitText/SplitText.tsx).
 
-- `src/components/NameReveal.tsx`: [SplitText TypeScript source](https://github.com/DavidHDev/react-bits/blob/c49d6978d2496660f0f0c5a3b3ca77a059566a93/src/ts-default/TextAnimations/SplitText/SplitText.tsx). Narrowed to an h1 word reveal, removed offscreen ScrollTrigger behavior for the top-of-page heading, added live reduced-motion support, and made font-ready work and split cleanup safe across unmounts.
-- `src/components/SpotlightCard.tsx` and its stylesheet: [SpotlightCard TypeScript source](https://github.com/DavidHDev/react-bits/blob/c49d6978d2496660f0f0c5a3b3ca77a059566a93/src/ts-default/Components/SpotlightCard/SpotlightCard.tsx) and [CSS](https://github.com/DavidHDev/react-bits/blob/c49d6978d2496660f0f0c5a3b3ca77a059566a93/src/ts-default/Components/SpotlightCard/SpotlightCard.css). Added pointer/reduced-motion gating; changed the color to faint crimson; delegated border, background, and spacing to the site's design; preserved keyboard focus visibility without clipping.
+The adaptation reveals a biography paragraph through line masks using GSAP, removes offscreen ScrollTrigger behavior, respects live reduced-motion preferences, waits for fonts, and restores native text after completion. Responsive re-splitting and unmount cleanup preserve readable content. It replaces the previous NameReveal and SpotlightCard components; neither remains in the interface.
 
 The upstream license is reproduced below verbatim from `LICENSE.md` at the pinned commit.
 
@@ -41,11 +40,11 @@ SOFTWARE.
 
 ## Installed packages
 
-GSAP and `@gsap/react`, Lenis, Lucide, and Fontsource Host Grotesk retain the licenses included with their installed distributions. `SmoothScroll.tsx` follows the [official Lenis React GSAP integration](https://github.com/darkroomengineering/lenis/tree/main/packages/react#gsap-integration); Lenis is MIT-licensed. Host Grotesk is distributed under the SIL Open Font License; Lucide icons use the ISC License.
+GSAP and `@gsap/react`, Lenis, and Fontsource Host Grotesk retain the licenses included with their installed distributions. `SmoothScroll.tsx` follows the [official Lenis React GSAP integration](https://github.com/darkroomengineering/lenis/tree/main/packages/react#gsap-integration); Lenis is MIT-licensed. Host Grotesk is distributed under the SIL Open Font License. The `lucide-react` dependency was removed; the distributed favicon remains covered by Lucide's ISC License.
 
 
 ## Distributed assets
 
-The favicon is Lucide?s `asterisk.svg` from commit `076b52527f0c5fe4cc1cd2472ef716fc332ccf0e`, with only stroke color and dimensions changed. Source: https://github.com/lucide-icons/lucide/blob/076b52527f0c5fe4cc1cd2472ef716fc332ccf0e/icons/asterisk.svg .
+The favicon is Lucide's `asterisk.svg` from commit `076b52527f0c5fe4cc1cd2472ef716fc332ccf0e`, with only stroke color and dimensions changed. [Pinned source](https://github.com/lucide-icons/lucide/blob/076b52527f0c5fe4cc1cd2472ef716fc332ccf0e/icons/asterisk.svg).
 
 The Lucide, Host Grotesk, and Lenis license notices are also included in `public/third-party-licenses.txt` and shipped with the site.

@@ -7,7 +7,6 @@
 export interface Entry {
   title: string
   url?: string
-  description?: string
 }
 
 export type SectionId = 'enjoying' | 'reading' | 'writing' | 'building'
@@ -36,23 +35,23 @@ export const content: SiteContent = {
     {
       id: 'enjoying',
       label: 'Enjoying',
-      entries: [{ title: 'Something you’re enjoying', description: 'A song, a film, a small obsession.' }],
+      entries: [{ title: 'A current favorite' }],
     },
     {
       id: 'reading',
       label: 'Reading',
-      entries: [{ title: 'Something you’re reading', description: 'A book, an essay, a different perspective.' }],
+      entries: [{ title: 'A book or an essay' }],
     },
     {
       id: 'writing',
       label: 'Writing',
-      entries: [{ title: 'Something you’ve written', description: 'A thought worth putting into words.' }],
+      entries: [{ title: 'A recent piece' }],
     },
     {
       id: 'building',
       label: 'Building',
-      entries: [{ title: 'Something you’re building', description: 'An idea finding its way into the world.' }],
+      entries: [{ title: 'A work in progress' }],
     },
   ],
-  contact: [{ title: 'Your email' }, { title: 'Your social link' }],
+  contact: [{ title: 'Your email' }, { title: 'Your profile' }],
 }
