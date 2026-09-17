@@ -19,18 +19,12 @@ export interface Section {
 
 export interface SiteContent {
   name: string
-  bio: [string, string, string]
   sections: Section[]
   contact: Entry[]
 }
 
 export const content: SiteContent = {
   name: 'Your name',
-  bio: [
-    'A sentence about who you are.',
-    'A sentence about what draws you in.',
-    'A sentence about what comes next.',
-  ],
   sections: [
     {
       id: 'enjoying',

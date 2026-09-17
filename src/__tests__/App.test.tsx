@@ -1,49 +1,54 @@
-import { render, screen, within } from '@testing-library/react'
+import { act, render, screen, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import App from '../App'
 import { content, type SiteContent } from '../content'
+import { setMediaQuery } from './media'
 
-describe('the personal index', () => {
-  it('presents the introduction and four interests in the requested order', () => {
+const sectionLabels = ['Enjoying', 'Reading', 'Writing', 'Building', 'Contact']
+
+describe('the personal document network', () => {
+  it('presents four named documents followed by contact with an accessible page identity', () => {
     render(<App />)
 
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1)
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(content.name)
-    expect(screen.getByText(content.bio.join(' '))).toBeVisible()
-    const interests = screen.getByLabelText('Personal interests')
-    expect(interests.tagName).toBe('DL')
-    expect(within(interests).getAllByRole('term').map((term) => term.textContent))
-      .toEqual(['Enjoying', 'Reading', 'Writing', 'Building'])
-    expect(within(interests).getAllByRole('definition')).toHaveLength(4)
-    expect(screen.queryAllByRole('heading', { level: 2 })).toHaveLength(0)
-    expect(screen.getByRole('navigation', { name: 'Contact' })).toBeVisible()
+    expect(screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent))
+      .toEqual(sectionLabels)
+    expect(screen.getAllByRole('region')).toHaveLength(5)
+    for (const label of sectionLabels) {
+      const document = screen.getByRole('region', { name: label })
+      expect(document).toBeVisible()
+      expect(within(document).getByRole('heading', { level: 2, name: label })).toBeVisible()
+    }
+    expect(within(screen.getByRole('region', { name: 'Contact' })).getByText(content.name)).toBeVisible()
     expect(screen.getByRole('link', { name: 'Skip to content' })).toHaveAttribute('href', '#main')
     expect(screen.getByRole('main')).toHaveAttribute('id', 'main')
+    expect(screen.getByRole('main')).toHaveAttribute('tabindex', '-1')
   })
 
-  it('shows initial content as readable placeholders without fake outgoing links', () => {
+  it('shows placeholders as readable text without inventing outgoing links', () => {
     render(<App />)
 
-    const definitions = within(screen.getByLabelText('Personal interests')).getAllByRole('definition')
-    for (const [index, section] of content.sections.entries()) {
-      const definition = definitions[index]
-      expect(within(definition).queryByRole('link')).not.toBeInTheDocument()
+    for (const section of content.sections) {
+      const document = screen.getByRole('region', { name: section.label })
+      expect(within(document).queryByRole('link')).not.toBeInTheDocument()
       for (const entry of section.entries) {
-        expect(within(definition).getByText(entry.title)).toBeVisible()
+        expect(within(document).getByText(entry.title)).toBeVisible()
       }
     }
-    const contact = screen.getByRole('navigation', { name: 'Contact' })
+    const contact = screen.getByRole('region', { name: 'Contact' })
     expect(within(contact).queryByRole('link')).not.toBeInTheDocument()
-    expect(within(contact).getByText('Your email')).toBeVisible()
+    for (const entry of content.contact) {
+      expect(within(contact).getByText(entry.title)).toBeVisible()
+    }
     expect(screen.getAllByRole('link')).toHaveLength(1)
   })
 
-  it('renders supplied links, email, long titles, and unlinked interests without changing their content', () => {
+  it('preserves supplied destinations, long titles, multiple entries, and unlinked interests', () => {
     const longTitle = 'An extended reading title about architecture, music, making things, and the small details that connect them'
     const data: SiteContent = {
       ...content,
       name: 'A Person',
-      bio: ['First sentence.', 'Second sentence.', 'Third sentence.'],
       sections: content.sections.map((section) => ({
         ...section,
         entries: section.id === 'enjoying'
@@ -58,25 +63,23 @@ describe('the personal index', () => {
 
     render(<App data={data} />)
 
-    const definitions = within(screen.getByLabelText('Personal interests')).getAllByRole('definition')
-    const enjoying = definitions[0]
+    const enjoying = screen.getByRole('region', { name: 'Enjoying' })
     expect(within(enjoying).getByText('Long walks at dusk')).toBeVisible()
     expect(within(enjoying).queryByRole('link')).not.toBeInTheDocument()
-    for (const [index, section] of ['reading', 'writing', 'building'].entries()) {
-      const entries = within(definitions[index + 1]).getAllByRole('link')
+    for (const section of data.sections.filter((section) => section.id !== 'enjoying')) {
+      const entries = within(screen.getByRole('region', { name: section.label })).getAllByRole('link')
       expect(entries.map((entry) => entry.textContent))
-        .toEqual([`${longTitle} (${section})`, `Another ${section} entry`])
-      expect(entries[0])
-        .toHaveAttribute('href', `https://example.com/${section}`)
-      expect(entries[1])
-        .toHaveAttribute('href', `https://example.com/${section}/second`)
+        .toEqual([`${longTitle} (${section.id})`, `Another ${section.id} entry`])
+      expect(entries[0]).toHaveAttribute('href', `https://example.com/${section.id}`)
+      expect(entries[1]).toHaveAttribute('href', `https://example.com/${section.id}/second`)
     }
-    const contact = screen.getByRole('navigation', { name: 'Contact' })
+    const contact = screen.getByRole('region', { name: 'Contact' })
+    expect(within(contact).getByText(data.name)).toBeVisible()
     expect(within(contact).getByRole('link', { name: 'Email me' })).toHaveAttribute('href', 'mailto:hello@example.com')
     expect(within(contact).getByRole('link', { name: 'My profile' })).toHaveAttribute('href', 'https://example.com/profile')
   })
 
-  it('keeps every section and the contact area understandable when their lists are empty', () => {
+  it('keeps named documents understandable when their content lists are empty', () => {
     const data: SiteContent = {
       ...content,
       sections: content.sections.map((section) => ({ ...section, entries: [] })),
@@ -85,25 +88,33 @@ describe('the personal index', () => {
 
     render(<App data={data} />)
 
-    const interests = screen.getByLabelText('Personal interests')
-    expect(within(interests).getAllByRole('term')).toHaveLength(4)
-    for (const definition of within(interests).getAllByRole('definition')) {
-      expect(within(definition).getByText('To come.')).toBeVisible()
-      expect(within(definition).queryByRole('list')).not.toBeInTheDocument()
+    for (const label of sectionLabels) {
+      const document = screen.getByRole('region', { name: label })
+      expect(within(document).getByText('To come.')).toBeVisible()
+      expect(within(document).queryByRole('list')).not.toBeInTheDocument()
     }
-    expect(within(screen.getByRole('navigation', { name: 'Contact' })).getByText('Contact details to come.')).toBeVisible()
-    expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1)
+    expect(within(screen.getByRole('region', { name: 'Contact' })).getByText(data.name)).toBeVisible()
   })
 
-  it('leaves the complete biography visible and unsplit when reduced motion is requested', () => {
+  it('keeps all documents and entries available as the mobile connection layout changes', () => {
     render(<App />)
 
-    expect(window.matchMedia('(prefers-reduced-motion: reduce)').matches).toBe(true)
-    const biography = screen.getByText(content.bio.join(' '))
-    expect(biography.tagName).toBe('P')
-    expect(biography).toBeVisible()
-    expect(biography.textContent).toBe(content.bio.join(' '))
-    expect(biography.children).toHaveLength(0)
-    expect(biography).not.toHaveStyle({ opacity: '0' })
+    for (const narrow of [true, false]) {
+      act(() => setMediaQuery('(max-width: 600px)', narrow))
+
+      expect(screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent))
+        .toEqual(sectionLabels)
+      for (const section of content.sections) {
+        const document = screen.getByRole('region', { name: section.label })
+        for (const entry of section.entries) {
+          expect(within(document).getByText(entry.title)).toBeVisible()
+        }
+      }
+      const contact = screen.getByRole('region', { name: 'Contact' })
+      expect(within(contact).getByText(content.name)).toBeVisible()
+      for (const entry of content.contact) {
+        expect(within(contact).getByText(entry.title)).toBeVisible()
+      }
+    }
   })
 })

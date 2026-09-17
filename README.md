@@ -1,21 +1,21 @@
 # ahtar.dev
 
-A minimal personal page: a small name, three prominent bio sentences, four plain
-interest rows, and contact links. Near-white, near-black, and crimson. Personal
-content intentionally starts with placeholders.
+A static personal link diagram: four connected wireframe boxes for Enjoying,
+Reading, Writing, and Building, plus a distinct Contact box. Pure white, native
+serif text, and thin lines. No hero, biography, animation, or smooth scrolling.
+Personal content intentionally starts with placeholders.
 
 ## Edit the page
 
 Everything personal is in [`src/content.ts`](src/content.ts):
 
-- `name`: the small heading at the top.
-- `bio`: exactly three strings, joined into one paragraph.
-- `sections`: Enjoying, Reading, Writing, and Building, in display order.
+- `name`: displayed inside Contact and used by the accessible page heading.
+- `sections`: the four interest boxes, with their labels and entries.
 - `contact`: email and profile links.
 
 Entries accept a `title` and optional `url`. Missing URLs render as ordinary
-text. Use `https://` for websites and `mailto:` for email. Add objects to an
-`entries` array to add links; array order is display order.
+text; empty lists display "To come." Use `https://` for websites and `mailto:`
+for email. Entry array order controls display order within a box.
 
 ```ts
 { title: 'An essay I keep returning to', url: 'https://example.com/essay' }
@@ -23,10 +23,9 @@ text. Use `https://` for websites and `mailto:` for email. Add objects to an
 { title: 'Email me', url: 'mailto:you@example.com' }
 ```
 
-Keep the IDs `enjoying`, `reading`, `writing`, and `building` for stable anchors.
-An empty interest list displays "To come." Empty contact details have a similar
-plain-text fallback. There are no descriptions, icons, cards, accounts, API keys,
-database, analytics, or CMS to configure.
+Keep the IDs `enjoying`, `reading`, `writing`, and `building`: the layout and
+connector graph depend on them. There is no bio or entry-description field,
+backend, account, analytics, or CMS.
 
 ## Development
 
@@ -49,20 +48,22 @@ npm run preview
 Production output is `dist/`. GitHub Actions runs lint, tests, and the production
 build on pushes and pull requests.
 
-## Design and motion
+## Design and dependencies
 
-Self-hosted Host Grotesk supplies the typography. The palette is paper `#FAF9F6`,
-ink `#191817`, muted text `#6B6763`, crimson `#B3262D`, and hover `#8F1D24`.
-The bio spans the page with an indented first line on desktop; mobile removes
-the indent. Interests use a plain definition list and contact uses text links.
+The design follows [Ted Nelson's Xanadu diagram](https://xanadu.com.au/ted/XUsurvey/HARTadj5in.JPG):
+sharp document outlines, labels above the edges, and visible connections.
+Small Times text uses local system fonts; no font assets are downloaded.
 
-`BioReveal` adapts React Bits SplitText into one masked line entrance using GSAP,
-then restores native paragraph text. Lenis uses one GSAP ticker for desktop
-wheel scrolling and adds no visible interface. Touch scrolling stays native.
-Reduced motion disables the reveal and smoothing. No spotlight or icon
-component is rendered; the existing Lucide favicon remains a licensed asset.
+[react-archer 5.1.0](https://github.com/pierpo/react-archer) positions the static
+connections. Every viewport has six dotted edges joining every pair of interest
+boxes and one solid edge from Building to Contact. At 600px and below, the boxes
+stack in a staggered arrangement; adjusted anchors preserve all seven edges.
+Contact has a muted red `#9B2228` double border.
+Links use conventional blue and visited purple with visible keyboard focus.
 
-See [design direction and references](docs/design-direction.md) and
+GSAP, Lenis, React Bits, and Fontsource components are no longer shipped. The
+existing Lucide favicon remains a licensed asset. See
+[design direction](docs/design-direction.md) and
 [third-party notices](THIRD_PARTY_NOTICES.md).
 
 ## Publish
@@ -84,19 +85,17 @@ For a fresh checkout, first run `npx vercel@59.20.0 link` and select that existi
 project. Use root `.`, framework Vite, Node 22.x, install `npm ci`, build
 `npm run build`, and output `dist`. Build settings are in `vercel.json`.
 
-After publishing, verify the intended version at the apex domain, production
-assets, valid HTTPS, and the `www.ahtar.dev` redirect. Legacy `/dash` paths
-redirect to `/`; unknown paths must return the custom 404 with status 404.
-Record the previous deployment before cutover for rollback. The pre-redesign
-site is retained at commit `e22dddb`; the original dashboard is retained by tag
-`archive/pre-personal-site-20260916`. No external Supabase data was deleted.
+Record the previous deployment for rollback. After publishing, verify the
+intended version, production assets, HTTPS, and the `www.ahtar.dev` redirect.
+Legacy `/dash` paths redirect to `/`; unknown paths return the custom 404 with
+status 404. Repository history retains the earlier designs.
 
-Once GitHub app access is granted, connect the repository with production branch
-`main` and verify an actual Git-triggered deployment before relying on it.
+Once GitHub app access is granted, connect production branch `main` and verify
+an actual Git-triggered deployment before relying on it.
 
 ## Validation
 
-Check content order, placeholder versus real links, long text, empty lists,
-keyboard focus, reduced motion, and animation cleanup. Inspect mobile and
-desktop rendering, including viewport changes during the bio entrance.
-The [implementation brief](docs/website-plan.md) records the current direction.
+Check all five boxes, desktop and mobile connections, real versus placeholder
+links, long titles, empty lists, keyboard focus, and narrow-screen overflow.
+Verify that resizing keeps lines attached and content remains readable above
+connections. See the [implementation brief](docs/website-plan.md).
