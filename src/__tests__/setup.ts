@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom/vitest'
 import { cleanup } from '@testing-library/react'
-import { afterEach, beforeEach } from 'vitest'
-import { installMediaQueries } from './media'
+import { afterEach } from 'vitest'
 
-beforeEach(installMediaQueries)
-
-afterEach(cleanup)
+afterEach(() => {
+  cleanup()
+  window.history.replaceState(null, '', '/')
+})

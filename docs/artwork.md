@@ -1,17 +1,23 @@
-# Corner artwork
+# Home artwork
 
-The shipped asset is [`public/art/brancusi-wireframe-v2.png`](../public/art/brancusi-wireframe-v2.png):
+The existing asset is [`public/art/brancusi-wireframe-v2.png`](../public/art/brancusi-wireframe-v2.png):
 a transparent, 1086 × 1448 PNG wireframe interpretation of Constantin Brancusi's
-*Danaïde*, c.1918, Tate T00296. The site displays it at small responsive sizes.
+*Danaïde*, c.1918, Tate T00296. It is centered in the home page's right two-thirds
+at up to 420px wide; below 701px it appears after the text, up to 240px wide.
 It is an illustration, not an interactive 3D model. The original photograph is
-not shipped.
+not shipped. Section pages reserve blank artwork areas with "Wireframe to come."
+No new section artwork has been generated.
 
 Source: the [user-supplied Tate exhibition photograph](https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-840_fK7Ago5.format-webp.webp).
-Identification: [Tate collection metadata](https://github.com/tategallery/collection/blob/master/artworks/t/002/t00296-1430.json).
+Identification: [Tate collection metadata](https://github.com/tategallery/collection/blob/master/artworks/t/002/t00296-1430.json)
+and [Tate object page](https://www.tate.org.uk/art/artworks/brancusi-danaide-t00296).
 
 Created with the built-in imagegen tool, using the supplied photo as the first
-edit target. A second edit strengthened the linework for small-screen display.
-The selected PNG retains its generated alpha channel without manual image edits.
+edit target. A second edit strengthened the linework for its original small
+corner placement. The current design reuses that asset at a larger size without
+regeneration. The selected PNG retains its generated alpha channel without
+manual image edits. The exact historical prompts below remain unchanged;
+references to an 80px corner ornament describe the original request.
 
 ## Initial prompt
 

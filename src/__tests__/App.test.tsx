@@ -3,106 +3,138 @@ import { describe, expect, it } from 'vitest'
 import App from '../App'
 import { content, type SiteContent } from '../content'
 
-const sectionLabels = ['Enjoying', 'Reading', 'Writing', 'Building', 'Contact']
+const placeholderData: SiteContent = {
+  ...content,
+  sections: content.sections.map((section) => ({
+    ...section,
+    entries: [{ title: `An unlinked ${section.id} entry` }],
+  })),
+  contact: [{ title: 'An email to add' }, { title: 'A profile to add', url: '' }],
+}
 
-describe('the personal document network', () => {
-  it('presents four named documents followed by contact with an accessible page identity', () => {
-    render(<App />)
-
-    expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1)
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(content.name)
-    expect(screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent))
-      .toEqual(sectionLabels)
-    expect(screen.getAllByRole('region')).toHaveLength(5)
-    for (const label of sectionLabels) {
-      const document = screen.getByRole('region', { name: label })
-      expect(document).toBeVisible()
-      expect(within(document).getByRole('heading', { level: 2, name: label })).toBeVisible()
-    }
-    expect(within(screen.getByRole('region', { name: 'Contact' })).getByText(content.name)).toBeVisible()
-    expect(screen.getByRole('link', { name: 'Skip to content' })).toHaveAttribute('href', '#main')
-    expect(screen.getByRole('main')).toHaveAttribute('id', 'main')
-    expect(screen.getByRole('main')).toHaveAttribute('tabindex', '-1')
-  })
-
-  it('shows placeholders as readable text without inventing outgoing links', () => {
-    render(<App />)
-
-    for (const section of content.sections) {
-      const document = screen.getByRole('region', { name: section.label })
-      expect(within(document).queryByRole('link')).not.toBeInTheDocument()
-      for (const entry of section.entries) {
-        expect(within(document).getByText(entry.title)).toBeVisible()
-      }
-    }
-    const contact = screen.getByRole('region', { name: 'Contact' })
-    expect(within(contact).queryByRole('link')).not.toBeInTheDocument()
-    for (const entry of content.contact) {
-      expect(within(contact).getByText(entry.title)).toBeVisible()
-    }
-    expect(screen.getAllByRole('link')).toHaveLength(1)
-  })
-
-  it('preserves supplied destinations, long titles, multiple entries, and unlinked interests', () => {
-    const longTitle = 'An extended reading title about architecture, music, making things, and the small details that connect them'
+describe('the personal site', () => {
+  it('introduces the person and links to the four pages in order', () => {
     const data: SiteContent = {
       ...content,
       name: 'A Person',
-      sections: content.sections.map((section) => ({
-        ...section,
-        entries: section.id === 'enjoying'
-          ? [{ title: 'Long walks at dusk', url: '' }]
-          : [
-              { title: `${longTitle} (${section.id})`, url: `https://example.com/${section.id}` },
-              { title: `Another ${section.id} entry`, url: `https://example.com/${section.id}/second` },
-            ],
-      })),
-      contact: [{ title: 'Email me', url: 'mailto:hello@example.com' }, { title: 'My profile', url: 'https://example.com/profile' }],
+      bio: 'I make things. I read widely. I enjoy long walks.',
     }
 
-    render(<App data={data} />)
+    render(<App data={data} pathname="/" />)
 
-    const enjoying = screen.getByRole('region', { name: 'Enjoying' })
-    expect(within(enjoying).getByText('Long walks at dusk')).toBeVisible()
-    expect(within(enjoying).queryByRole('link')).not.toBeInTheDocument()
-    for (const section of data.sections.filter((section) => section.id !== 'enjoying')) {
-      const entries = within(screen.getByRole('region', { name: section.label })).getAllByRole('link')
-      expect(entries.map((entry) => entry.textContent))
-        .toEqual([`${longTitle} (${section.id})`, `Another ${section.id} entry`])
-      expect(entries[0]).toHaveAttribute('href', `https://example.com/${section.id}`)
-      expect(entries[1]).toHaveAttribute('href', `https://example.com/${section.id}/second`)
-    }
-    const contact = screen.getByRole('region', { name: 'Contact' })
-    expect(within(contact).getByText(data.name)).toBeVisible()
-    expect(within(contact).getByRole('link', { name: 'Email me' })).toHaveAttribute('href', 'mailto:hello@example.com')
-    expect(within(contact).getByRole('link', { name: 'My profile' })).toHaveAttribute('href', 'https://example.com/profile')
+    expect(screen.getByRole('heading', { level: 1, name: data.name })).toBeVisible()
+    expect(screen.getByText(data.bio)).toBeVisible()
+    const links = within(screen.getByRole('navigation', { name: 'Sections' })).getAllByRole('link')
+    expect(links.map((link) => link.textContent)).toEqual(data.sections.map((section) => section.label))
+    expect(links.map((link) => link.getAttribute('href')))
+      .toEqual(['/enjoying', '/reading', '/writing', '/building'])
+    expect(screen.getByRole('img', { name: /wireframe interpretation/i })).toBeVisible()
+    expect(screen.queryByText('Wireframe to come.')).not.toBeInTheDocument()
   })
 
-  it('keeps named documents understandable when their content lists are empty', () => {
+  it('keeps contact placeholders readable without inventing destinations', () => {
+    render(<App data={placeholderData} pathname="/" />)
+
+    for (const entry of placeholderData.contact) {
+      expect(screen.getByText(entry.title)).toBeVisible()
+      expect(screen.getByText(entry.title).closest('a')).toBeNull()
+    }
+    expect(within(screen.getByRole('main')).getAllByRole('link'))
+      .toHaveLength(content.sections.length)
+  })
+
+  it('preserves supplied email and profile links on the home page', () => {
+    const data: SiteContent = {
+      ...content,
+      contact: [
+        { title: 'Email me', url: 'mailto:hello@example.com' },
+        { title: 'My profile', url: 'https://example.com/profile' },
+        { title: 'Elsewhere soon', url: '' },
+      ],
+    }
+
+    render(<App data={data} pathname="/" />)
+
+    expect(screen.getByRole('link', { name: 'Email me' })).toHaveAttribute('href', 'mailto:hello@example.com')
+    expect(screen.getByRole('link', { name: 'My profile' })).toHaveAttribute('href', 'https://example.com/profile')
+    expect(screen.getByText('Elsewhere soon').closest('a')).toBeNull()
+  })
+
+  it.each(placeholderData.sections.flatMap((section) => [
+    { section, pathname: `/${section.id}` },
+    { section, pathname: `/${section.id}/` },
+  ]))('renders $pathname as its own content page', ({ section, pathname }) => {
+    render(<App data={placeholderData} pathname={pathname} />)
+
+    expect(screen.getByRole('heading', { level: 1, name: section.label })).toBeVisible()
+    expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/')
+    const entries = within(screen.getByRole('list')).getAllByRole('listitem')
+    expect(entries.map((entry) => entry.textContent)).toEqual(section.entries.map((entry) => entry.title))
+    for (const entry of entries) expect(within(entry).queryByRole('link')).not.toBeInTheDocument()
+    expect(within(screen.getByRole('main')).getAllByRole('link')).toHaveLength(1)
+    expect(screen.getByText('Wireframe to come.')).toBeVisible()
+    expect(screen.queryByRole('img')).not.toBeInTheDocument()
+  })
+
+  it('preserves multiple long titles, exact URLs, and unlinked entries', () => {
+    const longTitle = 'An extended reading title about architecture, music, making things, and the small details that connect them'
+    const entries = [
+      { title: longTitle, url: 'https://example.com/essay?edition=2#notes' },
+      { title: 'A local note', url: '/notes/one' },
+      { title: 'A book from the library' },
+      { title: 'An essay to find', url: '' },
+    ]
+    const data: SiteContent = {
+      ...content,
+      sections: content.sections.map((section) => section.id === 'reading' ? { ...section, entries } : section),
+    }
+
+    render(<App data={data} pathname="/reading" />)
+
+    expect(screen.getAllByRole('listitem').map((entry) => entry.textContent))
+      .toEqual(entries.map((entry) => entry.title))
+    expect(screen.getByRole('link', { name: longTitle })).toHaveAttribute('href', entries[0].url)
+    expect(screen.getByRole('link', { name: 'A local note' })).toHaveAttribute('href', '/notes/one')
+    expect(screen.getByText('A book from the library').closest('a')).toBeNull()
+    expect(screen.getByText('An essay to find').closest('a')).toBeNull()
+    expect(within(screen.getByRole('main')).getAllByRole('link')).toHaveLength(3)
+  })
+
+  it('gives an empty content page a readable placeholder and a way home', () => {
     const data: SiteContent = {
       ...content,
       sections: content.sections.map((section) => ({ ...section, entries: [] })),
       contact: [],
     }
 
-    render(<App data={data} />)
+    const { rerender } = render(<App data={data} pathname="/writing" />)
 
-    for (const label of sectionLabels) {
-      const document = screen.getByRole('region', { name: label })
-      expect(within(document).getByText('To come.')).toBeVisible()
-      expect(within(document).queryByRole('list')).not.toBeInTheDocument()
-    }
-    expect(within(screen.getByRole('region', { name: 'Contact' })).getByText(data.name)).toBeVisible()
+    expect(screen.getByRole('heading', { level: 1, name: 'Writing' })).toBeVisible()
+    expect(screen.getByText('To come.')).toBeVisible()
+    expect(screen.queryByRole('list')).not.toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/')
+
+    rerender(<App data={data} pathname="/" />)
+    expect(screen.getByRole('heading', { level: 1, name: data.name })).toBeVisible()
+    expect(within(screen.getByRole('navigation', { name: 'Sections' })).getAllByRole('link')).toHaveLength(4)
+    expect(screen.queryByRole('link', { name: /email/i })).not.toBeInTheDocument()
   })
 
-  it('provides a named drag handle and keyboard instructions for every window', () => {
+  it('uses the browser pathname when no route prop is supplied', () => {
+    window.history.replaceState(null, '', '/building/')
+
     render(<App />)
 
-    expect(screen.getAllByRole('button')).toHaveLength(5)
-    for (const label of sectionLabels) {
-      const handle = screen.getByRole('button', { name: `Move ${label} window` })
-      expect(handle).toBeVisible()
-      expect(handle).toHaveAccessibleDescription(/Drag a title bar.*arrow keys.*Home.*Escape/)
-    }
+    expect(screen.getByRole('heading', { level: 1, name: 'Building' })).toBeVisible()
+    expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/')
+  })
+
+  it('offers a home link for an unknown route', () => {
+    render(<App pathname="/does-not-exist" />)
+
+    expect(screen.getByText('Page not found.')).toBeVisible()
+    expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/')
+    expect(screen.queryByRole('list')).not.toBeInTheDocument()
+    expect(screen.queryByRole('img')).not.toBeInTheDocument()
   })
 })

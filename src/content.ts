@@ -1,5 +1,5 @@
 /**
- * Your whole page lives here. Replace the placeholders whenever you're ready.
+ * Your biography and all five pages live here. Replace the placeholders whenever you're ready.
  * Items without a URL display as text. Add as many items as you like;
  * the order below is the order visitors see. Use https:// URLs for links
  * and mailto:you@example.com for email. No account or database is needed.
@@ -19,12 +19,14 @@ export interface Section {
 
 export interface SiteContent {
   name: string
+  bio: string
   sections: Section[]
   contact: Entry[]
 }
 
 export const content: SiteContent = {
   name: 'Your name',
+  bio: 'A sentence about who you are. A sentence about what you care about. A sentence about what you are doing now.',
   sections: [
     {
       id: 'enjoying',

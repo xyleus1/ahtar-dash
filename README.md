@@ -1,23 +1,22 @@
 # ahtar.dev
 
-A personal hypertext desktop: Enjoying, Reading, Writing, and Building surround
-one red Contact window. Pure white, early Macintosh frames, serif links, and a
-network that follows windows dragged by their title bars. All five windows fit
-the viewport; the page itself does not scroll. A small wireframe interpretation
-of Brancusi's *Danaïde* sits in the upper-right corner. Personal content
-intentionally starts with placeholders.
+A plain personal index on white. The home page places a name, editable biography,
+four section links, and quiet contact links in the left third. The existing
+wireframe head after Brancusi's *Danaïde* is centered in the right two-thirds.
+Enjoying, Reading, Writing, and Building each have their own page.
 
-## Edit the page
+## Edit the content
 
 Everything personal is in [`src/content.ts`](src/content.ts):
 
-- `name`: displayed inside Contact and used by the accessible page heading.
-- `sections`: the four interest boxes, with their labels and entries.
-- `contact`: email and profile links.
+- `name`: the home page heading.
+- `bio`: the home biography; the placeholder suggests three sentences.
+- `sections`: each section's stable ID, display label, and entries.
+- `contact`: the home page's email and profile links.
 
 Entries accept a `title` and optional `url`. Missing URLs render as ordinary
-text; empty lists display "To come." Use `https://` for websites and `mailto:`
-for email. Entry array order controls display order within a box.
+text; empty section lists display "To come." Use `https://` for websites and
+`mailto:` for email. Array order controls display order.
 
 ```ts
 { title: 'An essay I keep returning to', url: 'https://example.com/essay' }
@@ -25,9 +24,12 @@ for email. Entry array order controls display order within a box.
 { title: 'Email me', url: 'mailto:you@example.com' }
 ```
 
-Keep the IDs `enjoying`, `reading`, `writing`, and `building`: the layout and
-connector graph depend on them. There is no bio or entry-description field,
-backend, account, analytics, or CMS.
+The IDs `enjoying`, `reading`, `writing`, and `building` determine the real URLs
+`/enjoying`, `/reading`, `/writing`, and `/building`. Navigation uses ordinary
+page links. Each section has a Home link, heading, and bullet list on the left;
+the right area is reserved for future artwork and says "Wireframe to come."
+No future section artwork has been generated. There is no backend, account,
+analytics, or CMS.
 
 ## Development
 
@@ -50,37 +52,23 @@ npm run preview
 Production output is `dist/`. GitHub Actions runs lint, tests, and the production
 build on pushes and pull requests.
 
-## Design and dependencies
+## Design and assets
 
-The structure follows [Ted Nelson's Xanadu diagram](https://xanadu.com.au/ted/XUsurvey/HARTadj5in.JPG)
-and its historical transpointing-window demos. The selected window/title-bar skin
-and self-hosted ChiKareGo2 caption font come from [System.css 0.1.11](https://github.com/sakofchit/system.css).
-Body text uses native Times. Only the relevant skin is adapted; the library's
-full global stylesheet is not shipped.
+The typography follows [Zygote's landing page](https://zyg.edith.reisen/): native
+Times with a serif fallback. This site uses 18.4px text, 1.4 line height, and
+muted red links (`#9B2228`). No web font is downloaded. Desktop uses a viewport-
+sized 1:2 column layout; long text scrolls within its accessible left pane.
+At 700px and below the columns stack, and the page scrolls naturally when needed.
 
-[react-archer 5.1.0](https://github.com/pierpo/react-archer) draws six dotted
-connections between topic windows and four solid connections to Contact.
-[GSAP 3.15.0 Draggable](https://gsap.com/docs/v3/Plugins/Draggable/) and
-`@gsap/react` handle title-bar dragging and cleanup. Drag with a mouse or touch;
-positions last until reload. Bounds keep windows inside the viewport, and
-resizing clamps their positions. A geometry helper chooses the nearest facing
-sides for attached connections as windows move. Hover and focus highlight the
-window and its connected edges without nudging it. Contact uses `#9B2228` red.
+The home illustration is the existing transparent PNG, displayed up to 420px
+wide in the right column. [Artwork provenance](docs/artwork.md) preserves its
+original generation prompts and Tate source. The four section pages reserve
+blank space for later artwork. The Lucide favicon remains a licensed asset.
 
-With a title bar focused, arrow keys move its window 10px, Shift+arrow moves it
-1px, and Home restores its initial position. Escape cancels an active drag.
-Direct dragging and keyboard positioning remain available with reduced motion;
-there is no automatic window movement or idle animation.
-
-Responsive CSS recomposes the windows without shrinking the entire canvas.
-Longer lists scroll inside their keyboard-accessible panes, preserving the
-single-screen composition. Real links use conventional blue and visited purple.
-Lenis and React Bits are not shipped; this page needs neither smooth scrolling
-nor a second animation effect. The existing Lucide favicon remains a licensed
-asset. The transparent head image was generated with the built-in image tool
-from the user-supplied Tate reference; [artwork provenance](docs/artwork.md)
-records the selected asset and prompts. See [design direction](docs/design-direction.md)
-and [third-party notices](THIRD_PARTY_NOTICES.md).
+React and React DOM are the only direct runtime dependencies. The former
+windows, connectors, dragging, and animation packages have been removed.
+See [design direction](docs/design-direction.md) and
+[third-party notices](THIRD_PARTY_NOTICES.md).
 
 ## Publish
 
@@ -102,19 +90,19 @@ project. Use root `.`, framework Vite, Node 22.x, install `npm ci`, build
 `npm run build`, and output `dist`. Build settings are in `vercel.json`.
 
 Record the previous deployment for rollback. After publishing, verify the
-intended version, production assets, HTTPS, and the `www.ahtar.dev` redirect.
-Legacy `/dash` paths redirect to `/`; unknown paths return the custom 404 with
-status 404. Repository history retains the earlier designs.
+intended version, all four section URLs opened directly, production assets,
+HTTPS, and the `www.ahtar.dev` redirect. Legacy `/dash` paths redirect to `/`;
+unknown paths return the custom 404 with status 404. Repository history retains
+the earlier designs.
 
 Once GitHub app access is granted, connect production branch `main` and verify
 an actual Git-triggered deployment before relying on it.
 
 ## Validation
 
-Before publishing this revision, check mouse/touch title-bar dragging, retained
-positions, keyboard moves, Home reset, Escape cancellation, viewport bounds,
-resize clamping, and connector side changes. Check real link clicks, long titles,
-empty lists, pane scrolling, reduced motion, and short-screen layouts. Confirm
-the head does not obscure window controls or content and the outer page never
-scrolls. See the [implementation brief](docs/website-plan.md). Final verification
-and deployment of this revision are pending.
+Before publication, check native navigation, direct section URLs, browser back,
+long and empty lists, link focus, desktop pane scrolling, and stacked mobile
+scrolling. Confirm that the home head stays within its right column and section
+artwork areas contain only the placeholder text. Final verification and
+deployment of this revision are pending. See the
+[implementation brief](docs/website-plan.md).

@@ -5,9 +5,16 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
     { "source": "/dash", "destination": "/", "permanent": true },
     { "source": "/dash/:path*", "destination": "/", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/enjoying", "destination": "/" },
+    { "source": "/reading", "destination": "/" },
+    { "source": "/writing", "destination": "/" },
+    { "source": "/building", "destination": "/" }
   ],
   "headers": [
     {

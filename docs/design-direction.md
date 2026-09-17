@@ -1,87 +1,72 @@
 # Design direction
 
-Selected design: a compact, retro personal desktop on pure white. Four
-corner windows contain Enjoying, Reading, Writing, and Building; Contact is a
-red central hub. All five windows fit within the viewport on desktop and mobile.
-The asymmetrical composition was selected after rendering and comparing it with
-a symmetrical network and a plain serif registry. Fine one-pixel caption rules
-and a bold name inside Contact complete the hierarchy. A small, transparent
-wireframe head after Brancusi's *Danaïde* occupies the top-right margin.
+The current design is a plain personal index with five real pages. White space,
+native serif type, red links, and the existing Brancusi head carry the identity.
+The window frames, network, and dragging experiment are retired.
 
-## Composition and interaction
+## Composition and typography
 
-Use [System.css](https://sakofchit.github.io/system.css/) for the early Macintosh
-window vocabulary: sharp frames, compact caption bars, and fine horizontal
-rules. Small serif content keeps the documents readable. The caption and content
-have distinct roles; the frame should feel deliberate without overwhelming the
-few links inside it. Contact carries the name and contact details with the
-restrained red accent retained from the fashion references.
+On the home page, the left third contains a small name heading, the editable
+biography, four section links, and quiet contact links. The right two-thirds
+center the existing transparent *Danaïde* head, up to 420px wide. The artwork
+has no frame, caption, or interaction.
 
-The page owns one viewport rather than forming a tall scrolling document.
-Recompose the four topic windows around Contact at narrow widths; keep the full
-relationship graph and every window reachable. Long lists use their own content
-pane overflow so the outer page does not grow. Keep the head clear of the windows
-at every size; it adds no frame or caption and does not intercept interaction.
-No hero, biography, photographic background, glow, dashboard chrome, fake status
-metadata, or decorative window controls.
+Each section URL has a Home link, its heading, and a bullet list in the same
+left column. Its right column is reserved blank space with the small plain-text
+message "Wireframe to come." No substitute shapes or future artwork are created.
 
-[react-archer](https://github.com/pierpo/react-archer) draws the connections.
-[GSAP Draggable](https://gsap.com/docs/v3/Plugins/Draggable/) with `@gsap/react`
-handles mouse and touch title-bar dragging and cleanup. Windows stay where the
-visitor leaves them until reload; viewport bounds and resize clamping keep them
-reachable. A geometry helper switches connectors to the nearest facing sides
-as windows move. This follows Xanadu's transpointing-window idea: moving a
-document preserves its visible relationships. Keep the lines behind the text.
+[Zygote's actual landing CSS](https://zyg.edith.reisen/css/screen.css) specifies
+`Times, serif`, a root size of `1.15em`, and inherited/browser-normal line height.
+This implementation uses `Times, 'Times New Roman', serif` at 18.4px with an
+explicit 1.4 line height for prose. Zygote's black background and orange display
+heading are separate choices; this brief retains white and `#9B2228` links.
+There is no downloaded font.
 
-Hover and focus change color only. A focused title bar supports arrow-key moves
-of 10px, Shift+arrow moves of 1px, and Home to restore its initial position.
-Escape cancels an active drag. Reduced-motion users retain these direct actions;
-no automatic nudge, inertia, entrance reveal, or idle movement is needed. Touch
-users drag the title bar while content panes retain normal link and scroll use.
+Desktop keeps a 1:2 column composition within the viewport. The text pane can
+scroll when its contents exceed the available height; readable lines are limited
+to approximately 34 characters. At 700px and below, text comes first and artwork
+follows, with 24px side gutters and natural page scrolling. The head is capped
+at 240px on these small screens. Ordinary underlined links, native page
+navigation, and visible keyboard focus provide the interactions; no animation
+or custom motion behavior is needed.
 
-## Reference selection
+## References and selection
 
-| Reference | Contribution to this direction |
+| Reference | Role in the current direction |
 | --- | --- |
-| [Xanadu diagram](https://xanadu.com.au/ted/XUsurvey/HARTadj5in.JPG) and [article](https://xanadu.com.au/ted/XUsurvey/xuDation.html) | Primary structure: distinct document windows and visible relationships. Connections are visual; this site does not implement transclusion. |
-| [1972 mockup](https://xanadu.com.au/ted/XUsurvey/ptf1ov81.jpg), [1998 demo](https://xanadu.com.au/ted/XUsurvey/ianlines.jpg), [PYXI viewer](https://xanadu.com.au/ted/XUsurvey/pingshot.gif) | Actual historical examples of compact window framing, serif documents, open connection space, and links following moved windows. |
-| [Athena Shiravi](https://athenashiravi.com/about) | Decisive hierarchy and a committed accent. Its oversized prose, photography, and orange canvas do not fit the latest brief. |
-| [Justin Wang](https://jstwng.com/) | Direct personal links and ordinary readable text inform the document contents. |
-| [Kaliacc](https://kaliacc.org/) and [Zygote](https://zyg.edith.reisen/) | Personal-directory scale and old-web directness; visual influence only, without their content, imagery, or dark backgrounds. |
-| [A.F. Vandevorst at MoMu](https://www.momu.be/en/collection-stories/a-f-vandevorst-2) | Institutional white with a scarce red accent. The chosen red is an interpretation, not an official brand value. |
-| [Helmut Lang logotype research](https://famira.com/portfolio/helmut_lang) | Precise lettering, restrained graphic identity, and refinement at small sizes. |
-| [Brancusi at Tate](https://www.tate.org.uk/whats-on/tate-modern/constantin-brancusi-essence-things) | The user-selected *Danaïde* head is interpreted as a small wireframe outline, giving the desktop one sculptural detail. |
-| [Impeccable](https://impeccable.style/) | [Distill](https://github.com/pbakaus/impeccable/blob/main/skill/reference/distill.md), [quieter](https://github.com/pbakaus/impeccable/blob/main/skill/reference/quieter.md), [layout](https://github.com/pbakaus/impeccable/blob/main/skill/reference/layout.md), and [animate](https://github.com/pbakaus/impeccable/blob/main/skill/reference/animate.md) guide removal, density, and purposeful motion. |
-| [Pen.dev workflow](https://docs.pen.dev/core-concepts/ai-agents) | Compare alternative compositions, then refine the selected one. Reference material; the pen.dev application was not used. |
+| [Zygote](https://zyg.edith.reisen/) | Primary typography reference: native Times and direct personal links. Its content, artwork, colors, and vertical rule are not copied. |
+| [Justin Wang](https://jstwng.com/) | Small name, short biography, and straightforward personal/contact links. |
+| [Athena Shiravi](https://athenashiravi.com/about) | Earlier reference for decisive hierarchy. Its large prose, photography, and observed orange canvas are not the current layout. |
+| [Kaliacc](https://kaliacc.org/) | Earlier personal-directory reference; visual context only, with no copied content or imagery. |
+| [A.F. Vandevorst at MoMu](https://www.momu.be/en/collection-stories/a-f-vandevorst-2) | Restrained red against white. The chosen red is an interpretation, not an official brand value. |
+| [Helmut Lang logotype research](https://famira.com/portfolio/helmut_lang) | Precise, economical graphic identity and care at small sizes. |
+| [Brancusi at Tate](https://www.tate.org.uk/whats-on/tate-modern/constantin-brancusi-essence-things) | The user-selected *Danaïde* interpretation remains the home page's one artwork, now enlarged in its own column. |
+| [Impeccable](https://impeccable.style/) | [Distill](https://github.com/pbakaus/impeccable/blob/main/skill/reference/distill.md), [quieter](https://github.com/pbakaus/impeccable/blob/main/skill/reference/quieter.md), and [layout](https://github.com/pbakaus/impeccable/blob/main/skill/reference/layout.md) support reduction and clear proportions. [Animate](https://github.com/pbakaus/impeccable/blob/main/skill/reference/animate.md) informed earlier motion; the current brief requires none. |
+| [Pen.dev workflow](https://docs.pen.dev/core-concepts/ai-agents) | Reference for comparing compositions and refining them. The pen.dev application was not used. |
+| [Xanadu diagram](https://xanadu.com.au/ted/XUsurvey/HARTadj5in.JPG) and [article](https://xanadu.com.au/ted/XUsurvey/xuDation.html) | Historical context for the retired document-network layout. |
+| [1972 mockup](https://xanadu.com.au/ted/XUsurvey/ptf1ov81.jpg), [1998 demo](https://xanadu.com.au/ted/XUsurvey/ianlines.jpg), [PYXI viewer](https://xanadu.com.au/ted/XUsurvey/pingshot.gif) | Earlier research into connected document windows; those interactions are no longer part of the site. |
 
 The [Impeccable craft floor](https://github.com/pbakaus/impeccable/blob/main/skill/reference/craft-floor.md)
-puts the chosen brief above generic defaults. Explicitly requested retro windows
-and serif documents earn their place; anti-template advice should not flatten
-this design into another card-free landing page.
+puts the actual brief above generic defaults. The current request earns the
+plain serif layout; the earlier explicit window request earned a different
+solution. Neither should become a reason to add decorative UI now.
 
-System.css is selected over the evaluated [98.css](https://jdan.github.io/98.css/)
-because its monochrome Macintosh vocabulary fits the white canvas. The earlier
-[React Bits](https://github.com/DavidHDev/react-bits) reveal/glow components and
-[Lenis](https://github.com/darkroomengineering/lenis) scrolling are not part of
-this direction. Use the named libraries for framing, geometry, and motion;
-custom work composes them around the actual content. The head is a transparent
-PNG generated with the built-in image tool from the [exact supplied Tate image](https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-840_fK7Ago5.format-webp.webp).
+[System.css](https://sakofchit.github.io/system.css/), [98.css](https://jdan.github.io/98.css/),
+[react-archer](https://github.com/pierpo/react-archer), [GSAP](https://gsap.com/docs/v3/),
+[React Bits](https://github.com/DavidHDev/react-bits), and
+[Lenis](https://github.com/darkroomengineering/lenis) belong to previous research
+or iterations. None is shipped in the current implementation. React and React
+DOM are the only direct runtime dependencies; CSS supplies the layout.
+
+## Artwork and review
+
+The existing head was generated from the [exact supplied Tate image](https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-840_fK7Ago5.format-webp.webp).
 [Tate's collection metadata](https://github.com/tategallery/collection/blob/master/artworks/t/002/t00296-1430.json)
 identifies *Danaïde*, c.1918, accession T00296. [Artwork provenance](artwork.md)
-records its prompts and selected asset; third-party notices distinguish the
-source artwork from the generated interpretation. Other reference-site images
-and content are not distributed.
+preserves the original prompts and asset. The source photograph and other
+reference-site imagery are not distributed.
 
-## Review targets
-
-- All five windows remain visible within desktop, short, mobile, and landscape
-  viewports; the document itself does not scroll or overflow horizontally.
-- Long entries stay readable within panes, and connectors remain behind text.
-- Mouse/touch dragging, keyboard moves, Home reset, Escape cancellation,
-  resizing, and reduced motion preserve readable content and attached endpoints.
-- Retained positions and changing connector sides work without moving windows
-  on hover; the head remains small and clear of content on narrow/short screens.
-- The page contains only real content roles and usable links: no invented
-  controls, labels, or status data to manufacture a retro appearance.
-- Complete visual comparison, build, lint, relevant tests, and production
-  verification before treating the design as ready to publish.
+Review direct section URLs, native navigation, real/empty/long entry lists,
+keyboard focus, desktop pane overflow, stacked mobile scrolling, and artwork
+proportions. Complete visual review and required checks before publication;
+this document does not record completed QA or deployment.
