@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { content, type Entry, type SiteContent } from './content'
-import WireframeHead from './components/WireframeHead'
 
 function Entries({
   entries,
@@ -86,7 +85,14 @@ export default function App({
         </section>
         <div className="art-panel">
           {isHome ? (
-            <WireframeHead />
+            <img
+              className="head"
+              src="/art/brancusi-wireframe-v2.png"
+              width="1086"
+              height="1448"
+              alt="Wireframe interpretation of Constantin Brâncuși’s Danaïde"
+              draggable={false}
+            />
           ) : section ? (
             <p className="art-placeholder">Wireframe to come.</p>
           ) : null}

@@ -2,23 +2,12 @@
 
 ## Runtime libraries
 
-React 19.3.0 and React DOM 19.3.0, together with their scheduler dependency,
-retain the Meta MIT license. Full notices
+React 19.3.0 and React DOM 19.3.0 are the only direct runtime dependencies.
+Their scheduler dependency retains the same Meta MIT license. Full notices
 are reproduced in [`public/third-party-licenses.txt`](public/third-party-licenses.txt),
 which ships with the site.
 
-[Three.js 0.186.0](https://github.com/mrdoob/three.js) provides the 3D rendering
-library. Its complete MIT license is reproduced verbatim from the installed
-package's `LICENSE` file, including copyright 2010-2026 three.js authors.
-
-[GSAP 3.15.0](https://github.com/greensock/GSAP) provides motion. It uses the
-[GSAP Standard No Charge License](https://gsap.com/standard-license), not the MIT
-license. The installed package does not include a standalone `LICENSE` file;
-the distributed notices preserve its exact `gsap-core.js` copyright header and
-`package.json` license declaration. No React Bits source is copied into this
-implementation.
-
-`@gsap/react`, `react-archer`, `react-fast-compare`,
+GSAP, `@gsap/react`, `react-archer`, `react-fast-compare`,
 `resize-observer-polyfill`, System.css, and ChiKareGo2 are no longer distributed.
 Lenis, React Bits, and Fontsource assets also belong to earlier iterations.
 Historical notices remain in Git history. The current page uses native Times
@@ -34,9 +23,7 @@ file. The `lucide-react` package is not a dependency.
 
 ## Brancusi head interpretation
 
-The current home artwork is a geometric 3D interpretation built with Three.js
-surfaces and curves, animated with GSAP. It is not a museum scan. The existing
-transparent PNG remains the loading and unavailable-WebGL fallback. That PNG is a
+The existing transparent PNG displayed in the home page's right column is a
 wireframe interpretation after Constantin Brancusi, *Danaïde*, c.1918,
 generated with the built-in image tool from the user-supplied
 [Tate exhibition photograph](https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-840_fK7Ago5.format-webp.webp).

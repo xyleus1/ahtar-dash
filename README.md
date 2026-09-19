@@ -1,8 +1,8 @@
 # ahtar.dev
 
 A plain personal index on white. The home page places a name, editable biography,
-four section links, and quiet contact links in the left third. A spinning 3D
-wireframe interpretation of Brancusi's *Danaïde* is centered in the right two-thirds.
+four section links, and quiet contact links in the left third. The existing
+wireframe head after Brancusi's *Danaïde* is centered in the right two-thirds.
 Enjoying, Reading, Writing, and Building each have their own page.
 
 ## Edit the content
@@ -60,26 +60,13 @@ muted red links (`#9B2228`). No web font is downloaded. Desktop uses a viewport-
 sized 1:2 column layout; long text scrolls within its accessible left pane.
 At 700px and below the columns stack, and the page scrolls naturally when needed.
 
-The home head is a real Three.js mesh: library-provided lathed, tubular, and
-conical geometry form a stylized interpretation of the sculpture. It is not a
-museum scan or a rotated PNG. GSAP turns it through 360 degrees around its
-vertical axis every 24 seconds, at a constant speed. Click the head, or focus
-it and press Enter or Space, to pause or resume. Reduced-motion preferences
-start it still; rendering stops while the artwork is offscreen or the page is
-hidden. The existing transparent PNG remains visible during loading and if
-WebGL fails or loses its context.
+The home illustration is the existing transparent PNG, displayed up to 420px
+wide in the right column. [Artwork provenance](docs/artwork.md) preserves its
+original generation prompts and Tate source. The four section pages reserve
+blank space for later artwork. The Lucide favicon remains a licensed asset.
 
-[Artwork provenance](docs/artwork.md) records the model's construction and
-preserves the fallback image's exact generation prompts and Tate source. The
-four section pages still reserve blank space for later artwork. The Lucide
-favicon remains a licensed asset.
-
-React, React DOM, Three.js, and GSAP are the direct runtime dependencies. The
-requested GSAP, React Bits, and Lenis repositories were reviewed: GSAP supplies
-the rotation, Three.js supplies the renderer and geometry, and a larger viewer
-or smooth-scrolling system would add behavior this layout does not need. No
-React Bits source is copied. The former windows, connectors, and dragging remain
-removed.
+React and React DOM are the only direct runtime dependencies. The former
+windows, connectors, dragging, and animation packages have been removed.
 See [design direction](docs/design-direction.md) and
 [third-party notices](THIRD_PARTY_NOTICES.md).
 
@@ -115,16 +102,11 @@ an actual Git-triggered deployment before relying on it.
 
 Before publication, check native navigation, direct section URLs, browser back,
 long and empty lists, link focus, desktop pane scrolling, and stacked mobile
-scrolling. Confirm that the home head stays centered through a full revolution,
-the pause control works with a pointer and keyboard, reduced motion starts
-still, and offscreen/hidden rendering stops. Check the PNG fallback during
-loading and after a WebGL failure or context loss. Section artwork areas should
-contain only the placeholder text. Run lint, tests, and the production build
-before publishing, then verify the deployed version and production routes.
+scrolling. Confirm that the home head stays within its right column and section
+artwork areas contain only the placeholder text.
 
-The 3D head was published and verified on 2026-09-18. All 24 tests, lint, the
-production build, and GitHub CI passed. Browser checks covered a full turn,
-pointer/keyboard pause, reduced motion, context loss, mobile layout, and the
-original-image fallback. The live JavaScript and CSS match the tested build;
-all four section links and refreshes work. See the
+The plain-text redesign was published and verified on 2026-09-17. Lint, all 15
+tests, the production build, and GitHub CI passed. Live checks confirmed all
+five pages, navigation and refresh, desktop/mobile layout, production asset
+hashes, redirects, and custom 404 responses. See the
 [implementation brief](docs/website-plan.md).
