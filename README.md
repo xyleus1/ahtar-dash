@@ -122,7 +122,9 @@ loading and after a WebGL failure or context loss. Section artwork areas should
 contain only the placeholder text. Run lint, tests, and the production build
 before publishing, then verify the deployed version and production routes.
 
-The earlier plain-text version was published and verified on 2026-09-17. That
-validation predates the 3D head; it is not a publication record for this change.
-See the
+The 3D head was published and verified on 2026-09-18. All 24 tests, lint, the
+production build, and GitHub CI passed. Browser checks covered a full turn,
+pointer/keyboard pause, reduced motion, context loss, mobile layout, and the
+original-image fallback. The live JavaScript and CSS match the tested build;
+all four section links and refreshes work. See the
 [implementation brief](docs/website-plan.md).

@@ -65,11 +65,16 @@ and explains which references still influence the implementation.
   offscreen/hidden suspension, loading fallback, and WebGL failure/context loss.
 - Complete visual review, lint, relevant tests, and the production build.
 
+The 3D head was published and verified on 2026-09-18 from commit `eb48090` as
+`dpl_FfRjRKCHL93GLw4eBpQKTrP8CTTT`. All 24 tests, lint, the production build,
+and GitHub CI passed. Browser checks covered all rotation angles, controls,
+reduced motion, context loss, mobile layout, and the PNG fallback. Live asset
+hashes match the tested build, and all four section links and refreshes work.
+
 The earlier plain-text version was published on 2026-09-17 from commit
 `5e4bd11` as `dpl_CQ3xQdWpuN6ee3ckpnwbMYbedgJ5`, following lint, 15 tests, a
 production build, CI, and desktop/mobile and live-route checks. That record
-predates the 3D head. Complete the checklist above for this change and verify
-the new deployment before treating it as published.
+predates the 3D head and remains the previous production version for rollback.
 
 ## Publishing
 
