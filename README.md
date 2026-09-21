@@ -35,7 +35,8 @@ Writing links to **Why do we need so much memory, anyway?** at
 `/writing/why-do-we-need-so-much-memory-anyway`. Its text and markup are in
 [`src/posts/MemoryArticle.tsx`](src/posts/MemoryArticle.tsx), with title and route
 in `memoryArticleInfo.ts`. The article uses a scrolling reading column and
-scoped styles that follow the supplied PDF. See [article source notes](docs/writing.md).
+the site's Times serif font, the PDF's bolding, and inline images and videos.
+See [article source notes](docs/writing.md).
 
 ## Development
 

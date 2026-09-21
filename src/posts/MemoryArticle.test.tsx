@@ -27,9 +27,7 @@ describe('the memory article', () => {
     const article = await renderArticle(pathname)
 
     expect(within(article).getByText('A (not so) quick primer on the inference ecosystem')).toBeVisible()
-    for (const link of screen.getAllByRole('link', { name: 'Writing' })) {
-      expect(link).toHaveAttribute('href', '/writing')
-    }
+    expect(screen.queryByRole('navigation')).not.toBeInTheDocument()
     expect(document.title).toContain(articleTitle)
     expect(screen.queryByText('Wireframe to come.')).not.toBeInTheDocument()
     expect(article).toHaveTextContent('For regular deployments, the question is whether local models become capable enough that avoiding network delays and recurring cloud costs outweighs access to a larger remote model.')
@@ -59,6 +57,12 @@ describe('the memory article', () => {
     const article = await renderArticle()
     const memoryDetail = within(article).getByText('This doesn’t work in regular DDR because of issues with heat and smaller bus widths')
     expect(memoryDetail.closest('ul ul ul')).not.toBeNull()
+    expect(Array.from(article.querySelectorAll('strong'), (span) => span.textContent)).toEqual([
+      'Static Random-Access Memory (SRAM):',
+      'Dynamic Random-Access Memory (DRAM):',
+      'Prefill:',
+      'Decode:',
+    ])
 
     const prefill = within(article).getByText('Prefill:').closest('li')
     const decode = within(article).getByText('Decode:').closest('li')
@@ -71,6 +75,24 @@ describe('the memory article', () => {
       .toHaveAttribute('href', 'https://www.anybotics.com/')
     expect(within(article).getByRole('link', { name: 'https://thememoryguy.com/how-high-can-memory-prices-go/' }))
       .toHaveAttribute('href', 'https://thememoryguy.com/how-high-can-memory-prices-go/')
+  })
+
+  it('embeds both videos without autoplay and leaves out publication cards and byline chrome', async () => {
+    const article = await renderArticle()
+    const videos = Array.from(article.querySelectorAll('iframe'))
+
+    expect(videos).toHaveLength(2)
+    expect(videos.map((video) => video.getAttribute('src'))).toEqual([
+      'https://www.youtube-nocookie.com/embed/ENkuf_2zbkc',
+      'https://www.youtube-nocookie.com/embed/B8O3pLcX2w4',
+    ])
+    expect(videos[0]).toHaveAttribute('title', 'The Engineering Behind LLM Inference: The Memory Wall')
+    expect(videos[1]).toHaveAttribute('title', 'Why Positron AI is Choosing LPDDR over HBM for Next-Gen LLM | Researcher Conversations at GTC')
+    for (const video of videos) expect(video).not.toHaveAttribute('autoplay')
+    expect(within(article).queryByRole('complementary')).not.toBeInTheDocument()
+    expect(within(article).queryByText('THETECHBRUIN')).not.toBeInTheDocument()
+    expect(article.querySelector('time')).toBeNull()
+    expect(within(article).getAllByRole('img')).toHaveLength(16)
   })
 
   it.each(['/writing/not-a-post', `${articlePath}/extra`])('does not treat %s as the article route', (pathname) => {

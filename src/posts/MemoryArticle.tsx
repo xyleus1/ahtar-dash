@@ -1,21 +1,16 @@
 import { memoryArticle } from './memoryArticleInfo'
 import './article.css'
 
-// Transcribed from the supplied Word document, with the PDF's visible formatting.
+// Original article content with the PDF's bolding and the site's plain serif typography.
 export default function MemoryArticle() {
   return (
     <>
       <a className="skip-link" href="#main">Skip to content</a>
       <main id="main" className="memory-page" tabIndex={-1}>
-        <nav className="memory-back" aria-label="Back to writing"><a href="/writing">Writing</a></nav>
         <article className="memory-article" aria-labelledby="article-title">
           <header className="memory-header">
             <h1 id="article-title">{memoryArticle.title}</h1>
             <p className="memory-subtitle">{memoryArticle.subtitle}</p>
-            <div className="memory-byline">
-              <img src="/articles/why-do-we-need-so-much-memory-anyway/author.jpeg" width="40" height="40" alt="" />
-              <div><p>THETECHBRUIN</p><time dateTime={memoryArticle.date}>SEP 20, 2026</time></div>
-            </div>
           </header>
           <div className="memory-body">
             <p>{"This is my first article that I’m also putting on my personal website: "}<a href="https://ahtar.dev">ahtar.dev</a>{", Give it a look!"}</p>
@@ -28,13 +23,7 @@ export default function MemoryArticle() {
             <figure>
             <img src={"/articles/why-do-we-need-so-much-memory-anyway/image2.png"} width={1400} height={715} alt={"Hardware compute grows 60,000-fold over 20 years, versus 100-fold for DRAM bandwidth and 30-fold for interconnect bandwidth."} loading="lazy" decoding="async" />
             </figure>
-            <aside className="memory-source-card" aria-label={"Chipstrat source article"}>
-            <div className="memory-source-publication"><img src={"/articles/why-do-we-need-so-much-memory-anyway/chipstrat.jpeg"} width="32" height="32" alt="" loading="lazy" />{"Chipstrat"}</div>
-            <p className="memory-source-title"><a href={"https://www.chipstrat.com/p/high-bandwidth-memory"}>{"High-Bandwidth Memory"}</a></p>
-            <p className="memory-source-description">{"I haven't posted an educational update in a while, so today let's take a closer look at high-bandwidth memory..."}</p>
-            <a className="memory-source-read" href={"https://www.chipstrat.com/p/high-bandwidth-memory"} aria-label={"Read High-Bandwidth Memory"}>Read more</a>
-            <p className="memory-source-footer">{"2 years ago · 55 likes · Austin Lyons"}</p>
-            </aside>
+            <p>{"Chipstrat"}{" — "}<a href={"https://www.chipstrat.com/p/high-bandwidth-memory"}>{"High-Bandwidth Memory"}</a></p>
             <p>{"AI inference requires a model’s learned parameters, called its weights, to be available in memory so that a processor can read them and perform the calculations needed to produce an answer. "}</p>
             <p>{"Take an example: a simple 70 Billion parameter model like Llama 3.1 70B stored at 2 bytes per parameter, meaning weights occupy ~140GB. The real storage bandwidth required in AI inference workflows is usually much higher than this number, as factors like KV cache growth, including the cached states for generated reasoning tokens outweigh the software tricks involved in decreasing the model storage burden through quantizing models, parallel runs, not loading the entire model through architectures like MoE."}</p>
             <p>{"The problem is therefore not just finding somewhere to store 140 GB, but moving the necessary portions of it into the processor quickly enough to keep the computation running."}</p>
@@ -47,13 +36,7 @@ export default function MemoryArticle() {
             <figure>
             <img src={"/articles/why-do-we-need-so-much-memory-anyway/image4.png"} width={1456} height={630} alt={"Memory comparison: DDR5, LPDDR5, GDDR6X and HBM3 data rates, bus widths and bandwidths. HBM3 reaches 819.2 GB/s with a 1,024-bit bus."} loading="lazy" decoding="async" />
             </figure>
-            <aside className="memory-source-card" aria-label={"SemiAnalysis source article"}>
-            <div className="memory-source-publication"><img src={"/articles/why-do-we-need-so-much-memory-anyway/semianalysis.jpeg"} width="32" height="32" alt="" loading="lazy" />{"SemiAnalysis"}</div>
-            <p className="memory-source-title"><a href={"https://newsletter.semianalysis.com/p/scaling-the-memory-wall-the-rise-and-roadmap-of-hbm"}>{"Scaling the Memory Wall: The Rise and Roadmap of HBM"}</a></p>
-            <p className="memory-source-description">{"The first portion of this report will explain HBM, the manufacturing process, dynamics between vendors, KVCache offload, disaggregated prefill decode, and wide / high-rank EP. The rest of the report will dive deeply into the future of HBM. We will cover the revolutionary change coming to HBM4 with custom base dies for HBM, what various different accelerators are doing with custom HBM including OpenAI, Nvidia, and AMD, the shoreline area problem, memory controller offload, repeater PHYs, LPDDR + HBM combos, and various beachfront expansion techniques. We will also discuss SRAM tags, compute under memory, supply chain implications, and Samsung..."}</p>
-            <a className="memory-source-read" href={"https://newsletter.semianalysis.com/p/scaling-the-memory-wall-the-rise-and-roadmap-of-hbm"} aria-label={"Read Scaling the Memory Wall: The Rise and Roadmap of HBM"}>Read more</a>
-            <p className="memory-source-footer">{"a year ago · 43 likes · 2 comments · Dylan Patel, Myron Xie, Tanj Bennett, Ivan Chiam, and Jeff Koch"}</p>
-            </aside>
+            <p>{"SemiAnalysis"}{" — "}<a href={"https://newsletter.semianalysis.com/p/scaling-the-memory-wall-the-rise-and-roadmap-of-hbm"}>{"Scaling the Memory Wall: The Rise and Roadmap of HBM"}</a></p>
             <p>{"DDR memory is generally farther away, connected through the motherboard rather than the GPU’s package. That arrangement makes it practical to install substantial capacity without surrounding the accelerator with more HBM stacks, but accessing that capacity through the CPU and its connections is not equivalent to accessing the GPU’s local memory. The tradeoff is generally more accessible capacity at lower cost, with less bandwidth."}</p>
             <figure>
             <a href={"https://www.wevolver.com/article/what-is-hbm-high-bandwidth-memory-deep-dive-into-architecture-packaging-and-applications"}><img src={"/articles/why-do-we-need-so-much-memory-anyway/image5.png"} width={950} height={447} alt={"Cross-section comparison of CoWoS-L, CoWoS-R and CoWoS-S packages, showing logic and HBM connected above a substrate."} loading="lazy" decoding="async" /></a>
@@ -123,13 +106,7 @@ export default function MemoryArticle() {
             <figure>
             <img src={"/articles/why-do-we-need-so-much-memory-anyway/image7.png"} width={1175} height={702} alt={"SEMIVISION's 2026 overview groups memory into volatile DRAM and SRAM, and nonvolatile flash and other technologies, with suppliers for each."} loading="lazy" decoding="async" />
             </figure>
-            <aside className="memory-source-card" aria-label={"SEMIVISION @_@ source article"}>
-            <div className="memory-source-publication"><img src={"/articles/why-do-we-need-so-much-memory-anyway/semivision.jpeg"} width="32" height="32" alt="" loading="lazy" />{"SEMIVISION @_@"}</div>
-            <p className="memory-source-title"><a href={"https://tspasemiconductor.substack.com/p/beyond-hbm-why-3d-stacked-sram-is"}>{"Beyond HBM: Why 3D-Stacked SRAM Is Becoming Critical to AI Processor Architecture"}</a></p>
-            <p className="memory-source-description">{"From Node Scaling to System Scaling: Why Semiconductor Process Technology Is Becoming Application-Driven..."}</p>
-            <a className="memory-source-read" href={"https://tspasemiconductor.substack.com/p/beyond-hbm-why-3d-stacked-sram-is"} aria-label={"Read Beyond HBM: Why 3D-Stacked SRAM Is Becoming Critical to AI Processor Architecture"}>Read more</a>
-            <p className="memory-source-footer">{"4 months ago · 24 likes · SEMIVISION"}</p>
-            </aside>
+            <p>{"SEMIVISION @_@"}{" — "}<a href={"https://tspasemiconductor.substack.com/p/beyond-hbm-why-3d-stacked-sram-is"}>{"Beyond HBM: Why 3D-Stacked SRAM Is Becoming Critical to AI Processor Architecture"}</a></p>
             <p>{"HBM is “faster” than other memory choices primarily in the sense that it can deliver substantial aggregate bandwidth, not because every individual memory access necessarily takes less time. HBM3 and HBM3E provide a 1,024-bit interface per stack and HBM4 provides 2,048 bits. These wide interfaces allow many bits to move simultaneously without requiring each individual connection to operate as fast as a GDDR connection."}</p>
             <p>{"Case: a wider interface versus faster individual connections. At 9.2 gigabits per second across 1,024 data connections, an HBM3E stack provides roughly 1.18 terabytes per second. By comparison, GDDR7 operating at 32 gigabits per second across an entire 384-bit GPU memory interface provides roughly 1.54 terabytes per second. The GDDR connections individually run faster, but a processor can place several HBM stacks beside it, each contributing another wide interface."}</p>
             <p>{"The tradeoff is that HBM achieves this through a much more demanding physical arrangement. To understand why that matters, it helps to first follow what happens when the model actually runs."}</p>
@@ -149,13 +126,7 @@ export default function MemoryArticle() {
             <figure>
             <img src={"/articles/why-do-we-need-so-much-memory-anyway/image8.png"} width={1101} height={524} alt={"LLM inference pipeline: parallel prefill, sequential decode, and KV caching, FlashAttention, PagedAttention and speculative decoding optimizations."} loading="lazy" decoding="async" />
             </figure>
-            <aside className="memory-source-card" aria-label={"Daily Dose of Data Science source article"}>
-            <div className="memory-source-publication"><img src={"/articles/why-do-we-need-so-much-memory-anyway/daily-dose.jpeg"} width="32" height="32" alt="" loading="lazy" />{"Daily Dose of Data Science"}</div>
-            <p className="memory-source-title"><a href={"https://blog.dailydoseofds.com/p/a-practical-deep-dive-on-llm-inference"}>{"A Practical Deep Dive on LLM Inference and Optimization!"}</a></p>
-            <p className="memory-source-description">{"After covering LLM fine-tuning techniques in the full LLMOps course, we now move to LLM inference and optimization..."}</p>
-            <a className="memory-source-read" href={"https://blog.dailydoseofds.com/p/a-practical-deep-dive-on-llm-inference"} aria-label={"Read A Practical Deep Dive on LLM Inference and Optimization!"}>Read more</a>
-            <p className="memory-source-footer">{"6 months ago · 7 likes · Avi Chawla"}</p>
-            </aside>
+            <p>{"Daily Dose of Data Science"}{" — "}<a href={"https://blog.dailydoseofds.com/p/a-practical-deep-dive-on-llm-inference"}>{"A Practical Deep Dive on LLM Inference and Optimization!"}</a></p>
             <figure>
             <a href={"https://www.dailydoseofds.com/llmops-crash-course-part-14/"}><img src={"/articles/why-do-we-need-so-much-memory-anyway/image9.png"} width={908} height={783} alt={"Prefill processes prompt tokens in parallel and builds a KV cache; decode reads the growing cache to generate one token at a time."} loading="lazy" decoding="async" /></a>
             </figure>
@@ -230,6 +201,7 @@ export default function MemoryArticle() {
             <p>{"This is why fast inference systems cannot simply take a conventional dense model and run every parameter through HBM for every token. They need tricks that reduce the amount of data moved per token or radically change where that data lives. "}</p>
             <p>{"This is the memory wall in a concrete workload. The qualification is that the same weight read can support more work when multiple requests are batched together, and prefill also offers substantial reuse. The bottleneck therefore depends on how the model is being served, not simply on whether the application uses AI."}</p>
             <p>{"Video: "}<a href={"https://youtu.be/ENkuf_2zbkc?si=dWvxFoj50W3exH0a"}>{"The Engineering Behind LLM Inference: The Memory Wall"}</a></p>
+            <iframe className="memory-video" src="https://www.youtube-nocookie.com/embed/ENkuf_2zbkc" title="The Engineering Behind LLM Inference: The Memory Wall" width="680" height="383" loading="lazy" referrerPolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
             <h2>{"Why can’t we just use more HBM?"}</h2>
             <p>{"Based on this, the central issue arises: if HBM provides so much bandwidth, why can’t we simply add more of it until the processor has everything it needs?"}</p>
             <p>{"Before I can get that, I want to explain how HBM is actually built, and then explain the bottlenecks."}</p>
@@ -243,13 +215,7 @@ export default function MemoryArticle() {
             <figure>
             <img src={"/articles/why-do-we-need-so-much-memory-anyway/image14.png"} width={423} height={119} alt={"DRAM manufacturing node progression for SK hynix, Samsung, Micron and CXMT from 2017 through 2025."} loading="lazy" decoding="async" />
             </figure>
-            <aside className="memory-source-card" aria-label={"ChinaTalk source article"}>
-            <div className="memory-source-publication"><img src={"/articles/why-do-we-need-so-much-memory-anyway/chinatalk.jpeg"} width="32" height="32" alt="" loading="lazy" />{"ChinaTalk"}</div>
-            <p className="memory-source-title"><a href={"https://www.chinatalk.media/p/will-china-hit-the-hbm-wall"}>{"How Far Can Chinese HBM Go?"}</a></p>
-            <p className="memory-source-description">{"This December, we’re teaming up with GiveDirectly to send cash to 800 impoverished families in the Bikara region of Rwanda. Studies show that direct cash transfers have a multiplier effect of 2.5x in local economies and reduce infant mortality rates..."}</p>
-            <a className="memory-source-read" href={"https://www.chinatalk.media/p/will-china-hit-the-hbm-wall"} aria-label={"Read How Far Can Chinese HBM Go?"}>Read more</a>
-            <p className="memory-source-footer">{"10 months ago · 51 likes · 7 comments · Aqib Zakaria"}</p>
-            </aside>
+            <p>{"ChinaTalk"}{" — "}<a href={"https://www.chinatalk.media/p/will-china-hit-the-hbm-wall"}>{"How Far Can Chinese HBM Go?"}</a></p>
             <p>{"After fabrication and testing, the dies are thinned so that several can fit within a tightly controlled stack height. "}<a href={"https://www.viksnewsletter.com/p/why-is-hbm-so-hard-to-manufacture"}>{"Vikram Sekar"}</a>{"’s manufacturing walkthrough describes DRAM die thicknesses of roughly 30–50 micrometers and stacks of 4, 8, or 12.  Those vertical connections are through-silicon vias, or TSVs. They carry signals through the dies, while bonding connections join the individual layers. A base die provides the interface between the memory stack and the rest of the system, allowing the assembled stack to communicate with the nearby processor. Adding more layers therefore requires more than making the stack taller. "}</p>
             <p>{"SK Hynix’s 12-hi HBM3E used DRAM chips that were 40% thinner than those in its eight-layer product, allowing twelve layers to fit within the same total height. This explains why HBM is difficult to scale even when demand is obvious. "}</p>
             <p>{"To summarize, the issues with scaling HBM are threefold."}</p>
@@ -296,6 +262,7 @@ export default function MemoryArticle() {
             <li><a href={"https://majestic-labs.ai/"}>{"Majestic Labs"}</a>{" tackles the slow memory problem by moving huge amounts of RAM off-package (8–128 TB) into shared memory pools. They target speed and bandwidth comparable to HBM with custom memory-interface chiplets. Even though each piece of LPDDR supplies less bandwidth, they use massive parallelism to get large total bandwidth. This lets them add memory without buying proportional amounts of compute just to get its attached RAM"}
             </li>
             <li><a href={"https://www.positron.ai/"}>{"Positron"}</a>{" also uses LPDDR5X, but puts it on-package with its inference ASICs and extends capacity with off-package memory connected through CXL. This gives an accelerator more room for model weights and context, reducing the need to split workloads across chips just to find enough RAM.  This video is helpful in understanding why they choose LPDDR over other options: "}<a href={"https://www.youtube.com/watch?v=B8O3pLcX2w4"}>{"Why Positron AI is Choosing LPDDR over HBM for Next-Gen LLM | Researcher Conversations at GTC"}</a>
+            <iframe className="memory-video" src="https://www.youtube-nocookie.com/embed/B8O3pLcX2w4" title="Why Positron AI is Choosing LPDDR over HBM for Next-Gen LLM | Researcher Conversations at GTC" width="680" height="383" loading="lazy" referrerPolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture; fullscreen" allowFullScreen />
             </li>
             <li><a href={"https://hyperaccel.ai/"}>{"HyperAccel"}</a>{" compensates for LPDDR5X’s lower bandwidth by reusing fetched weights across multiple requests rather than fetching them separately for each one. This is similar to batching while I’ll cover below, but also allows for parallel memory channels to bring the data into on-chip SRAM, while separate compute lanes apply those weights to different requests to get the benefits of parallel processing and circumvent the associated memory bottleneck"}
             </li>
@@ -370,7 +337,6 @@ export default function MemoryArticle() {
             <p>{"The decision here is whether more capable models continue moving on-device, as demonstrated by Gemini Robotics On-Device, or remain cloud-based. This doesn’t account for cases where connectivity is unavailable such as robotics for dangerous contexts ("}<a href={"https://www.anybotics.com/"}>{"ANYbotics"}</a>{"). For regular deployments, the question is whether local models become capable enough that avoiding network delays and recurring cloud costs outweighs access to a larger remote model."}</p>
           </div>
         </article>
-        <nav className="memory-back memory-back-bottom" aria-label="Return to writing"><a href="/writing">Writing</a></nav>
       </main>
     </>
   )
