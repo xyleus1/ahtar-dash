@@ -65,6 +65,9 @@ a:focus-visible {
   margin-block: auto;
   max-width: 34ch;
 }
+.text-content-grouped {
+  max-width: none;
+}
 .bio {
   margin-top: 20px;
 }
@@ -98,6 +101,28 @@ p.entry-list {
 }
 .entry-list li + li {
   margin-top: 10px;
+}
+.entry-group {
+  margin-top: 28px;
+}
+.entry-group h2 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: bold;
+}
+.entry-group .entry-list {
+  margin-top: 12px;
+}
+.entry-list-columns {
+  columns: 3 9rem;
+  column-gap: 24px;
+}
+.entry-list-columns li {
+  break-inside: avoid;
+  margin-bottom: 10px;
+}
+.entry-list-columns li + li {
+  margin-top: 0;
 }
 .art-panel {
   display: grid;
@@ -137,6 +162,9 @@ p.entry-list {
   .text-content {
     max-width: 38ch;
     margin-block: 0;
+  }
+  .text-content-grouped {
+    max-width: none;
   }
   .art-panel {
     padding: 20px 24px 32px;

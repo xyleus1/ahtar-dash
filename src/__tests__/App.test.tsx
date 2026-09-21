@@ -12,6 +12,7 @@ const placeholderData: SiteContent = {
   ...content,
   sections: content.sections.map((section) => ({
     ...section,
+    groups: undefined,
     entries: [{ title: `An unlinked ${section.id} entry` }],
   })),
   contact: [{ title: 'An email to add' }, { title: 'A profile to add', url: '' }],

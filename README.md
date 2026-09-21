@@ -12,6 +12,8 @@ Everything personal is in [`src/content.ts`](src/content.ts):
 - `name`: the home page heading.
 - `bio`: the home biography.
 - `sections`: each section's stable ID, display label, and entries.
+- `sections[].groups`: optional subheadings and their entries; `columns` enables a
+  responsive list with up to three columns, as used for Enjoying's shows.
 - `contact`: the home page's email and profile links.
 
 Entries accept a `title` and optional `url`. Missing URLs render as ordinary
@@ -30,6 +32,12 @@ page links. Each section has a Home link, heading, and bullet list on the left;
 the right area is reserved for future artwork and says "Wireframe to come."
 No future section artwork has been generated. There is no backend, account,
 analytics, or CMS.
+
+Enjoying groups shows, podcasts, websites, and movies under bold subheadings.
+Movie titles and destinations were checked against Letterboxd. The numeric URL
+for *End of Summer* identifies Jóhann Jóhannsson's 2014 film; `/end-of-summer/`
+identifies a different film. *The Passenger* links to Magnus von Horn's project
+at `/the-passenger-4/`.
 
 Writing links to **Why do we need so much memory, anyway?** at
 `/writing/why-do-we-need-so-much-memory-anyway`. Its text and markup are in

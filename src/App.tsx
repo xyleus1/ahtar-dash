@@ -83,7 +83,7 @@ export default function App({
           aria-labelledby="page-heading"
           tabIndex={0}
         >
-          <div className="text-content">
+          <div className={`text-content${section?.groups?.length ? ' text-content-grouped' : ''}`}>
             {!isHome && (
               <a className="home-link" href="/">
                 Home
@@ -106,6 +106,16 @@ export default function App({
                   <Entries entries={data.contact} className="contact-links" />
                 )}
               </>
+            ) : section?.groups?.length ? (
+              section.groups.map((group) => (
+                <section className="entry-group" key={group.id} aria-labelledby={`${section.id}-${group.id}`}>
+                  <h2 id={`${section.id}-${group.id}`}>{group.label}</h2>
+                  <Entries
+                    entries={group.entries}
+                    className={`entry-list${group.columns ? ' entry-list-columns' : ''}`}
+                  />
+                </section>
+              ))
             ) : section ? (
               <Entries entries={section.entries} className="entry-list" />
             ) : null}
