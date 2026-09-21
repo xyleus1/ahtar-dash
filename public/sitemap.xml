@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://ahtar.dev/</loc></url>
+  <url><loc>https://ahtar.dev/enjoying</loc></url>
+  <url><loc>https://ahtar.dev/reading</loc></url>
+  <url><loc>https://ahtar.dev/writing</loc></url>
+  <url><loc>https://ahtar.dev/building</loc></url>
+  <url><loc>https://ahtar.dev/writing/why-do-we-need-so-much-memory-anyway</loc></url>
 </urlset>

@@ -14,6 +14,7 @@
     { "source": "/enjoying", "destination": "/" },
     { "source": "/reading", "destination": "/" },
     { "source": "/writing", "destination": "/" },
+    { "source": "/writing/why-do-we-need-so-much-memory-anyway", "destination": "/" },
     { "source": "/building", "destination": "/" }
   ],
   "headers": [

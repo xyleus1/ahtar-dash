@@ -1,3 +1,5 @@
+import { memoryArticle } from './posts/memoryArticleInfo'
+
 /**
  * Your biography and all five pages live here. Replace the placeholders whenever you're ready.
  * Items without a URL display as text. Add as many items as you like;
@@ -41,7 +43,7 @@ export const content: SiteContent = {
     {
       id: 'writing',
       label: 'Writing',
-      entries: [{ title: 'A recent piece' }],
+      entries: [{ title: memoryArticle.title, url: memoryArticle.path }],
     },
     {
       id: 'building',

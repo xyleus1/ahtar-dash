@@ -31,6 +31,12 @@ the right area is reserved for future artwork and says "Wireframe to come."
 No future section artwork has been generated. There is no backend, account,
 analytics, or CMS.
 
+Writing links to **Why do we need so much memory, anyway?** at
+`/writing/why-do-we-need-so-much-memory-anyway`. Its text and markup are in
+[`src/posts/MemoryArticle.tsx`](src/posts/MemoryArticle.tsx), with title and route
+in `memoryArticleInfo.ts`. The article uses a scrolling reading column and
+scoped styles that follow the supplied PDF. See [article source notes](docs/writing.md).
+
 ## Development
 
 Use Node 22.12 or newer in the Node 22 series and npm.

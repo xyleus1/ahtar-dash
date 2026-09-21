@@ -1,5 +1,8 @@
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { content, type Entry, type SiteContent } from './content'
+import { memoryArticle } from './posts/memoryArticleInfo'
+
+const MemoryArticle = lazy(() => import('./posts/MemoryArticle'))
 
 function Entries({
   entries,
@@ -33,16 +36,40 @@ export default function App({
 }) {
   const path = pathname.replace(/\/+$/, '') || '/'
   const isHome = path === '/'
+  const isArticle = path === memoryArticle.path
   const section = data.sections.find((item) => path === `/${item.id}`)
-  const title = isHome ? data.name : (section?.label ?? 'Page not found.')
+  const title = isArticle
+    ? memoryArticle.title
+    : isHome ? data.name : (section?.label ?? 'Page not found.')
 
   useEffect(() => {
     document.title = isHome ? 'ahtar — a personal index' : `${title} — ahtar`
+    const description = isArticle
+      ? memoryArticle.subtitle
+      : 'A personal index of things enjoyed, read, written, and built.'
+    const metadata = {
+      'meta[name="description"]': description,
+      'meta[property="og:title"]': document.title,
+      'meta[property="og:description"]': description,
+      'meta[property="og:type"]': isArticle ? 'article' : 'website',
+      'meta[property="og:url"]': `https://ahtar.dev${isHome ? '/' : path}`,
+    }
+    for (const [selector, value] of Object.entries(metadata)) {
+      document.querySelector(selector)?.setAttribute('content', value)
+    }
     const canonical = document.querySelector<HTMLLinkElement>(
       'link[rel="canonical"]',
     )
     if (canonical) canonical.href = `https://ahtar.dev${isHome ? '/' : path}`
-  }, [isHome, path, title])
+  }, [isHome, isArticle, path, title])
+
+  if (isArticle) {
+    return (
+      <Suspense fallback={<p role="status">Loading article…</p>}>
+        <MemoryArticle />
+      </Suspense>
+    )
+  }
 
   return (
     <>
