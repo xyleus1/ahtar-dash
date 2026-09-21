@@ -1,20 +1,26 @@
+import { useEffect, useRef } from 'react'
+import { Link } from 'react-router'
 import { memoryArticle } from './memoryArticleInfo'
 import './article.css'
 
 // Original article content with the PDF's bolding and the site's plain serif typography.
-export default function MemoryArticle() {
+export default function MemoryArticle({ focusTitle = false }: { focusTitle?: boolean }) {
+  const title = useRef<HTMLHeadingElement>(null)
+  useEffect(() => {
+    if (focusTitle) title.current?.focus({ preventScroll: true })
+  }, [focusTitle])
   return (
     <>
       <a className="skip-link" href="#main">Skip to content</a>
       <main id="main" className="memory-page" tabIndex={-1}>
         <article className="memory-article" aria-labelledby="article-title">
           <header className="memory-header">
-            <h1 id="article-title">{memoryArticle.title}</h1>
+            <h1 id="article-title" ref={title} tabIndex={-1}>{memoryArticle.title}</h1>
             <p className="memory-date"><time dateTime={memoryArticle.date}>September 20, 2026</time></p>
             <p className="memory-subtitle">{memoryArticle.subtitle}</p>
           </header>
           <div className="memory-body">
-            <p>{"This is my first article that I’m also putting on my personal website: "}<a href="https://ahtar.dev">ahtar.dev</a>{", Give it a look!"}</p>
+            <p>{"This is my first article that I’m also putting on my personal website: "}<Link to="/">ahtar.dev</Link>{", Give it a look!"}</p>
             <p>{"You’ve probably heard about the “memory wall” in AI infrastructure and the ensuing hype around companies like SK Hynix, whose shares rose 274% in 2025 as demand increased for both conventional memory and the high-bandwidth memory used in AI servers. When trying to build myself a gaming PC this summer, I quickly realized the ‘memory wall’ also meant that the price of consumer DDR5 had almost tripled from $150 to over $500+ for a stick. Everything from phones, laptops, and Nintendo Switches have seen price increases beyond what was expected this year, and much of this is because of exploding RAM prices."}</p>
             <figure>
             <a href={"https://thememoryguy.com/how-high-can-memory-prices-go/"} aria-label="View source: The Memory Guy" title="Source: The Memory Guy"><img src={"/articles/why-do-we-need-so-much-memory-anyway/image1.png"} width={1200} height={821} alt={"Line chart comparing DRAM and NAND, with both series rising steeply at the right-hand end. Source: Objective Analysis."} loading="lazy" decoding="async" /></a>

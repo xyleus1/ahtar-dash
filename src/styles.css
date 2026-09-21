@@ -46,6 +46,18 @@ a:focus-visible {
   font-size: 1.15rem;
   line-height: 1.4;
 }
+/* Keep the gallery's measured layout and decoded images while an article is open. */
+.page-inactive {
+  position: fixed;
+  inset: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.memory-loading {
+  width: min(100% - 48px, 680px);
+  margin-inline: auto;
+  padding-block: 48px;
+}
 .text-panel {
   display: flex;
   flex-direction: column;
@@ -131,6 +143,9 @@ p.entry-list {
   min-width: 0;
   min-height: 0;
   padding: 32px;
+}
+.art-panel[hidden] {
+  display: none;
 }
 .skip-link {
   position: fixed;

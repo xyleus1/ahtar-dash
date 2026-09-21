@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type KeyboardEvent } from 'react'
+import { memo, useEffect, useMemo, useState, type KeyboardEvent } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { galleryImages } from './gallery-images'
@@ -6,13 +6,13 @@ import './gallery.css'
 
 const reducedMotionQuery = '(prefers-reduced-motion: reduce)'
 
-export default function GalleryCarousel() {
+export default memo(function GalleryCarousel({ active = true }: { active?: boolean }) {
   const [selected, setSelected] = useState(0)
   const [reducedMotion, setReducedMotion] = useState(
     () => window.matchMedia?.(reducedMotionQuery).matches ?? false,
   )
   const [keyboardFocus, setKeyboardFocus] = useState(false)
-  const paused = reducedMotion || keyboardFocus
+  const paused = !active || reducedMotion || keyboardFocus
   const autoplay = useMemo(() => Autoplay({
     delay: 20_000,
     playOnInit: !paused,
@@ -173,4 +173,4 @@ export default function GalleryCarousel() {
       </figcaption>
     </figure>
   )
-}
+})

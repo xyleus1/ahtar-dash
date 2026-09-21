@@ -1,10 +1,12 @@
-import { lazy, Suspense, useEffect, useRef } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { BrowserRouter, Link, useLocation } from 'react-router'
 import { content, type Entry, type SiteContent } from './content'
 import { memoryArticle } from './posts/memoryArticleInfo'
 import GalleryCarousel from './GalleryCarousel'
 
-const MemoryArticle = lazy(() => import('./posts/MemoryArticle'))
+const loadMemoryArticle = () => import('./posts/MemoryArticle')
+const MemoryArticle = lazy(loadMemoryArticle)
+const preloadArticle = () => { void loadMemoryArticle().catch(() => {}) }
 
 function Entries({
   entries,
@@ -18,7 +20,13 @@ function Entries({
     <ul className={className}>
       {entries.map((entry, index) => (
         <li key={`${index}-${entry.title}`}>
-          {entry.url ? (
+          {entry.url?.startsWith('/') && !entry.url.startsWith('//') ? (
+            <Link
+              to={entry.url}
+              onPointerEnter={entry.url === memoryArticle.path ? preloadArticle : undefined}
+              onFocus={entry.url === memoryArticle.path ? preloadArticle : undefined}
+            >{entry.title}</Link>
+          ) : entry.url ? (
             <a href={entry.url}>{entry.title}</a>
           ) : (
             <span>{entry.title}</span>
@@ -50,6 +58,10 @@ function Site({
   const isHome = path === '/'
   const isArticle = path === memoryArticle.path
   const section = data.sections.find((item) => path === `/${item.id}`)
+  const isIndex = isHome || Boolean(section)
+  const [galleryMounted, setGalleryMounted] = useState(isIndex)
+  // Defer gallery creation on direct article visits; retain it after leaving an index.
+  if (isIndex && !galleryMounted) setGalleryMounted(true)
   const title = isArticle
     ? memoryArticle.title
     : isHome ? data.name : (section?.label ?? 'Page not found.')
@@ -80,23 +92,25 @@ function Site({
     previousPath.current = path
     if (textPanel.current) textPanel.current.scrollTop = 0
     if (window.scrollX || window.scrollY) window.scrollTo(0, 0)
-    heading.current?.focus({ preventScroll: true })
-  }, [path])
+    if (!isArticle) heading.current?.focus({ preventScroll: true })
+  }, [path, isArticle])
 
-  if (isArticle) {
-    return (
-      <Suspense fallback={<p role="status">Loading article…</p>}>
-        <MemoryArticle />
-      </Suspense>
-    )
-  }
+  useEffect(() => {
+    if (path === '/writing') preloadArticle()
+  }, [path])
 
   return (
     <>
-      <a className="skip-link" href="#main">
+      {!isArticle && <a className="skip-link" href="#main">
         Skip to content
-      </a>
-      <main id="main" className="page" tabIndex={-1}>
+      </a>}
+      <main
+        id={isArticle ? 'index-main' : 'main'}
+        className={`page${isArticle ? ' page-inactive' : ''}`}
+        aria-hidden={isArticle || undefined}
+        inert={isArticle}
+        tabIndex={-1}
+      >
         <section
           ref={textPanel}
           className="text-panel"
@@ -117,7 +131,11 @@ function Site({
                   <ul>
                     {data.sections.map((item) => (
                       <li key={item.id}>
-                        <Link to={`/${item.id}`}>{item.label}</Link>
+                        <Link
+                          to={`/${item.id}`}
+                          onPointerEnter={item.id === 'writing' ? preloadArticle : undefined}
+                          onFocus={item.id === 'writing' ? preloadArticle : undefined}
+                        >{item.label}</Link>
                       </li>
                     ))}
                   </ul>
@@ -141,10 +159,15 @@ function Site({
             ) : null}
           </div>
         </section>
-        <div className="art-panel">
-          {(isHome || section) && <GalleryCarousel />}
+        <div className="art-panel" hidden={!isIndex && !isArticle}>
+          {galleryMounted && <GalleryCarousel active={isIndex} />}
         </div>
       </main>
+      {isArticle && (
+        <Suspense fallback={<p className="memory-loading" role="status">Loading article…</p>}>
+          <MemoryArticle focusTitle={galleryMounted} />
+        </Suspense>
+      )}
     </>
   )
 }

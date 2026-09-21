@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react'
+import { fireEvent, render, screen, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import App from '../App'
 import { memoryArticle } from './memoryArticleInfo'
@@ -13,6 +13,30 @@ async function renderArticle(pathname = articlePath) {
 }
 
 describe('the memory article', () => {
+  it('opens and leaves the article without discarding the gallery or reloading the document', async () => {
+    render(<App />)
+    const gallery = screen.getByRole('region', { name: 'Art and references' })
+    const photo = gallery.querySelector('img')
+    fireEvent.click(screen.getByRole('link', { name: 'Writing' }))
+    fireEvent.click(screen.getByRole('link', { name: articleTitle }))
+
+    const article = await screen.findByRole('article')
+    expect(window.location.pathname).toBe(articlePath)
+    expect(screen.queryByRole('region', { name: 'Art and references' })).not.toBeInTheDocument()
+    expect(gallery).toBeInTheDocument()
+    expect(gallery.closest('main')).toHaveAttribute('inert')
+    expect(screen.getAllByRole('main')).toHaveLength(1)
+    expect(document.querySelectorAll('#main')).toHaveLength(1)
+    expect(within(article).getByRole('heading', { level: 1 })).toHaveFocus()
+
+    fireEvent.click(within(article).getByRole('link', { name: 'ahtar.dev' }))
+    expect(window.location.pathname).toBe('/')
+    expect(screen.queryByRole('article')).not.toBeInTheDocument()
+    expect(screen.getByRole('region', { name: 'Art and references' })).toBe(gallery)
+    expect(gallery.querySelector('img')).toBe(photo)
+    expect(screen.getByRole('heading', { level: 1, name: 'Nima Kamali' })).toHaveFocus()
+  })
+
   it('replaces the Writing placeholder with the article title and local page link', () => {
     render(<App pathname="/writing" />)
 

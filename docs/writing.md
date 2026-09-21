@@ -8,12 +8,16 @@ The PDF supplies the headings, bold labels, list hierarchy, and subtitle.
 All 26 PDF pages were visually reviewed.
 
 `src/posts/MemoryArticle.tsx` contains the article as native semantic HTML through
-React. `article.css` is scoped to this article. The component and its styles load
-only on the exact article route. The Writing entry uses an ordinary document
-link; the article has no gallery. Home and the four index pages share a persistent
-gallery through client navigation. The article uses the same native Times serif
-font and plain text treatment as the site. It scrolls naturally and adapts to
-narrow screens.
+React. `article.css` is scoped to this article. The component renders only on its
+exact route; its lazy module and styles preload on hover or focus of Writing or
+the article entry, and when the Writing index opens. The entry and the article's
+home link use client navigation without reloading the document.
+
+The article fills its own scrolling reading column. A previously visited index's
+gallery remains mounted but invisible, inert, and paused, preserving its selected
+image for return navigation. Direct article visits do not create the gallery or
+download its images until an index is visited. The article uses the same native
+Times serif font and plain text treatment as the site and adapts to narrow screens.
 Only the title, headings, and the PDF's four bold labels have bold weight.
 The publication date appears directly under the title. There is no byline,
 avatar, publication card, or decorative article UI.

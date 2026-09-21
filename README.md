@@ -27,21 +27,22 @@ text; empty section lists display "To come." Use `https://` for websites and
 ```
 
 The IDs `enjoying`, `reading`, `writing`, and `building` determine the real URLs
-`/enjoying`, `/reading`, `/writing`, and `/building`. Home and section links use
-React Router client navigation, keeping the same gallery mounted so the current
-image and autoplay timer continue. Each section has a Home link, heading, and
-bullet list on the left. Entry links remain ordinary document links. There is
-no backend, account, analytics, or CMS.
+`/enjoying`, `/reading`, `/writing`, and `/building`. Internal page links use
+React Router client navigation, including article entries and the article's
+home link. Each section has a Home link, heading, and bullet list on the left.
+External and email links remain ordinary links. There is no backend, account,
+analytics, or CMS.
 
-Enjoying groups Shows, Podcasts, Movies, and Websites in that order under bold
+Enjoying groups Movies, Shows, Podcasts, and Websites in that order under bold
 subheadings. Show, podcast, and movie titles are plain text; websites have links.
 
 Writing links to **Why do we need so much memory, anyway?** at
 `/writing/why-do-we-need-so-much-memory-anyway`. Its text and markup are in
 [`src/posts/MemoryArticle.tsx`](src/posts/MemoryArticle.tsx), with title and route
-in `memoryArticleInfo.ts`. Its link opens a separate document with a scrolling
-reading column, the site's Times serif font, the PDF's bolding, and inline
-images and videos. The gallery is absent from individual articles.
+in `memoryArticleInfo.ts`. It opens without a document reload, using a full-page
+scrolling reading column, the site's Times serif font, the PDF's bolding, and
+inline images and videos. Its lazy module preloads when Writing or its article
+link is hovered or focused, and when the Writing index opens.
 See [article source notes](docs/writing.md).
 
 The shared gallery's images, captions, source URLs, alt text, and crop focal
@@ -85,11 +86,17 @@ swipe either the photograph or the strip to choose an image. Images advance ever
 using the keyboard inside the gallery temporarily pauses playback. Reduced
 motion disables automatic playback and removes animated transitions.
 
+The memoized gallery stays mounted across internal navigation. Home and section
+changes leave its current image and timer running without rerendering it. While
+an article is open, the gallery stays invisible, inert, and paused; returning
+shows the same selection. A direct article visit creates no gallery and downloads
+no gallery images until an index page is visited.
+
 Images retain their source proportions; the browser crops only to fill the
 square, using reviewed focal points. [Historical artwork provenance](docs/artwork.md)
 records the retired generated head; that PNG is no longer shipped.
 
-React and React DOM render the site. React Router 7.18.4 handles index navigation.
+React and React DOM render the site. React Router 7.18.4 handles internal navigation.
 Embla Carousel 8.6.0 supplies the slider, dragging, and autoplay. The Lucide
 favicon remains a licensed asset.
 See [design direction](docs/design-direction.md) and
@@ -114,6 +121,10 @@ For a fresh checkout, first run `npx vercel@59.20.0 link` and select that existi
 project. Use root `.`, framework Vite, Node 22.x, install `npm ci`, build
 `npm run build`, and output `dist`. Build settings are in `vercel.json`.
 
+The same config caches Vite's hashed `/assets/` files for one year with
+`immutable`. `/gallery/` images cache for one day, with up to seven days of stale
+content allowed during background revalidation. These rules do not cache HTML.
+
 Record the previous deployment for rollback. After publishing, verify the
 intended version, all four section URLs opened directly, production assets,
 HTTPS, and the `www.ahtar.dev` redirect. Legacy `/dash` paths redirect to `/`;
@@ -130,6 +141,7 @@ long and empty lists, link focus, desktop pane scrolling, and stacked mobile
 scrolling. Check all twenty images, captions, square crops, thumbnail selection,
 dragging, centered thumbnails, keyboard navigation, loop boundaries, the 20-second timer,
 and reduced motion. Confirm the gallery fits its right column and preserves its
-image and timer across Home and section navigation. Check that article links
-load a separate reading page without the gallery. Verify production assets,
-redirects, and custom 404 responses after publishing.
+image and timer across Home and section navigation. Check article navigation and
+browser back without a document reload, gallery pause and restored selection,
+and no gallery image requests on a direct article visit. Verify production
+assets, cache headers, redirects, and custom 404 responses after publishing.
