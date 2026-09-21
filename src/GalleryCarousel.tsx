@@ -46,13 +46,19 @@ export default function GalleryCarousel() {
         autoplay.reset()
       }
     }
+    const pauseForThumbnailDrag = () => autoplay.stop()
+    const resumeAfterThumbnailDrag = () => {
+      if (!paused && !mainApi.rootNode().matches(':hover')) autoplay.play()
+    }
     mainApi.on('select', syncSelection).on('reInit', syncSelection)
     thumbsApi?.on('select', selectCenteredThumbnail).on('reInit', syncSelection)
+      .on('pointerDown', pauseForThumbnailDrag).on('pointerUp', resumeAfterThumbnailDrag)
     return () => {
       mainApi.off('select', syncSelection).off('reInit', syncSelection)
       thumbsApi?.off('select', selectCenteredThumbnail).off('reInit', syncSelection)
+        .off('pointerDown', pauseForThumbnailDrag).off('pointerUp', resumeAfterThumbnailDrag)
     }
-  }, [mainApi, thumbsApi, autoplay])
+  }, [mainApi, thumbsApi, autoplay, paused])
 
   useEffect(() => {
     const preference = window.matchMedia?.(reducedMotionQuery)
@@ -79,6 +85,7 @@ export default function GalleryCarousel() {
       default: return
     }
     event.preventDefault()
+    setKeyboardFocus(true)
     selectImage(index)
     if ((event.target as HTMLElement).closest('.gallery-thumb')) {
       thumbsApi?.slideNodes()[index]?.querySelector('button')?.focus({ preventScroll: true })
