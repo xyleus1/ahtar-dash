@@ -9,9 +9,11 @@ All 26 PDF pages were visually reviewed.
 
 `src/posts/MemoryArticle.tsx` contains the article as native semantic HTML through
 React. `article.css` is scoped to this article. The component and its styles load
-only on the exact article route. The homepage and four index layouts retain their
-existing styles. The article uses the same native Times serif font and plain
-text treatment as the site. It scrolls naturally and adapts to narrow screens.
+only on the exact article route. The Writing entry uses an ordinary document
+link; the article has no gallery. Home and the four index pages share a persistent
+gallery through client navigation. The article uses the same native Times serif
+font and plain text treatment as the site. It scrolls naturally and adapts to
+narrow screens.
 Only the title, headings, and the PDF's four bold labels have bold weight.
 The publication date appears directly under the title. There is no byline,
 avatar, publication card, or decorative article UI.

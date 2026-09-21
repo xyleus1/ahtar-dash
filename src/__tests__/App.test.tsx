@@ -1,12 +1,7 @@
-import { render, screen, within } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { fireEvent, render, screen, within } from '@testing-library/react'
+import { describe, expect, it } from 'vitest'
 import App from '../App'
 import { content, type SiteContent } from '../content'
-
-// Embla's layout and timing are exercised in the real-browser carousel checks.
-vi.mock('embla-carousel-react', () => ({
-  default: () => [() => {}, undefined],
-}))
 
 const placeholderData: SiteContent = {
   ...content,
@@ -79,8 +74,8 @@ describe('the personal site', () => {
     expect(entries.map((entry) => entry.textContent)).toEqual(section.entries.map((entry) => entry.title))
     for (const entry of entries) expect(within(entry).queryByRole('link')).not.toBeInTheDocument()
     expect(within(screen.getByRole('main')).getAllByRole('link')).toHaveLength(1)
-    expect(screen.getByText('Wireframe to come.')).toBeVisible()
-    expect(screen.queryByRole('img')).not.toBeInTheDocument()
+    expect(screen.getByRole('region', { name: 'Art and references' })).toBeVisible()
+    expect(screen.queryByText('Wireframe to come.')).not.toBeInTheDocument()
   })
 
   it('preserves multiple long titles, exact URLs, and unlinked entries', () => {
@@ -134,6 +129,25 @@ describe('the personal site', () => {
 
     expect(screen.getByRole('heading', { level: 1, name: 'Building' })).toBeVisible()
     expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/')
+  })
+
+  it('keeps the same gallery mounted while links change the left pane', () => {
+    render(<App />)
+    const gallery = screen.getByRole('region', { name: 'Art and references' })
+
+    for (const section of content.sections) {
+      fireEvent.click(screen.getByRole('link', { name: section.label }))
+
+      expect(window.location.pathname).toBe(`/${section.id}`)
+      expect(screen.getByRole('heading', { level: 1, name: section.label })).toHaveFocus()
+      expect(screen.getByRole('region', { name: 'Art and references' })).toBe(gallery)
+
+      fireEvent.click(screen.getByRole('link', { name: 'Home' }))
+
+      expect(window.location.pathname).toBe('/')
+      expect(screen.getByRole('heading', { level: 1, name: content.name })).toHaveFocus()
+      expect(screen.getByRole('region', { name: 'Art and references' })).toBe(gallery)
+    }
   })
 
   it('offers a home link for an unknown route', () => {

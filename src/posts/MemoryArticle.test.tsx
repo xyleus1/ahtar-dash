@@ -28,6 +28,7 @@ describe('the memory article', () => {
 
     expect(within(article).getByText('A (not so) quick primer on the inference ecosystem')).toBeVisible()
     expect(screen.queryByRole('navigation')).not.toBeInTheDocument()
+    expect(screen.queryByRole('region', { name: 'Art and references' })).not.toBeInTheDocument()
     expect(document.title).toContain(articleTitle)
     expect(screen.queryByText('Wireframe to come.')).not.toBeInTheDocument()
     expect(article).toHaveTextContent('For regular deployments, the question is whether local models become capable enough that avoiding network delays and recurring cloud costs outweighs access to a larger remote model.')

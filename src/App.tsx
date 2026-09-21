@@ -1,4 +1,5 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { lazy, Suspense, useEffect, useRef } from 'react'
+import { BrowserRouter, Link, useLocation } from 'react-router'
 import { content, type Entry, type SiteContent } from './content'
 import { memoryArticle } from './posts/memoryArticleInfo'
 import GalleryCarousel from './GalleryCarousel'
@@ -28,14 +29,24 @@ function Entries({
   )
 }
 
-export default function App({
-  data = content,
-  pathname = window.location.pathname,
-}: {
+interface AppProps {
   data?: SiteContent
   pathname?: string
-}) {
-  const path = pathname.replace(/\/+$/, '') || '/'
+}
+
+export default function App(props: AppProps) {
+  return <BrowserRouter><Site {...props} /></BrowserRouter>
+}
+
+function Site({
+  data = content,
+  pathname,
+}: AppProps) {
+  const location = useLocation()
+  const path = (pathname ?? location.pathname).replace(/\/+$/, '') || '/'
+  const previousPath = useRef(path)
+  const textPanel = useRef<HTMLElement>(null)
+  const heading = useRef<HTMLHeadingElement>(null)
   const isHome = path === '/'
   const isArticle = path === memoryArticle.path
   const section = data.sections.find((item) => path === `/${item.id}`)
@@ -64,6 +75,14 @@ export default function App({
     if (canonical) canonical.href = `https://ahtar.dev${isHome ? '/' : path}`
   }, [isHome, isArticle, path, title])
 
+  useEffect(() => {
+    if (previousPath.current === path) return
+    previousPath.current = path
+    if (textPanel.current) textPanel.current.scrollTop = 0
+    if (window.scrollX || window.scrollY) window.scrollTo(0, 0)
+    heading.current?.focus({ preventScroll: true })
+  }, [path])
+
   if (isArticle) {
     return (
       <Suspense fallback={<p role="status">Loading article…</p>}>
@@ -79,17 +98,18 @@ export default function App({
       </a>
       <main id="main" className="page" tabIndex={-1}>
         <section
+          ref={textPanel}
           className="text-panel"
           aria-labelledby="page-heading"
           tabIndex={0}
         >
           <div className={`text-content${section?.groups?.length ? ' text-content-grouped' : ''}`}>
             {!isHome && (
-              <a className="home-link" href="/">
+              <Link className="home-link" to="/">
                 Home
-              </a>
+              </Link>
             )}
-            <h1 id="page-heading">{title}</h1>
+            <h1 id="page-heading" ref={heading} tabIndex={-1}>{title}</h1>
             {isHome ? (
               <>
                 <p className="bio">{data.bio}</p>
@@ -97,7 +117,7 @@ export default function App({
                   <ul>
                     {data.sections.map((item) => (
                       <li key={item.id}>
-                        <a href={`/${item.id}`}>{item.label}</a>
+                        <Link to={`/${item.id}`}>{item.label}</Link>
                       </li>
                     ))}
                   </ul>
@@ -122,11 +142,7 @@ export default function App({
           </div>
         </section>
         <div className="art-panel">
-          {isHome ? (
-            <GalleryCarousel />
-          ) : section ? (
-            <p className="art-placeholder">Wireframe to come.</p>
-          ) : null}
+          {(isHome || section) && <GalleryCarousel />}
         </div>
       </main>
     </>

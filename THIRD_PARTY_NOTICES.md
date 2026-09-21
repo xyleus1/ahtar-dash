@@ -3,8 +3,10 @@
 ## Runtime libraries
 
 React 19.3.0 and React DOM 19.3.0 use the Meta MIT license, as does their
-scheduler dependency. Embla Carousel, its React integration, autoplay plugin,
-and reactive utilities are version 8.6.0, licensed MIT by David Jerleke.
+scheduler dependency. React Router 7.18.4 and its runtime dependencies cookie
+1.1.1 and set-cookie-parser 2.7.2 are MIT licensed. Embla Carousel, its React
+integration, autoplay plugin, and reactive utilities are version 8.6.0,
+licensed MIT by David Jerleke.
 The [pinned Embla license](https://github.com/davidjerleke/embla-carousel/blob/v8.6.0/LICENSE)
 and the other full notices
 are reproduced in [`public/third-party-licenses.txt`](public/third-party-licenses.txt),
@@ -26,9 +28,10 @@ file. The `lucide-react` package is not a dependency.
 
 ## Gallery photographs
 
-The homepage distributes WebP copies of the twenty photographic references
-selected by the site owner, including the original Tate photograph. Images are
-proportionally resized, with their aspect ratios and embedded credits retained;
+The shared Home and section gallery distributes WebP copies of the twenty
+photographic references selected by the site owner, including the original Tate
+photograph. Images are proportionally resized, with their aspect ratios and
+embedded credits retained;
 the browser applies the square crop. Captions, source links, dimensions, and the
 selection from VOWI's multi-image archive are recorded in
 [`docs/gallery-assets.md`](docs/gallery-assets.md). These provenance records do
@@ -37,7 +40,6 @@ licenses below do not cover the photographs.
 
 The former generated wireframe head is no longer shipped. Its prompts and
 reference history remain in [historical artwork notes](docs/artwork.md).
-No future section artwork has been generated.
 
 ## Other visual references
 

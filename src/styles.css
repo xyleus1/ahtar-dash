@@ -132,10 +132,6 @@ p.entry-list {
   min-height: 0;
   padding: 32px;
 }
-.art-placeholder {
-  color: #666;
-  font-size: 0.875rem;
-}
 .skip-link {
   position: fixed;
   z-index: 2;
