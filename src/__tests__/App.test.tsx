@@ -88,7 +88,7 @@ describe('the personal site', () => {
     ]
     const data: SiteContent = {
       ...content,
-      sections: content.sections.map((section) => section.id === 'reading' ? { ...section, entries } : section),
+      sections: content.sections.map((section) => section.id === 'reading' ? { ...section, groups: undefined, entries } : section),
     }
 
     render(<App data={data} pathname="/reading" />)

@@ -103,6 +103,7 @@ export const content: SiteContent = {
             { title: 'Unqualified Reservations', url: 'https://www.unqualified-reservations.org/' },
             { title: 'Alamut', url: 'https://www.alamut.com/subj/subject_index.html' },
             { title: 'Extropy', url: 'https://lists.extropy.org/pipermail/extropy-chat/' },
+            { title: 'Slate Star Codex', url: 'https://slatestarcodex.com/' },
           ],
         },
       ],
@@ -110,7 +111,22 @@ export const content: SiteContent = {
     {
       id: 'reading',
       label: 'Reading',
-      entries: [{ title: 'TBD' }],
+      entries: [],
+      groups: [
+        {
+          id: 'in-progress',
+          label: 'In progress as of September 20th, 2026',
+          entries: [
+            { title: 'Remarks on Colour - Ludwig Wittgenstein' },
+            { title: 'Accelerando - Charles Stross' },
+            { title: 'Torture Concrete: Jean-Luc Moulène and the Protocol of Abstraction - Reza Negarestani' },
+            { title: 'Neverness - David Zindell' },
+            { title: 'Permutation City - Greg Egan' },
+            { title: "For Anatole’s Tomb - Stéphane Mallarmé" },
+            { title: 'Slaughterhouse-Five - Kurt Vonnegut' },
+          ],
+        },
+      ],
     },
     {
       id: 'writing',

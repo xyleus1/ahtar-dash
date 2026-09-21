@@ -36,6 +36,9 @@ analytics, or CMS.
 Enjoying groups Movies, Shows, Podcasts, and Websites in that order under bold
 subheadings. Show, podcast, and movie titles are plain text; websites have links.
 
+Reading uses a dated subheading and plain `Title - Author` bullets. See
+[reading sources](docs/reading.md) for the verified titles and authors.
+
 Writing links to **Why do we need so much memory, anyway?** at
 `/writing/why-do-we-need-so-much-memory-anyway`. Its text and markup are in
 [`src/posts/MemoryArticle.tsx`](src/posts/MemoryArticle.tsx), with title and route
