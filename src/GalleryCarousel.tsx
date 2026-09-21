@@ -8,9 +8,11 @@ const reducedMotionQuery = '(prefers-reduced-motion: reduce)'
 
 export default function GalleryCarousel() {
   const [selected, setSelected] = useState(0)
-  const [paused, setPaused] = useState(
+  const [reducedMotion, setReducedMotion] = useState(
     () => window.matchMedia?.(reducedMotionQuery).matches ?? false,
   )
+  const [keyboardFocus, setKeyboardFocus] = useState(false)
+  const paused = reducedMotion || keyboardFocus
   const autoplay = useMemo(() => Autoplay({
     delay: 20_000,
     playOnInit: !paused,
@@ -24,9 +26,9 @@ export default function GalleryCarousel() {
     breakpoints: { [reducedMotionQuery]: { duration: 0 } },
   }, [autoplay])
   const [thumbsRef, thumbsApi] = useEmblaCarousel({
-    containScroll: 'keepSnaps',
-    dragFree: true,
-    align: 'start',
+    loop: true,
+    containScroll: false,
+    align: 'center',
     breakpoints: { [reducedMotionQuery]: { duration: 0 } },
   })
 
@@ -35,19 +37,28 @@ export default function GalleryCarousel() {
     const syncSelection = () => {
       const index = mainApi.selectedScrollSnap()
       setSelected(index)
-      thumbsApi?.scrollTo(index)
+      if (thumbsApi?.selectedScrollSnap() !== index) thumbsApi?.scrollTo(index)
+    }
+    const selectCenteredThumbnail = () => {
+      const index = thumbsApi?.selectedScrollSnap()
+      if (index !== undefined && mainApi.selectedScrollSnap() !== index) {
+        mainApi.scrollTo(index)
+        autoplay.reset()
+      }
     }
     mainApi.on('select', syncSelection).on('reInit', syncSelection)
+    thumbsApi?.on('select', selectCenteredThumbnail).on('reInit', syncSelection)
     return () => {
       mainApi.off('select', syncSelection).off('reInit', syncSelection)
+      thumbsApi?.off('select', selectCenteredThumbnail).off('reInit', syncSelection)
     }
-  }, [mainApi, thumbsApi])
+  }, [mainApi, thumbsApi, autoplay])
 
   useEffect(() => {
     const preference = window.matchMedia?.(reducedMotionQuery)
     if (!preference) return
     const respectPreference = (event: MediaQueryListEvent) => {
-      if (event.matches) setPaused(true)
+      setReducedMotion(event.matches)
     }
     preference.addEventListener('change', respectPreference)
     return () => preference.removeEventListener('change', respectPreference)
@@ -55,16 +66,6 @@ export default function GalleryCarousel() {
 
   const selectImage = (index: number) => {
     mainApi?.scrollTo(index)
-    autoplay.reset()
-  }
-
-  const previousImage = () => {
-    mainApi?.scrollPrev()
-    autoplay.reset()
-  }
-
-  const nextImage = () => {
-    mainApi?.scrollNext()
     autoplay.reset()
   }
 
@@ -94,10 +95,10 @@ export default function GalleryCarousel() {
       aria-label="Art and references"
       onKeyDown={onKeyDown}
       onFocusCapture={(event) => {
-        if (
-          event.target.matches(':focus-visible') &&
-          !event.target.closest('.gallery-toggle')
-        ) setPaused(true)
+        if (event.target.matches(':focus-visible')) setKeyboardFocus(true)
+      }}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setKeyboardFocus(false)
       }}
     >
       <div
@@ -131,22 +132,6 @@ export default function GalleryCarousel() {
             </div>
           ))}
         </div>
-      </div>
-
-      <div className="gallery-toolbar">
-        <button type="button" aria-label="Previous image" onClick={previousImage}>←</button>
-        <span className="gallery-counter" aria-hidden="true">
-          {String(selected + 1).padStart(2, '0')} / {galleryImages.length}
-        </span>
-        <button
-          type="button"
-          className="gallery-toggle"
-          aria-label={paused ? 'Play slideshow' : 'Pause slideshow'}
-          onClick={() => setPaused((value) => !value)}
-        >
-          <span aria-hidden="true">{paused ? '▷' : 'Ⅱ'}</span>
-        </button>
-        <button type="button" aria-label="Next image" onClick={nextImage}>→</button>
       </div>
 
       <div className="gallery-thumbs" ref={thumbsRef} aria-label="Choose an image">

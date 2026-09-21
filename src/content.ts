@@ -28,17 +28,17 @@ export interface SiteContent {
 
 export const content: SiteContent = {
   name: 'Nima Kamali',
-  bio: 'working on getting good at investing and reading, among other things',
+  bio: 'Working on getting good at investing and reading, among other things',
   sections: [
     {
       id: 'enjoying',
       label: 'Enjoying',
-      entries: [{ title: 'A current favorite' }],
+      entries: [{ title: 'TBD' }],
     },
     {
       id: 'reading',
       label: 'Reading',
-      entries: [{ title: 'A book or an essay' }],
+      entries: [{ title: 'TBD' }],
     },
     {
       id: 'writing',
@@ -48,7 +48,7 @@ export const content: SiteContent = {
     {
       id: 'building',
       label: 'Building',
-      entries: [{ title: 'A work in progress' }],
+      entries: [{ title: 'TBD' }],
     },
   ],
   contact: [

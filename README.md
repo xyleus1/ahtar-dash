@@ -73,11 +73,11 @@ At 700px and below the columns stack, and the page scrolls naturally when needed
 
 The homepage carousel follows the image viewer, preview strip, and quiet captions
 of [Gagosian's Richard Serra exhibition](https://gagosian.com/exhibitions/2011/richard-serra-junction-cycle/).
-It supports dragging, thumbnail selection, previous/next buttons, and a pause
-control. Images advance every 20 seconds; manual navigation resets the timer.
-Hovering the image viewer temporarily pauses playback. Keyboard focus pauses
-the slideshow until Play is pressed. Reduced motion starts the slideshow paused
-and removes animated transitions.
+The selected thumbnail stays centered in a looping strip. Click a thumbnail or
+swipe either the photograph or the strip to choose an image. Images advance every
+20 seconds; manual navigation resets the timer. Hovering the image viewer or
+using the keyboard inside the gallery temporarily pauses playback. Reduced
+motion disables automatic playback and removes animated transitions.
 
 Images retain their source proportions; the browser crops only to fill the
 square, using reviewed focal points. The four section pages still reserve blank
@@ -122,7 +122,7 @@ an actual Git-triggered deployment before relying on it.
 Before publication, check native navigation, direct section URLs, browser back,
 long and empty lists, link focus, desktop pane scrolling, and stacked mobile
 scrolling. Check all twenty images, captions, square crops, thumbnail selection,
-dragging, keyboard navigation, loop boundaries, the 20-second timer, pause/resume,
+dragging, centered thumbnails, keyboard navigation, loop boundaries, the 20-second timer,
 and reduced motion. Confirm the gallery fits its right column and the section
 artwork areas contain only their placeholder text. Verify production assets,
 redirects, and custom 404 responses after publishing.
