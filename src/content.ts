@@ -128,6 +128,7 @@ export const content: SiteContent = {
             { title: 'Permutation City - Greg Egan' },
             { title: "For Anatole’s Tomb - Stéphane Mallarmé" },
             { title: 'Slaughterhouse-Five - Kurt Vonnegut' },
+            { title: 'The Sorrows of Young Werther - Johann Wolfgang von Goethe' },
           ],
         },
       ],
