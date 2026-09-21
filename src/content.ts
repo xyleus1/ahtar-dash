@@ -27,8 +27,8 @@ export interface SiteContent {
 }
 
 export const content: SiteContent = {
-  name: 'Your name',
-  bio: 'A sentence about who you are. A sentence about what you care about. A sentence about what you are doing now.',
+  name: 'Nima Kamali',
+  bio: 'working on getting good at investing and reading, among other things',
   sections: [
     {
       id: 'enjoying',
@@ -51,5 +51,8 @@ export const content: SiteContent = {
       entries: [{ title: 'A work in progress' }],
     },
   ],
-  contact: [{ title: 'Your email' }, { title: 'Your profile' }],
+  contact: [
+    { title: 'nimakamali@ucla.edu', url: 'mailto:nimakamali@ucla.edu' },
+    { title: 'My Linkedin', url: 'https://www.linkedin.com/in/nima-kamali/' },
+  ],
 }
