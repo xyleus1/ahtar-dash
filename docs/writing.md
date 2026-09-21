@@ -13,18 +13,20 @@ only on the exact article route. The homepage and four index layouts retain thei
 existing styles. The article uses the same native Times serif font and plain
 text treatment as the site. It scrolls naturally and adapts to narrow screens.
 Only the title, headings, and the PDF's four bold labels have bold weight.
-There is no byline, avatar, date, publication card, or decorative article UI.
+The publication date appears directly under the title. There is no byline,
+avatar, publication card, or decorative article UI.
 
 All 16 PNGs in `public/articles/why-do-we-need-so-much-memory-anyway/` retain the
 original Word bytes, dimensions, and embedded source credits.
 Figures remain in order and are never cropped. Small figures retain
 their native widths; the PDF's narrower HBM diagram is centered. Alt text describes
-each figure. Source links attached to figures preserve captions that were links
-in Word but not visible text in the PDF.
+each figure. Each supplied image-source link is attached directly to its image,
+with no separate visible source caption. Image16 has no source URL in the supplied
+documents and remains unlinked.
 
 The PDF's wording is used where it differs: the introductory website link and
 “Give it a look!”, the “Video:” label, “Some general tools are:”, and the
-“Where to invest” heading. Source previews are reduced to ordinary text links.
+“Where to invest” heading. Source previews are reduced to links on their images.
 The article's technical text has not been rewritten. Both referenced YouTube
 videos are embedded in place using native, lazy-loaded players without autoplay.
 Their original text links remain available beside the embeds.

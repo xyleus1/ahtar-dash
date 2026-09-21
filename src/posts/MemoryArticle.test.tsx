@@ -73,7 +73,7 @@ describe('the memory article', () => {
       .toHaveAttribute('href', 'https://majestic-labs.ai/')
     expect(within(article).getByRole('link', { name: 'ANYbotics' }))
       .toHaveAttribute('href', 'https://www.anybotics.com/')
-    expect(within(article).getByRole('link', { name: 'https://thememoryguy.com/how-high-can-memory-prices-go/' }))
+    expect(within(article).getByRole('link', { name: 'View source: The Memory Guy' }))
       .toHaveAttribute('href', 'https://thememoryguy.com/how-high-can-memory-prices-go/')
   })
 
@@ -91,7 +91,9 @@ describe('the memory article', () => {
     for (const video of videos) expect(video).not.toHaveAttribute('autoplay')
     expect(within(article).queryByRole('complementary')).not.toBeInTheDocument()
     expect(within(article).queryByText('THETECHBRUIN')).not.toBeInTheDocument()
-    expect(article.querySelector('time')).toBeNull()
+    const date = within(article).getByText('September 20, 2026')
+    expect(date).toHaveAttribute('datetime', '2026-09-20')
+    expect(article.querySelector('h1')?.nextElementSibling).toContainElement(date)
     expect(within(article).getAllByRole('img')).toHaveLength(16)
   })
 

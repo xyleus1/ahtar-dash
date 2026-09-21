@@ -24,6 +24,11 @@
   margin-top: 16px;
 }
 
+.memory-date {
+  margin-top: 8px;
+  font-size: 1rem;
+}
+
 .memory-body > p,
 .memory-body > ul,
 .memory-body > ol {
@@ -80,8 +85,11 @@
   margin-inline: auto;
 }
 
-.memory-body figcaption {
-  margin-top: 16px;
+.memory-body figure > a {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
 }
 
 .memory-video {

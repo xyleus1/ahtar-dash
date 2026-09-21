@@ -10,20 +10,19 @@ export default function MemoryArticle() {
         <article className="memory-article" aria-labelledby="article-title">
           <header className="memory-header">
             <h1 id="article-title">{memoryArticle.title}</h1>
+            <p className="memory-date"><time dateTime={memoryArticle.date}>September 20, 2026</time></p>
             <p className="memory-subtitle">{memoryArticle.subtitle}</p>
           </header>
           <div className="memory-body">
             <p>{"This is my first article that I’m also putting on my personal website: "}<a href="https://ahtar.dev">ahtar.dev</a>{", Give it a look!"}</p>
             <p>{"You’ve probably heard about the “memory wall” in AI infrastructure and the ensuing hype around companies like SK Hynix, whose shares rose 274% in 2025 as demand increased for both conventional memory and the high-bandwidth memory used in AI servers. When trying to build myself a gaming PC this summer, I quickly realized the ‘memory wall’ also meant that the price of consumer DDR5 had almost tripled from $150 to over $500+ for a stick. Everything from phones, laptops, and Nintendo Switches have seen price increases beyond what was expected this year, and much of this is because of exploding RAM prices."}</p>
             <figure>
-            <img src={"/articles/why-do-we-need-so-much-memory-anyway/image1.png"} width={1200} height={821} alt={"Line chart comparing DRAM and NAND, with both series rising steeply at the right-hand end. Source: Objective Analysis."} loading="lazy" decoding="async" />
-            <figcaption>{"The Memory Guy - "}<a href={"https://thememoryguy.com/how-high-can-memory-prices-go/"}>{"https://thememoryguy.com/how-high-can-memory-prices-go/"}</a>{"  "}</figcaption>
+            <a href={"https://thememoryguy.com/how-high-can-memory-prices-go/"} aria-label="View source: The Memory Guy" title="Source: The Memory Guy"><img src={"/articles/why-do-we-need-so-much-memory-anyway/image1.png"} width={1200} height={821} alt={"Line chart comparing DRAM and NAND, with both series rising steeply at the right-hand end. Source: Objective Analysis."} loading="lazy" decoding="async" /></a>
             </figure>
             <p>{"The memory wall is a result of the mismatch between the development of compute and memory. Chipstrat’s writing referencing Amir Gholami’s research describes that compute has scaled at 3x per two years while memory has only scaled at 1.6x and 1.4x every two years. ."}</p>
             <figure>
-            <img src={"/articles/why-do-we-need-so-much-memory-anyway/image2.png"} width={1400} height={715} alt={"Hardware compute grows 60,000-fold over 20 years, versus 100-fold for DRAM bandwidth and 30-fold for interconnect bandwidth."} loading="lazy" decoding="async" />
+            <a href={"https://www.chipstrat.com/p/high-bandwidth-memory"} aria-label="View source: Chipstrat" title="Source: Chipstrat"><img src={"/articles/why-do-we-need-so-much-memory-anyway/image2.png"} width={1400} height={715} alt={"Hardware compute grows 60,000-fold over 20 years, versus 100-fold for DRAM bandwidth and 30-fold for interconnect bandwidth."} loading="lazy" decoding="async" /></a>
             </figure>
-            <p>{"Chipstrat"}{" — "}<a href={"https://www.chipstrat.com/p/high-bandwidth-memory"}>{"High-Bandwidth Memory"}</a></p>
             <p>{"AI inference requires a model’s learned parameters, called its weights, to be available in memory so that a processor can read them and perform the calculations needed to produce an answer. "}</p>
             <p>{"Take an example: a simple 70 Billion parameter model like Llama 3.1 70B stored at 2 bytes per parameter, meaning weights occupy ~140GB. The real storage bandwidth required in AI inference workflows is usually much higher than this number, as factors like KV cache growth, including the cached states for generated reasoning tokens outweigh the software tricks involved in decreasing the model storage burden through quantizing models, parallel runs, not loading the entire model through architectures like MoE."}</p>
             <p>{"The problem is therefore not just finding somewhere to store 140 GB, but moving the necessary portions of it into the processor quickly enough to keep the computation running."}</p>
@@ -34,9 +33,8 @@ export default function MemoryArticle() {
             </figure>
             <p>{"In a typical GPU-based AI server, the CPU has access to DDR memory installed on the motherboard, while the GPU has its own HBM beside the GPU’s compute die within the same "}{"package, allowing them to communicate quickly. This is not as fast as SRAM which is on the die, but the best tradeoff of speed and bandwidth."}</p>
             <figure>
-            <img src={"/articles/why-do-we-need-so-much-memory-anyway/image4.png"} width={1456} height={630} alt={"Memory comparison: DDR5, LPDDR5, GDDR6X and HBM3 data rates, bus widths and bandwidths. HBM3 reaches 819.2 GB/s with a 1,024-bit bus."} loading="lazy" decoding="async" />
+            <a href={"https://newsletter.semianalysis.com/p/scaling-the-memory-wall-the-rise-and-roadmap-of-hbm"} aria-label="View source: SemiAnalysis" title="Source: SemiAnalysis"><img src={"/articles/why-do-we-need-so-much-memory-anyway/image4.png"} width={1456} height={630} alt={"Memory comparison: DDR5, LPDDR5, GDDR6X and HBM3 data rates, bus widths and bandwidths. HBM3 reaches 819.2 GB/s with a 1,024-bit bus."} loading="lazy" decoding="async" /></a>
             </figure>
-            <p>{"SemiAnalysis"}{" — "}<a href={"https://newsletter.semianalysis.com/p/scaling-the-memory-wall-the-rise-and-roadmap-of-hbm"}>{"Scaling the Memory Wall: The Rise and Roadmap of HBM"}</a></p>
             <p>{"DDR memory is generally farther away, connected through the motherboard rather than the GPU’s package. That arrangement makes it practical to install substantial capacity without surrounding the accelerator with more HBM stacks, but accessing that capacity through the CPU and its connections is not equivalent to accessing the GPU’s local memory. The tradeoff is generally more accessible capacity at lower cost, with less bandwidth."}</p>
             <figure>
             <a href={"https://www.wevolver.com/article/what-is-hbm-high-bandwidth-memory-deep-dive-into-architecture-packaging-and-applications"}><img src={"/articles/why-do-we-need-so-much-memory-anyway/image5.png"} width={950} height={447} alt={"Cross-section comparison of CoWoS-L, CoWoS-R and CoWoS-S packages, showing logic and HBM connected above a substrate."} loading="lazy" decoding="async" /></a>
@@ -104,9 +102,8 @@ export default function MemoryArticle() {
             </li>
             </ul>
             <figure>
-            <img src={"/articles/why-do-we-need-so-much-memory-anyway/image7.png"} width={1175} height={702} alt={"SEMIVISION's 2026 overview groups memory into volatile DRAM and SRAM, and nonvolatile flash and other technologies, with suppliers for each."} loading="lazy" decoding="async" />
+            <a href={"https://tspasemiconductor.substack.com/p/beyond-hbm-why-3d-stacked-sram-is"} aria-label="View source: SEMIVISION" title="Source: SEMIVISION"><img src={"/articles/why-do-we-need-so-much-memory-anyway/image7.png"} width={1175} height={702} alt={"SEMIVISION's 2026 overview groups memory into volatile DRAM and SRAM, and nonvolatile flash and other technologies, with suppliers for each."} loading="lazy" decoding="async" /></a>
             </figure>
-            <p>{"SEMIVISION @_@"}{" — "}<a href={"https://tspasemiconductor.substack.com/p/beyond-hbm-why-3d-stacked-sram-is"}>{"Beyond HBM: Why 3D-Stacked SRAM Is Becoming Critical to AI Processor Architecture"}</a></p>
             <p>{"HBM is “faster” than other memory choices primarily in the sense that it can deliver substantial aggregate bandwidth, not because every individual memory access necessarily takes less time. HBM3 and HBM3E provide a 1,024-bit interface per stack and HBM4 provides 2,048 bits. These wide interfaces allow many bits to move simultaneously without requiring each individual connection to operate as fast as a GDDR connection."}</p>
             <p>{"Case: a wider interface versus faster individual connections. At 9.2 gigabits per second across 1,024 data connections, an HBM3E stack provides roughly 1.18 terabytes per second. By comparison, GDDR7 operating at 32 gigabits per second across an entire 384-bit GPU memory interface provides roughly 1.54 terabytes per second. The GDDR connections individually run faster, but a processor can place several HBM stacks beside it, each contributing another wide interface."}</p>
             <p>{"The tradeoff is that HBM achieves this through a much more demanding physical arrangement. To understand why that matters, it helps to first follow what happens when the model actually runs."}</p>
@@ -124,9 +121,8 @@ export default function MemoryArticle() {
             </ol>
             <p>{"Cerebras actually circumvents this ridge-point issue by embedding SRAM onto the wafer with their compute rather than relying on HBM, but this is another issue I’ll come back to later."}</p>
             <figure>
-            <img src={"/articles/why-do-we-need-so-much-memory-anyway/image8.png"} width={1101} height={524} alt={"LLM inference pipeline: parallel prefill, sequential decode, and KV caching, FlashAttention, PagedAttention and speculative decoding optimizations."} loading="lazy" decoding="async" />
+            <a href={"https://blog.dailydoseofds.com/p/a-practical-deep-dive-on-llm-inference"} aria-label="View source: Daily Dose of Data Science" title="Source: Daily Dose of Data Science"><img src={"/articles/why-do-we-need-so-much-memory-anyway/image8.png"} width={1101} height={524} alt={"LLM inference pipeline: parallel prefill, sequential decode, and KV caching, FlashAttention, PagedAttention and speculative decoding optimizations."} loading="lazy" decoding="async" /></a>
             </figure>
-            <p>{"Daily Dose of Data Science"}{" — "}<a href={"https://blog.dailydoseofds.com/p/a-practical-deep-dive-on-llm-inference"}>{"A Practical Deep Dive on LLM Inference and Optimization!"}</a></p>
             <figure>
             <a href={"https://www.dailydoseofds.com/llmops-crash-course-part-14/"}><img src={"/articles/why-do-we-need-so-much-memory-anyway/image9.png"} width={908} height={783} alt={"Prefill processes prompt tokens in parallel and builds a KV cache; decode reads the growing cache to generate one token at a time."} loading="lazy" decoding="async" /></a>
             </figure>
@@ -213,9 +209,8 @@ export default function MemoryArticle() {
             <a href={"https://www.chiplog.io/p/fundamental-guide-to-understanding"}><img src={"/articles/why-do-we-need-so-much-memory-anyway/image13.png"} width={1456} height={971} alt={"HBM package cross-section highlights thermal challenges, signal integrity, power consumption, and yield and packaging constraints."} loading="lazy" decoding="async" /></a>
             </figure>
             <figure>
-            <img src={"/articles/why-do-we-need-so-much-memory-anyway/image14.png"} width={423} height={119} alt={"DRAM manufacturing node progression for SK hynix, Samsung, Micron and CXMT from 2017 through 2025."} loading="lazy" decoding="async" />
+            <a href={"https://www.chinatalk.media/p/will-china-hit-the-hbm-wall"} aria-label="View source: ChinaTalk" title="Source: ChinaTalk"><img src={"/articles/why-do-we-need-so-much-memory-anyway/image14.png"} width={423} height={119} alt={"DRAM manufacturing node progression for SK hynix, Samsung, Micron and CXMT from 2017 through 2025."} loading="lazy" decoding="async" /></a>
             </figure>
-            <p>{"ChinaTalk"}{" — "}<a href={"https://www.chinatalk.media/p/will-china-hit-the-hbm-wall"}>{"How Far Can Chinese HBM Go?"}</a></p>
             <p>{"After fabrication and testing, the dies are thinned so that several can fit within a tightly controlled stack height. "}<a href={"https://www.viksnewsletter.com/p/why-is-hbm-so-hard-to-manufacture"}>{"Vikram Sekar"}</a>{"’s manufacturing walkthrough describes DRAM die thicknesses of roughly 30–50 micrometers and stacks of 4, 8, or 12.  Those vertical connections are through-silicon vias, or TSVs. They carry signals through the dies, while bonding connections join the individual layers. A base die provides the interface between the memory stack and the rest of the system, allowing the assembled stack to communicate with the nearby processor. Adding more layers therefore requires more than making the stack taller. "}</p>
             <p>{"SK Hynix’s 12-hi HBM3E used DRAM chips that were 40% thinner than those in its eight-layer product, allowing twelve layers to fit within the same total height. This explains why HBM is difficult to scale even when demand is obvious. "}</p>
             <p>{"To summarize, the issues with scaling HBM are threefold."}</p>
