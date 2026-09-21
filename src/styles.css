@@ -101,18 +101,11 @@ p.entry-list {
 }
 .art-panel {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   place-items: center;
   min-width: 0;
   min-height: 0;
   padding: 32px;
-}
-.head {
-  display: block;
-  width: min(62%, 420px);
-  max-height: 74dvh;
-  height: auto;
-  object-fit: contain;
-  user-select: none;
 }
 .art-placeholder {
   color: #666;
@@ -149,10 +142,6 @@ p.entry-list {
     padding: 20px 24px 32px;
     min-height: 220px;
   }
-  .head {
-    width: min(54%, 240px);
-    max-height: 40dvh;
-  }
 }
 @media (max-height: 560px) and (min-width: 701px) {
   .text-panel {
@@ -160,8 +149,5 @@ p.entry-list {
   }
   .art-panel {
     padding: 20px;
-  }
-  .head {
-    max-height: 85dvh;
   }
 }

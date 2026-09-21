@@ -1,28 +1,77 @@
 Third-party software and assets distributed with ahtar.dev
 
+--- Homepage gallery photographs ---
+The site owner selected the following twenty references. Display copies retain
+the source aspect ratios and embedded credits; the browser applies square
+crops. These links document provenance and do not assert a license, photographer,
+or copyright year. The software licenses below do not cover these photographs.
 
---- Brancusi head interpretation ---
-Transparent PNG wireframe interpretation after Constantin Brancusi, Danaïde,
-c.1918 (Tate T00296), generated with the built-in image tool from the
-user-supplied Tate exhibition photograph.
-
-Source photograph:
+1. The essence of things - Constantin Brancusi
 https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-840_fK7Ago5.format-webp.webp
-Exhibition:
-https://www.tate.org.uk/whats-on/tate-modern/constantin-brancusi-essence-things
-Tate object page:
-https://www.tate.org.uk/art/artworks/brancusi-danaide-t00296
-Tate collection metadata:
-https://github.com/tategallery/collection/blob/master/artworks/t/002/t00296-1430.json
 
-Bronze on limestone base, presented by Sir Charles Clore 1959.
-Tate's historical metadata credits ADAGP, Paris and DACS, London; it does not
-identify a photographer. No photographer or current copyright year is asserted
-here. The artwork reference is separate from the software licenses below.
-The original source photograph is not shipped as a page asset.
-Exact generation prompts and the selected asset are documented in the
-repository's docs/artwork.md.
+2. Junction - Richard Serra
+https://gagosian.com/media/images/exhibitions/2011/richard-serra-junction-cycle/7bJx93SL40sM_4800x4800.jpg
 
+3. Cloakroom Woman, Damnation - Béla Tarr
+https://s3.us-east-1.amazonaws.com/bomb-images/_hiresolution/BOMB_100_38_tarr7.jpg
+
+4. Primo Cementarmato - Giuseppe Uncini
+https://www.archiviouncini.org/static/img/biografia/2-Cementarmato-1958.jpg
+
+5. Elogio del agua - Eduardo Chillida
+https://media.hauserwirth.com/transform/ec4ceb76-0957-42cb-a218-5d2f1f96d200/10-Essay-Chillida-2_1987_018_8
+
+6. Los Angeles, 2014 - Nobuo Sekine
+https://i0.wp.com/sculpturemagazine.art/wp-content/uploads/2019/08/rev-05-4.jpg?w=1500&ssl=1
+
+7. Washington DC, 2020 - Helmut Lang
+https://static-assets.artlogic.net/w_1800,h_1000,c_limit/exhibit-e/5f3befd5bd3ab441008b4568/e1cc5c09a04d86f9f64224672d97491b.jpg
+
+8. Untitled - Jean Degottex
+https://d3tj81smxskx4e.cloudfront.net/UowexqEpC_Kpv25d4XbcV_oMuE2A57H07Qccykrvv94/s:768:768/rt:fit/sm:1/scp:1/q:75/fn:1686922-14303705_fullscreen/czM6Ly9hdWt0aW9u/LXByb2R1Y3Rpb24v/aXRlbV9pbWFnZXMv/MTY4NjkyMi8xNDMw/MzcwNV9vcmlnaW5h/bC5qcGc
+
+9. Keil, 2 parts - Ulrich Rückriem
+https://alchetron.com/cdn/ulrich-rckriem-5cb172b6-a5b1-422f-ba7a-0d86fd8578d-resize-750.jpeg
+
+10. Struttura modulare bianca - Agostino Bonalumi
+https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIT-b79o5tQVO1SA3hilyzZBDJeqgwbuRnIAMkn-a9Hg4W4jEqZPrifXA&s=10
+
+11. Oui, oui, oui. - Wols
+https://glasstire.com/wp-content/uploads/2013/12/wols-Oui_oui_oui.jpg
+
+12. Burning Man - Alberto Burri
+https://www.artforum.com/wp-content/uploads/2015/12/article02_large-14.jpg
+
+13. Construction Rectiligne - Jean Fautrier
+https://dist.phillips.com/auction-assets/UK010116/25_001.jpg?fit=cover&optimize=medium&width=1302
+
+14. _vnvv0tosacco - Maurizio Altieri
+https://vowi.app/archive/vowi/tt/
+
+15. House of the Follies - John Hejduk
+https://www.archpaper.com/wp-content/uploads/2016/01/12509596_10153857596729670_5093453679616087050_n.jpg
+
+16. SOLOHOUSE - Lebbeus Woods
+https://lebbeuswoods.wordpress.com/wp-content/uploads/2008/11/sh4.jpg
+
+17. Between Utopia and Reality - Claude Parent
+https://architizer-prod.imgix.net/media/145684700017213CLPA.jpg?fit=max&w=1080&q=60&auto=format&auto=compress&cs=strip&h=608
+
+18. Aletheia - Berlinde De Bruyckere
+https://i0.wp.com/sculpturemagazine.art/wp-content/uploads/2019/12/3-BDB-Nijvel.jpg?resize=1024%2C684&ssl=1
+
+19. Paul Virilio - Remains of the Pray
+https://www.artforum.com/wp-content/uploads/2019/01/article03_large-5.jpg
+
+20. Graduation Collection, Royal Academy of Fine Arts - A.F. Vandervorst
+https://substackcdn.com/image/fetch/$s_!wS9J!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd771e304-27b4-48a8-8912-5510815f7982_2000x1372.jpeg
+
+The VOWI reference is a multi-image archive. The selected photograph is image 7:
+https://vowi.app/media/media/uploads/2024/11/maurizio-altieri-7.png
+
+Detailed source and processing notes:
+https://github.com/xyleus1/ahtar-dash/blob/main/docs/gallery-assets.md
+The generated wireframe head from earlier versions is no longer distributed.
 
 --- react 19.3.0 / react-dom 19.3.0 / scheduler 0.28.0 ---
 MIT License
@@ -64,3 +113,26 @@ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
 WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+--- embla-carousel / embla-carousel-react / embla-carousel-autoplay / embla-carousel-reactive-utils 8.6.0 ---
+MIT License
+
+Copyright (c) David Jerleke.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react'
 import { content, type Entry, type SiteContent } from './content'
 import { memoryArticle } from './posts/memoryArticleInfo'
+import GalleryCarousel from './GalleryCarousel'
 
 const MemoryArticle = lazy(() => import('./posts/MemoryArticle'))
 
@@ -112,14 +113,7 @@ export default function App({
         </section>
         <div className="art-panel">
           {isHome ? (
-            <img
-              className="head"
-              src="/art/brancusi-wireframe-v2.png"
-              width="1086"
-              height="1448"
-              alt="Wireframe interpretation of Constantin Brâncuși’s Danaïde"
-              draggable={false}
-            />
+            <GalleryCarousel />
           ) : section ? (
             <p className="art-placeholder">Wireframe to come.</p>
           ) : null}

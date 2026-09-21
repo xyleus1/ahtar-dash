@@ -1,7 +1,12 @@
 import { render, screen, within } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import App from '../App'
 import { content, type SiteContent } from '../content'
+
+// Embla's layout and timing are exercised in the real-browser carousel checks.
+vi.mock('embla-carousel-react', () => ({
+  default: () => [() => {}, undefined],
+}))
 
 const placeholderData: SiteContent = {
   ...content,
@@ -28,7 +33,8 @@ describe('the personal site', () => {
     expect(links.map((link) => link.textContent)).toEqual(data.sections.map((section) => section.label))
     expect(links.map((link) => link.getAttribute('href')))
       .toEqual(['/enjoying', '/reading', '/writing', '/building'])
-    expect(screen.getByRole('img', { name: /wireframe interpretation/i })).toBeVisible()
+    expect(screen.getByRole('region', { name: 'Art and references' })).toBeVisible()
+    expect(screen.queryByAltText(/wireframe interpretation/i)).not.toBeInTheDocument()
     expect(screen.queryByText('Wireframe to come.')).not.toBeInTheDocument()
   })
 

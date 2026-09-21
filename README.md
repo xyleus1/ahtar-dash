@@ -1,8 +1,8 @@
 # ahtar.dev
 
 A plain personal index on white. The home page places a name, editable biography,
-four section links, and quiet contact links in the left third. The existing
-wireframe head after Brancusi's *Danaïde* is centered in the right two-thirds.
+four section links, and quiet contact links in the left third. A square carousel
+of twenty selected photographs is centered in the right two-thirds.
 Enjoying, Reading, Writing, and Building each have their own page.
 
 ## Edit the content
@@ -10,7 +10,7 @@ Enjoying, Reading, Writing, and Building each have their own page.
 Everything personal is in [`src/content.ts`](src/content.ts):
 
 - `name`: the home page heading.
-- `bio`: the home biography; the placeholder suggests three sentences.
+- `bio`: the home biography.
 - `sections`: each section's stable ID, display label, and entries.
 - `contact`: the home page's email and profile links.
 
@@ -37,6 +37,10 @@ Writing links to **Why do we need so much memory, anyway?** at
 in `memoryArticleInfo.ts`. The article uses a scrolling reading column and
 the site's Times serif font, the PDF's bolding, and inline images and videos.
 See [article source notes](docs/writing.md).
+
+The homepage gallery's images, captions, source URLs, alt text, and crop focal
+points are in [`src/gallery-images.ts`](src/gallery-images.ts). Display images
+and thumbnails live in `public/gallery/`; see [image sources](docs/gallery-assets.md).
 
 ## Development
 
@@ -67,13 +71,21 @@ muted red links (`#9B2228`). No web font is downloaded. Desktop uses a viewport-
 sized 1:2 column layout; long text scrolls within its accessible left pane.
 At 700px and below the columns stack, and the page scrolls naturally when needed.
 
-The home illustration is the existing transparent PNG, displayed up to 420px
-wide in the right column. [Artwork provenance](docs/artwork.md) preserves its
-original generation prompts and Tate source. The four section pages reserve
-blank space for later artwork. The Lucide favicon remains a licensed asset.
+The homepage carousel follows the image viewer, preview strip, and quiet captions
+of [Gagosian's Richard Serra exhibition](https://gagosian.com/exhibitions/2011/richard-serra-junction-cycle/).
+It supports dragging, thumbnail selection, previous/next buttons, and a pause
+control. Images advance every 20 seconds; manual navigation resets the timer.
+Hovering the image viewer temporarily pauses playback. Keyboard focus pauses
+the slideshow until Play is pressed. Reduced motion starts the slideshow paused
+and removes animated transitions.
 
-React and React DOM are the only direct runtime dependencies. The former
-windows, connectors, dragging, and animation packages have been removed.
+Images retain their source proportions; the browser crops only to fill the
+square, using reviewed focal points. The four section pages still reserve blank
+space for future artwork. [Historical artwork provenance](docs/artwork.md)
+records the retired generated head; that PNG is no longer shipped.
+
+React and React DOM render the site. Embla Carousel 8.6.0 supplies the slider,
+dragging, and autoplay. The Lucide favicon remains a licensed asset.
 See [design direction](docs/design-direction.md) and
 [third-party notices](THIRD_PARTY_NOTICES.md).
 
@@ -109,11 +121,8 @@ an actual Git-triggered deployment before relying on it.
 
 Before publication, check native navigation, direct section URLs, browser back,
 long and empty lists, link focus, desktop pane scrolling, and stacked mobile
-scrolling. Confirm that the home head stays within its right column and section
-artwork areas contain only the placeholder text.
-
-The plain-text redesign was published and verified on 2026-09-17. Lint, all 15
-tests, the production build, and GitHub CI passed. Live checks confirmed all
-five pages, navigation and refresh, desktop/mobile layout, production asset
-hashes, redirects, and custom 404 responses. See the
-[implementation brief](docs/website-plan.md).
+scrolling. Check all twenty images, captions, square crops, thumbnail selection,
+dragging, keyboard navigation, loop boundaries, the 20-second timer, pause/resume,
+and reduced motion. Confirm the gallery fits its right column and the section
+artwork areas contain only their placeholder text. Verify production assets,
+redirects, and custom 404 responses after publishing.

@@ -2,8 +2,11 @@
 
 ## Runtime libraries
 
-React 19.3.0 and React DOM 19.3.0 are the only direct runtime dependencies.
-Their scheduler dependency retains the same Meta MIT license. Full notices
+React 19.3.0 and React DOM 19.3.0 use the Meta MIT license, as does their
+scheduler dependency. Embla Carousel, its React integration, autoplay plugin,
+and reactive utilities are version 8.6.0, licensed MIT by David Jerleke.
+The [pinned Embla license](https://github.com/davidjerleke/embla-carousel/blob/v8.6.0/LICENSE)
+and the other full notices
 are reproduced in [`public/third-party-licenses.txt`](public/third-party-licenses.txt),
 which ships with the site.
 
@@ -21,25 +24,26 @@ changed. [Pinned source](https://github.com/lucide-icons/lucide/blob/076b52527f0
 The ISC copyright and permission notice is retained in the distributed license
 file. The `lucide-react` package is not a dependency.
 
-## Brancusi head interpretation
+## Gallery photographs
 
-The existing transparent PNG displayed in the home page's right column is a
-wireframe interpretation after Constantin Brancusi, *Danaïde*, c.1918,
-generated with the built-in image tool from the user-supplied
-[Tate exhibition photograph](https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-840_fK7Ago5.format-webp.webp).
-The [Tate object page](https://www.tate.org.uk/art/artworks/brancusi-danaide-t00296)
-and [Tate's published collection metadata](https://github.com/tategallery/collection/blob/master/artworks/t/002/t00296-1430.json)
-identify accession T00296, bronze on limestone base, presented by Sir Charles
-Clore in 1959. The historical metadata credits ADAGP, Paris and DACS, London;
-it does not identify a photographer. No photographer or current copyright year
-is asserted here. The artwork reference is separate from the software licenses.
-See [artwork provenance](docs/artwork.md) for exact original prompts and the
-selected asset. The original photograph is not shipped as a page asset.
+The homepage distributes WebP copies of the twenty photographic references
+selected by the site owner, including the original Tate photograph. Images are
+proportionally resized, with their aspect ratios and embedded credits retained;
+the browser applies the square crop. Captions, source links, dimensions, and the
+selection from VOWI's multi-image archive are recorded in
+[`docs/gallery-assets.md`](docs/gallery-assets.md). These provenance records do
+not assert an image license, photographer, or copyright year. The software
+licenses below do not cover the photographs.
+
+The former generated wireframe head is no longer shipped. Its prompts and
+reference history remain in [historical artwork notes](docs/artwork.md).
 No future section artwork has been generated.
 
 ## Other visual references
 
-Zygote informs the native serif typography. Xanadu, Kaliacc, and the other
-references provide design context; no reference-site text, images, or stylesheets
-are distributed. Sources and interpretation are recorded in
+Zygote informs the native serif typography. Gagosian's image viewer informs the
+carousel controls and preview strip. Xanadu, Kaliacc, and the other earlier
+references provide historical design context. Their site text and stylesheets
+are not distributed; the explicitly selected gallery photographs are documented
+above. Sources and interpretation are recorded in
 [`docs/design-direction.md`](docs/design-direction.md).
