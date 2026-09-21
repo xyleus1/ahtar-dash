@@ -9,6 +9,7 @@ import { memoryArticle } from './posts/memoryArticleInfo'
 export interface Entry {
   title: string
   url?: string
+  poster?: { src: string; width: number; height: number }
 }
 
 export type SectionId = 'enjoying' | 'reading' | 'writing' | 'building'
@@ -18,6 +19,7 @@ export interface EntryGroup {
   label: string
   entries: Entry[]
   columns?: boolean
+  layout?: 'posters'
 }
 
 export interface Section {
@@ -46,19 +48,20 @@ export const content: SiteContent = {
         {
           id: 'movies',
           label: 'Movies',
+          layout: 'posters',
           entries: [
-            { title: 'Synecdoche, New York' },
-            { title: 'Three Colours: Red' },
-            { title: "Ulysses' Gaze" },
-            { title: 'Dekalog' },
-            { title: 'The Pleasure of Being Robbed' },
-            { title: 'Damnation' },
-            { title: 'End of Summer' },
+            { title: 'Synecdoche, New York', poster: { src: '/posters/01-synecdoche-new-york.webp', width: 360, height: 540 } },
+            { title: 'Three Colours: Red', poster: { src: '/posters/02-three-colours-red.webp', width: 360, height: 540 } },
+            { title: "Ulysses' Gaze", poster: { src: '/posters/03-ulysses-gaze.webp', width: 360, height: 540 } },
+            { title: 'Dekalog', poster: { src: '/posters/04-dekalog.webp', width: 360, height: 540 } },
+            { title: 'The Pleasure of Being Robbed', poster: { src: '/posters/05-the-pleasure-of-being-robbed.webp', width: 360, height: 540 } },
+            { title: 'Damnation', poster: { src: '/posters/06-damnation.webp', width: 360, height: 540 } },
+            { title: 'End of Summer', poster: { src: '/posters/07-end-of-summer.webp', width: 360, height: 540 } },
             { title: 'The Passenger' },
-            { title: 'In Bruges' },
-            { title: 'Din of Celestial Birds' },
-            { title: 'Polia & Blastema' },
-            { title: 'A Lullaby to the Sorrowful Mystery' },
+            { title: 'In Bruges', poster: { src: '/posters/09-in-bruges.webp', width: 360, height: 540 } },
+            { title: 'Din of Celestial Birds', poster: { src: '/posters/10-din-of-celestial-birds.webp', width: 360, height: 540 } },
+            { title: 'Polia & Blastema', poster: { src: '/posters/11-polia-blastema.webp', width: 360, height: 540 } },
+            { title: 'A Lullaby to the Sorrowful Mystery', poster: { src: '/posters/12-a-lullaby-to-the-sorrowful-mystery.webp', width: 360, height: 540 } },
           ],
         },
         {

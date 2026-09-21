@@ -136,6 +136,52 @@ p.entry-list {
 .entry-list-columns li + li {
   margin-top: 0;
 }
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 88px), 1fr));
+  gap: 16px;
+  margin-top: 16px;
+  padding: 0;
+  list-style: none;
+}
+.movie-poster {
+  min-width: 0;
+  aspect-ratio: 2 / 3;
+  outline: 1px solid transparent;
+  outline-offset: 4px;
+  transition: outline-color 160ms ease;
+}
+.movie-poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: filter 160ms ease;
+}
+.poster-placeholder {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  padding: 12px;
+  background: #f3f1ef;
+  color: #767676;
+  font-size: 0.8em;
+  text-align: center;
+}
+@media (hover: hover) {
+  .movie-poster:hover {
+    outline-color: var(--red);
+  }
+  .movie-poster:hover img {
+    filter: brightness(1.08);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .movie-poster,
+  .movie-poster img {
+    transition: none;
+  }
+}
 .art-panel {
   display: grid;
   grid-template-columns: minmax(0, 1fr);

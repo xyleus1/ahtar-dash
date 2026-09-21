@@ -41,6 +41,17 @@ licenses below do not cover the photographs.
 The former generated wireframe head is no longer shipped. Its prompts and
 reference history remain in [historical artwork notes](docs/artwork.md).
 
+## Movie posters
+
+Enjoying distributes eleven local WebP poster copies sourced from Sony Pictures
+and the matching Letterboxd film pages. Copies are proportionally reduced to at
+most 360 × 540 pixels without upscaling or additional cropping. The Passenger
+retains a plain title placeholder because no matching poster was verified.
+Film identities, source pages, and exact image URLs are recorded in
+[`docs/movie-posters.md`](docs/movie-posters.md) and the distributed notice file.
+These records document provenance without asserting a license, poster artist,
+copyright holder, or copyright year. The software licenses do not cover posters.
+
 ## Other visual references
 
 Zygote informs the native serif typography. Gagosian's image viewer informs the

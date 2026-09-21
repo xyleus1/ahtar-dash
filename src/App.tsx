@@ -8,6 +8,31 @@ const loadMemoryArticle = () => import('./posts/MemoryArticle')
 const MemoryArticle = lazy(loadMemoryArticle)
 const preloadArticle = () => { void loadMemoryArticle().catch(() => {}) }
 
+function PosterGrid({ entries }: { entries: Entry[] }) {
+  return (
+    <ul className="poster-grid">
+      {entries.map((entry) => (
+        <li className="movie-poster" key={entry.title} title={entry.title}>
+          {entry.poster ? (
+            <img
+              src={entry.poster.src}
+              width={entry.poster.width}
+              height={entry.poster.height}
+              alt={entry.title}
+              loading="lazy"
+              decoding="async"
+            />
+          ) : (
+            <span className="poster-placeholder" role="img" aria-label={`${entry.title}. Poster not yet available.`}>
+              {entry.title}
+            </span>
+          )}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 function Entries({
   entries,
   className,
@@ -148,10 +173,14 @@ function Site({
               section.groups.map((group) => (
                 <section className="entry-group" key={group.id} aria-labelledby={`${section.id}-${group.id}`}>
                   <h2 id={`${section.id}-${group.id}`}>{group.label}</h2>
-                  <Entries
-                    entries={group.entries}
-                    className={`entry-list${group.columns ? ' entry-list-columns' : ''}`}
-                  />
+                  {group.layout === 'posters' ? (
+                    <PosterGrid entries={group.entries} />
+                  ) : (
+                    <Entries
+                      entries={group.entries}
+                      className={`entry-list${group.columns ? ' entry-list-columns' : ''}`}
+                    />
+                  )}
                 </section>
               ))
             ) : section ? (

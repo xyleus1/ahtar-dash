@@ -14,9 +14,11 @@ Everything personal is in [`src/content.ts`](src/content.ts):
 - `sections`: each section's stable ID, display label, and entries.
 - `sections[].groups`: optional subheadings and their entries; `columns` enables a
   responsive list with up to three columns, as used for Enjoying's shows.
+- `sections[].groups[].layout`: `posters` displays movie entries as a poster grid;
+  each entry's optional `poster` supplies its local `src`, `width`, and `height`.
 - `contact`: the home page's email and profile links.
 
-Entries accept a `title` and optional `url`. Missing URLs render as ordinary
+Text entries accept a `title` and optional `url`. Missing URLs render as ordinary
 text; empty section lists display "To come." Use `https://` for websites and
 `mailto:` for email. Array order controls display order.
 
@@ -29,12 +31,18 @@ text; empty section lists display "To come." Use `https://` for websites and
 The IDs `enjoying`, `reading`, `writing`, and `building` determine the real URLs
 `/enjoying`, `/reading`, `/writing`, and `/building`. Internal page links use
 React Router client navigation, including article entries and the article's
-home link. Each section has a Home link, heading, and bullet list on the left.
+home link. Each section has a Home link, heading, and its content on the left.
 External and email links remain ordinary links. There is no backend, account,
 analytics, or CMS.
 
 Enjoying groups Movies, Shows, Podcasts, and Websites in that order under bold
-subheadings. Show, podcast, and movie titles are plain text; websites have links.
+subheadings. Shows and podcasts use plain text; websites have links. Movies use
+a responsive portrait grid with 2:3 cells, 16px gaps, and a subtle muted red
+outline on hover. Posters are not links. Film titles remain accessible through
+image alt text and native hover labels. Local WebPs load lazily, preserving
+the complete poster without cropping. *The Passenger* has a plain title
+placeholder because no matching poster was verified. See
+[poster sources](docs/movie-posters.md); the images live in `public/posters/`.
 
 Reading uses a dated subheading and plain `Title - Author` bullets. See
 [reading sources](docs/reading.md) for the verified titles and authors.
@@ -95,7 +103,7 @@ an article is open, the gallery stays invisible, inert, and paused; returning
 shows the same selection. A direct article visit creates no gallery and downloads
 no gallery images until an index page is visited.
 
-Images retain their source proportions; the browser crops only to fill the
+Gallery images retain their source proportions; the browser crops only to fill the
 square, using reviewed focal points. [Historical artwork provenance](docs/artwork.md)
 records the retired generated head; that PNG is no longer shipped.
 
@@ -125,7 +133,7 @@ project. Use root `.`, framework Vite, Node 22.x, install `npm ci`, build
 `npm run build`, and output `dist`. Build settings are in `vercel.json`.
 
 The same config caches Vite's hashed `/assets/` files for one year with
-`immutable`. `/gallery/` images cache for one day, with up to seven days of stale
+`immutable`. `/gallery/` and `/posters/` images cache for one day, with up to seven days of stale
 content allowed during background revalidation. These rules do not cache HTML.
 
 Record the previous deployment for rollback. After publishing, verify the

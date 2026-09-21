@@ -73,6 +73,67 @@ Detailed source and processing notes:
 https://github.com/xyleus1/ahtar-dash/blob/main/docs/gallery-assets.md
 The generated wireframe head from earlier versions is no longer distributed.
 
+--- Movie posters ---
+Enjoying includes eleven local WebP poster copies sourced from Sony Pictures
+and matching Letterboxd film pages. Copies are proportionally reduced to at
+most 360 x 540 pixels without upscaling or additional cropping. These source
+records document provenance and do not assert a license, poster artist,
+copyright holder, or copyright year. Software licenses do not cover posters.
+
+1. Synecdoche, New York
+Source page: https://www.sonypictures.com/movies/synecdochenewyork
+Image source: https://www.sonypictures.com/sites/default/files/chameleon/title-movie/321988_SYNECDOCHE%20NEW%20YORK_1400x2100_Eng_1.jpg
+
+2. Three Colours: Red
+Source page: https://letterboxd.com/film/three-colours-red/
+Image source: https://a.ltrbxd.com/resized/film-poster/5/1/9/4/0/51940-three-colors-red-0-600-0-900-crop.jpg?v=6347a21b2c
+
+3. Ulysses' Gaze
+Source page: https://letterboxd.com/film/ulysses-gaze/
+Image source: https://a.ltrbxd.com/resized/film-poster/3/7/8/3/0/37830-ulysses-gaze-0-600-0-900-crop.jpg?v=b601866302
+
+4. Dekalog
+Source page: https://letterboxd.com/film/dekalog/
+Image source: https://a.ltrbxd.com/resized/film-poster/2/7/4/1/0/5/274105-the-decalogue-0-600-0-900-crop.jpg?v=5b9927b661
+
+5. The Pleasure of Being Robbed
+Source page: https://letterboxd.com/film/the-pleasure-of-being-robbed/
+Image source: https://a.ltrbxd.com/resized/film-poster/2/2/5/0/1/22501-the-pleasure-of-being-robbed-0-600-0-900-crop.jpg?v=0d18ad9e63
+
+6. Damnation
+Source page: https://letterboxd.com/film/damnation/
+Image source: https://a.ltrbxd.com/resized/film-poster/3/9/2/2/2/39222-damnation-0-600-0-900-crop.jpg?v=40e026b5a5
+
+7. End of Summer
+Source page: https://letterboxd.com/film/film:284798/
+Image source: https://a.ltrbxd.com/resized/film-poster/2/8/4/7/9/8/284798-end-of-summer-0-600-0-900-crop.jpg?v=032e1e496c
+
+8. The Passenger
+Source page: https://letterboxd.com/film/the-passenger-4/
+No verified poster; plain title placeholder, no image distributed.
+
+9. In Bruges
+Source page: https://letterboxd.com/film/in-bruges/
+Image source: https://a.ltrbxd.com/resized/film-poster/4/7/8/0/9/47809-in-bruges-0-600-0-900-crop.jpg?v=616745d99a
+
+10. Din of Celestial Birds
+Source page: https://letterboxd.com/film/din-of-celestial-birds/
+Image source: https://a.ltrbxd.com/resized/film-poster/7/7/3/1/8/77318-din-of-celestial-birds-0-600-0-900-crop.jpg?v=c35b52b219
+
+11. Polia & Blastema
+Source page: https://letterboxd.com/film/polia-blastema/
+Image source: https://a.ltrbxd.com/resized/film-poster/6/2/1/0/4/1/621041-polia-blastema-0-600-0-900-crop.jpg?v=6a2e264988
+
+12. A Lullaby to the Sorrowful Mystery
+Source page: https://letterboxd.com/film/a-lullaby-to-the-sorrowful-mystery/
+Image source: https://a.ltrbxd.com/resized/film-poster/3/1/2/4/7/9/312479-a-lullaby-to-the-sorrowful-mystery-0-600-0-900-crop.jpg?v=b62a2fa1cb
+
+The Passenger is the upcoming Magnus von Horn film with Jeremy Strong:
+https://filmnation.com/about/media-coverage/jeremy-strong-starring-in-escape-thriller-the-passenger-from-director-magnus-von-horn-filmnation-la
+
+Detailed source, film identity, and processing notes:
+https://github.com/xyleus1/ahtar-dash/blob/main/docs/movie-posters.md
+
 --- react 19.3.0 / react-dom 19.3.0 / scheduler 0.28.0 ---
 MIT License
 
