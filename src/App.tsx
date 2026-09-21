@@ -8,9 +8,9 @@ const loadMemoryArticle = () => import('./posts/MemoryArticle')
 const MemoryArticle = lazy(loadMemoryArticle)
 const preloadArticle = () => { void loadMemoryArticle().catch(() => {}) }
 
-function PosterGrid({ entries }: { entries: Entry[] }) {
+function PosterGrid({ entries, square = false }: { entries: Entry[]; square?: boolean }) {
   return (
-    <ul className="poster-grid">
+    <ul className={`poster-grid${square ? ' poster-grid-square' : ''}`}>
       {entries.map((entry) => (
         <li className="movie-poster" key={entry.title} title={entry.title}>
           {entry.poster ? (
@@ -173,8 +173,8 @@ function Site({
               section.groups.map((group) => (
                 <section className="entry-group" key={group.id} aria-labelledby={`${section.id}-${group.id}`}>
                   <h2 id={`${section.id}-${group.id}`}>{group.label}</h2>
-                  {group.layout === 'posters' ? (
-                    <PosterGrid entries={group.entries} />
+                  {group.layout ? (
+                    <PosterGrid entries={group.entries} square={group.layout === 'covers'} />
                   ) : (
                     <Entries
                       entries={group.entries}

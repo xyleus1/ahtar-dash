@@ -52,6 +52,17 @@ Film identities, source pages, and exact image URLs are recorded in
 These records document provenance without asserting a license, poster artist,
 copyright holder, or copyright year. The software licenses do not cover posters.
 
+## Show and podcast artwork
+
+Enjoying distributes nine show posters sourced from TVMaze and six podcast
+covers sourced from Apple Podcasts and CBC's official RSS feed. Local WebP
+copies preserve the full artwork without upscaling or cropping, within
+360 × 540 pixels for shows and 360 × 360 pixels for podcasts. Hunting Warhead
+uses its original season-one cover. Source pages and exact image URLs are in
+[`docs/show-podcast-art.md`](docs/show-podcast-art.md) and the distributed notice
+file. These records do not assert a license, artist, copyright holder, or
+copyright year. The software licenses do not cover this artwork.
+
 ## Other visual references
 
 Zygote informs the native serif typography. Gagosian's image viewer informs the

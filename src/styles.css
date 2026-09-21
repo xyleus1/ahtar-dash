@@ -146,10 +146,13 @@ p.entry-list {
 }
 .movie-poster {
   min-width: 0;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: var(--poster-ratio, 2 / 3);
   outline: 1px solid transparent;
   outline-offset: 4px;
   transition: outline-color 160ms ease;
+}
+.poster-grid-square {
+  --poster-ratio: 1;
 }
 .movie-poster img {
   display: block;

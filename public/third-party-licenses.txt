@@ -134,6 +134,80 @@ https://filmnation.com/about/media-coverage/jeremy-strong-starring-in-escape-thr
 Detailed source, film identity, and processing notes:
 https://github.com/xyleus1/ahtar-dash/blob/main/docs/movie-posters.md
 
+--- Show and podcast artwork ---
+Enjoying includes nine show posters sourced from TVMaze and six podcast covers
+sourced from Apple Podcasts and the official CBC RSS feed. Local WebP copies
+preserve the full artwork without upscaling or cropping: at most 360 x 540
+pixels for shows and 360 x 360 pixels for podcasts. Source records document
+provenance and do not assert a license, artist, copyright holder, or copyright
+year. Software licenses do not cover this artwork.
+
+1. Better Call Saul
+Source page: https://www.tvmaze.com/shows/618/better-call-saul
+Image source: https://static.tvmaze.com/uploads/images/original_untouched/501/1253515.jpg
+
+2. The Mentalist
+Source page: https://www.tvmaze.com/shows/116/the-mentalist
+Image source: https://static.tvmaze.com/uploads/images/original_untouched/0/1239.jpg
+
+3. Final Space
+Source page: https://www.tvmaze.com/shows/23314/final-space
+Image source: https://static.tvmaze.com/uploads/images/original_untouched/206/515082.jpg
+
+4. Severance
+Source page: https://www.tvmaze.com/shows/44933/severance
+Image source: https://static.tvmaze.com/uploads/images/original_untouched/548/1371406.jpg
+
+5. The White Lotus
+Source page: https://www.tvmaze.com/shows/51394/the-white-lotus
+Image source: https://static.tvmaze.com/uploads/images/original_untouched/339/848461.jpg
+
+6. Shameless
+Source page: https://www.tvmaze.com/shows/150/shameless
+Image source: https://static.tvmaze.com/uploads/images/original_untouched/486/1215661.jpg
+
+7. Love, Death, & Robots
+Source page: https://www.tvmaze.com/shows/40329/love-death-robots
+Image source: https://static.tvmaze.com/uploads/images/original_untouched/501/1253559.jpg
+
+8. Serial Experiments: Lain
+Source page: https://www.tvmaze.com/shows/1938/serial-experiments-lain
+Image source: https://static.tvmaze.com/uploads/images/original_untouched/11/27814.jpg
+
+9. Ergo Proxy
+Source page: https://www.tvmaze.com/shows/8256/ergo-proxy
+Image source: https://static.tvmaze.com/uploads/images/original_untouched/29/74615.jpg
+
+10. 99% Invisible
+Source page: https://podcasts.apple.com/us/podcast/99-invisible/id394775318
+Image source: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/79/d0/35/79d035ea-9043-b43e-7380-33cd47bd968b/mza_2606971010425550919.jpg/600x600bb.jpg
+
+11. Serial
+Source page: https://podcasts.apple.com/us/podcast/serial/id917918570
+Image source: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/9a/fb/87/9afb8760-0e05-2b3e-24a2-7e14cce74570/mza_14816055607064169808.jpg/600x600bb.jpg
+
+12. Caliphate
+Source page: https://podcasts.apple.com/us/podcast/caliphate/id1357657583
+Image source: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/cf/e2/8e/cfe28e25-dcd6-ac81-d3d9-4da3bb9e2886/mza_15008104811225924585.jpeg/600x600bb.jpg
+
+13. Rabbit Hole
+Source page: https://podcasts.apple.com/us/podcast/rabbit-hole/id1507423923
+Image source: https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/8c/5a/a7/8c5aa731-f3cd-c214-968f-d70c1de62a67/mza_11141039469126456067.jpeg/600x600bb.jpg
+
+14. Hunting Warhead
+Source page: https://www.cbc.ca/podcasting/includes/huntingwarhead.xml
+Image source: https://i.cbc.ca/ais/a5ca223a-21f9-4b58-b64d-de804f3b8677,1780088459106/full/max/0/default.jpg?imbypass=on
+
+15. The Adam Friedland Show
+Source page: https://podcasts.apple.com/us/podcast/the-adam-friedland-show/id1113585468
+Image source: https://is1-ssl.mzstatic.com/image/thumb/Podcasts221/v4/ab/32/fd/ab32fd63-9b88-5e52-1918-79c752e6253a/mza_2280085997378704107.jpeg/600x600bb.jpg
+
+Hunting Warhead uses its original CBC season-one cover, not the current
+feed artwork for Hunting the Suicide Salesman.
+
+Detailed source, identity, and processing notes:
+https://github.com/xyleus1/ahtar-dash/blob/main/docs/show-podcast-art.md
+
 --- react 19.3.0 / react-dom 19.3.0 / scheduler 0.28.0 ---
 MIT License
 

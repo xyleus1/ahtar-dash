@@ -19,7 +19,7 @@ export interface EntryGroup {
   label: string
   entries: Entry[]
   columns?: boolean
-  layout?: 'posters'
+  layout?: 'posters' | 'covers'
 }
 
 export interface Section {
@@ -67,29 +67,30 @@ export const content: SiteContent = {
         {
           id: 'shows',
           label: 'Shows',
-          columns: true,
+          layout: 'posters',
           entries: [
-            { title: 'Better Call Saul' },
-            { title: 'The Mentalist' },
-            { title: 'Final Space' },
-            { title: 'Severance' },
-            { title: 'The White Lotus' },
-            { title: 'Shameless' },
-            { title: 'Love, Death, & Robots' },
-            { title: 'Serial Experiments: Lain' },
-            { title: 'Ergo Proxy' },
+            { title: 'Better Call Saul', poster: { src: '/posters/show-01-better-call-saul.webp', width: 360, height: 540 } },
+            { title: 'The Mentalist', poster: { src: '/posters/show-02-the-mentalist.webp', width: 360, height: 529 } },
+            { title: 'Final Space', poster: { src: '/posters/show-03-final-space.webp', width: 360, height: 540 } },
+            { title: 'Severance', poster: { src: '/posters/show-04-severance.webp', width: 360, height: 540 } },
+            { title: 'The White Lotus', poster: { src: '/posters/show-05-the-white-lotus.webp', width: 360, height: 540 } },
+            { title: 'Shameless', poster: { src: '/posters/show-06-shameless.webp', width: 360, height: 540 } },
+            { title: 'Love, Death, & Robots', poster: { src: '/posters/show-07-love-death-robots.webp', width: 360, height: 533 } },
+            { title: 'Serial Experiments: Lain', poster: { src: '/posters/show-08-serial-experiments-lain.webp', width: 360, height: 529 } },
+            { title: 'Ergo Proxy', poster: { src: '/posters/show-09-ergo-proxy.webp', width: 360, height: 529 } },
           ],
         },
         {
           id: 'podcasts',
           label: 'Podcasts',
+          layout: 'covers',
           entries: [
-            { title: '99% Invisible' },
-            { title: 'Serial' },
-            { title: 'Caliphate' },
-            { title: 'Rabbit Hole' },
-            { title: 'Hunting Warhead' },
-            { title: 'The Adam Friedland Show' },
+            { title: '99% Invisible', poster: { src: '/posters/podcast-99-percent-invisible.webp', width: 360, height: 360 } },
+            { title: 'Serial', poster: { src: '/posters/podcast-serial.webp', width: 360, height: 360 } },
+            { title: 'Caliphate', poster: { src: '/posters/podcast-caliphate.webp', width: 360, height: 360 } },
+            { title: 'Rabbit Hole', poster: { src: '/posters/podcast-rabbit-hole.webp', width: 360, height: 360 } },
+            { title: 'Hunting Warhead', poster: { src: '/posters/podcast-hunting-warhead.webp', width: 360, height: 360 } },
+            { title: 'The Adam Friedland Show', poster: { src: '/posters/podcast-the-adam-friedland-show.webp', width: 360, height: 360 } },
           ],
         },
         {

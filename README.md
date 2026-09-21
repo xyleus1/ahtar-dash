@@ -13,9 +13,10 @@ Everything personal is in [`src/content.ts`](src/content.ts):
 - `bio`: the home biography.
 - `sections`: each section's stable ID, display label, and entries.
 - `sections[].groups`: optional subheadings and their entries; `columns` enables a
-  responsive list with up to three columns, as used for Enjoying's shows.
-- `sections[].groups[].layout`: `posters` displays movie entries as a poster grid;
-  each entry's optional `poster` supplies its local `src`, `width`, and `height`.
+  responsive text list with up to three columns.
+- `sections[].groups[].layout`: `posters` uses 2:3 portrait cells for movies and
+  shows; `covers` uses 1:1 square cells for podcasts. Each entry's optional
+  `poster` supplies its local `src`, `width`, and `height`.
 - `contact`: the home page's email and profile links.
 
 Text entries accept a `title` and optional `url`. Missing URLs render as ordinary
@@ -36,13 +37,15 @@ External and email links remain ordinary links. There is no backend, account,
 analytics, or CMS.
 
 Enjoying groups Movies, Shows, Podcasts, and Websites in that order under bold
-subheadings. Shows and podcasts use plain text; websites have links. Movies use
-a responsive portrait grid with 2:3 cells, 16px gaps, and a subtle muted red
-outline on hover. Posters are not links. Film titles remain accessible through
-image alt text and native hover labels. Local WebPs load lazily, preserving
-the complete poster without cropping. *The Passenger* has a plain title
-placeholder because no matching poster was verified. See
-[poster sources](docs/movie-posters.md); the images live in `public/posters/`.
+subheadings. Movies and nine shows use portrait posters; six podcasts use square
+covers. Their shared responsive grid has 16px gaps and a subtle muted red hover
+outline. Artwork is not linked; titles remain accessible through image alt text
+and native hover labels. Local WebPs load lazily and contain the full artwork
+without cropping. Websites retain their links.
+
+*The Passenger* has a plain title placeholder because no matching poster was
+verified. Images live in `public/posters/`; see [movie sources](docs/movie-posters.md)
+and [show and podcast sources](docs/show-podcast-art.md).
 
 Reading uses a dated subheading and plain `Title - Author` bullets. See
 [reading sources](docs/reading.md) for the verified titles and authors.
