@@ -1,6 +1,6 @@
 # Homepage gallery image sources
 
-The carousel uses the twenty references supplied by Nima, in the same order and with the supplied captions. The full image files keep their original aspect ratios: only images larger than 1600 pixels on their longest edge were proportionally reduced. No image was enlarged or cropped during processing. WebP display copies use quality 90; thumbnail copies use a maximum edge of 160 pixels. The square presentation is applied by the carousel with `object-fit: cover` and the focal positions in `src/gallery-images.ts`.
+The carousel uses the twenty references supplied by Nima, in the same order, with all captions formatted as Title - Artist Name. The full image files keep their original aspect ratios: only images larger than 1600 pixels on their longest edge were proportionally reduced. No image was enlarged or cropped during processing. WebP display copies use quality 90; thumbnail copies use a maximum edge of 160 pixels. The square presentation is applied by the carousel with `object-fit: cover` and the focal positions in `src/gallery-images.ts`.
 
 Retrieved September 20, 2026. These links document provenance; they are not license claims.
 
@@ -24,7 +24,7 @@ Retrieved September 20, 2026. These links document provenance; they are not lice
 | 16 | SOLOHOUSE - Lebbeus Woods | [Source](https://lebbeuswoods.wordpress.com/wp-content/uploads/2008/11/sh4.jpg) | 650 × 1000 | 650 × 1000 | 50% 35% |
 | 17 | Between Utopia and Reality - Claude Parent | [Source](https://architizer-prod.imgix.net/media/145684700017213CLPA.jpg?fit=max&w=1080&q=60&auto=format&auto=compress&cs=strip&h=608) | 816 × 608 | 816 × 608 | 50% 50% |
 | 18 | Aletheia - Berlinde De Bruyckere | [Source](https://i0.wp.com/sculpturemagazine.art/wp-content/uploads/2019/12/3-BDB-Nijvel.jpg?resize=1024%2C684&ssl=1) | 1024 × 684 | 1024 × 684 | 50% 50% |
-| 19 | Paul Virilio - Remains of the Pray | [Source](https://www.artforum.com/wp-content/uploads/2019/01/article03_large-5.jpg) | 1064 × 748 | 1064 × 748 | 50% 50% |
+| 19 | Remains of the Pray - Paul Virilio | [Source](https://www.artforum.com/wp-content/uploads/2019/01/article03_large-5.jpg) | 1064 × 748 | 1064 × 748 | 50% 50% |
 | 20 | Graduation Collection, Royal Academy of Fine Arts - A.F. Vandervorst | [Source](https://substackcdn.com/image/fetch/$s_!wS9J!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd771e304-27b4-48a8-8912-5510815f7982_2000x1372.jpeg) | 1456 × 999 | 1456 × 999 | 100% 50% |
 
 ## Archive selection

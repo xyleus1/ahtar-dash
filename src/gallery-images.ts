@@ -1,4 +1,4 @@
-/** Exact references selected by Nima, in the requested order. */
+/** References selected by Nima, in the requested order; captions use Title - Artist Name. */
 export interface GalleryImage {
   id: string
   caption: string
@@ -212,7 +212,7 @@ export const galleryImages: GalleryImage[] = [
   },
   {
     "id": "virilio",
-    "caption": "Paul Virilio - Remains of the Pray",
+    "caption": "Remains of the Pray - Paul Virilio",
     "src": "/gallery/19-virilio.webp",
     "thumbnail": "/gallery/19-virilio-thumb.webp",
     "width": 1064,
