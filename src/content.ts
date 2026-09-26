@@ -148,7 +148,11 @@ export const content: SiteContent = {
     {
       id: 'building',
       label: 'Building',
-      entries: [{ title: 'TBD' }],
+      entries: [
+        { title: 'Goal-conditioned PASTE' },
+        { title: 'Scale-Equivariant / Affine RoPE' },
+        { title: 'Shared-context management for agent swarms' },
+      ],
     },
   ],
   contact: [
