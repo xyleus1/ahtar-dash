@@ -36,6 +36,12 @@ home link. Each section has a Home link, heading, and its content on the left.
 External and email links remain ordinary links. There is no backend, account,
 analytics, or CMS.
 
+Building links to **Server rack power flow** at
+`/building/server-rack-power-flow`. The standalone page is in
+`public/building/server-rack-power-flow.html`, with two switchable AC feeds,
+adjustable workload, component inspection, per-tray power controls, and a
+pausable flow animation. It supports phone layouts and reduced motion.
+
 Enjoying groups Movies, Shows, Podcasts, and Websites in that order under bold
 subheadings. Movies and nine shows use portrait posters; six podcasts use square
 covers. Their shared responsive grid has 16px gaps and a subtle muted red hover

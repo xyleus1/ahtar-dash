@@ -1,5 +1,15 @@
 # Third-party notices
 
+## Server rack illustration
+
+The interactive server rack uses Ryan's MIT-licensed
+[Anatomy kit](https://github.com/wheresryan22/anatomy). Its copyright and full
+license ship in the page source and `public/third-party-licenses.txt`.
+The rack geometry is original; the user's
+[Tera Compute GIF reference](https://x.com/i/status/2109843228656795751)
+informs its fine-line isometric style and warm power traces. The GIF is not
+redistributed with the page.
+
 ## Runtime libraries
 
 React 19.3.0 and React DOM 19.3.0 use the Meta MIT license, as does their
