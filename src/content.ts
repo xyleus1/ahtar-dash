@@ -152,7 +152,7 @@ export const content: SiteContent = {
         { title: 'Goal-conditioned PASTE' },
         { title: 'Scale-Equivariant / Affine RoPE' },
         { title: 'Shared-context management for agent swarms' },
-        { title: 'Server rack power flow', url: 'https://ahtar.dev/building/server-rack-power-flow' },
+        { title: 'Compute tray power flow', url: 'https://ahtar.dev/building/server-rack-power-flow' },
       ],
     },
   ],
