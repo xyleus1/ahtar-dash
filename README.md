@@ -2,7 +2,7 @@
 
 A plain personal index on white. The home page places a name, editable biography,
 four section links, and quiet contact links in the left third. A square carousel
-of twenty selected photographs is centered in the right two-thirds and shared
+of twenty-one selected images is centered in the right two-thirds and shared
 with the Enjoying, Reading, Writing, and Building index pages.
 
 ## Edit the content
@@ -161,7 +161,7 @@ an actual Git-triggered deployment before relying on it.
 
 Before publication, check client navigation, direct section URLs, browser back,
 long and empty lists, link focus, desktop pane scrolling, and stacked mobile
-scrolling. Check all twenty images, captions, square crops, thumbnail selection,
+scrolling. Check all twenty-one images, captions, square crops, thumbnail selection,
 dragging, centered thumbnails, keyboard navigation, loop boundaries, the 20-second timer,
 and reduced motion. Confirm the gallery fits its right column and preserves its
 image and timer across Home and section navigation. Check article navigation and

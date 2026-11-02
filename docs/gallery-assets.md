@@ -1,10 +1,10 @@
-# Homepage gallery image sources
+# Shared gallery image sources
 
-The carousel uses the twenty references supplied by Nima, in the same order, with all captions formatted as Title - Artist Name. The full image files keep their original aspect ratios: only images larger than 1600 pixels on their longest edge were proportionally reduced. No image was enlarged or cropped during processing. WebP display copies use quality 90; thumbnail copies use a maximum edge of 160 pixels. The square presentation is applied by the carousel with `object-fit: cover` and the focal positions in `src/gallery-images.ts`.
+The carousel contains twenty-one images: the original twenty references supplied by Nima, in the same order, followed by the requested Roberto Matta addition. All captions use Title - Artist Name. The full image files keep their original aspect ratios: only images larger than 1600 pixels on their longest edge were proportionally reduced. No image was enlarged or cropped during processing. WebP display copies use quality 90; thumbnail copies use a maximum edge of 160 pixels. The square presentation is applied by the carousel with `object-fit: cover` and the focal positions in `src/gallery-images.ts`.
 
-Retrieved September 20, 2026. These links document provenance; they are not license claims.
+The original twenty images were retrieved September 20, 2026; the Matta image was added November 1, 2026. These links document provenance; they are not license claims.
 
-| # | Caption | Supplied source | Original pixels | Display pixels | Focal position |
+| # | Caption | Image source | Original pixels | Display pixels | Focal position |
 | --- | --- | --- | --- | --- | --- |
 | 1 | The essence of things - Constantin Brancusi | [Source](https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-840_fK7Ago5.format-webp.webp) | 840 × 1120 | 840 × 1120 | 50% 20% |
 | 2 | Junction - Richard Serra | [Source](https://gagosian.com/media/images/exhibitions/2011/richard-serra-junction-cycle/7bJx93SL40sM_4800x4800.jpg) | 3769 × 4800 | 1256 × 1600 | 50% 50% |
@@ -26,10 +26,15 @@ Retrieved September 20, 2026. These links document provenance; they are not lice
 | 18 | Aletheia - Berlinde De Bruyckere | [Source](https://i0.wp.com/sculpturemagazine.art/wp-content/uploads/2019/12/3-BDB-Nijvel.jpg?resize=1024%2C684&ssl=1) | 1024 × 684 | 1024 × 684 | 50% 50% |
 | 19 | Remains of the Pray - Paul Virilio | [Source](https://www.artforum.com/wp-content/uploads/2019/01/article03_large-5.jpg) | 1064 × 748 | 1064 × 748 | 50% 50% |
 | 20 | Graduation Collection, Royal Academy of Fine Arts - A.F. Vandervorst | [Source](https://substackcdn.com/image/fetch/$s_!wS9J!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd771e304-27b4-48a8-8912-5510815f7982_2000x1372.jpeg) | 1456 × 999 | 1456 × 999 | 100% 50% |
+| 21 | The Black Idea - Roberto Matta | [Source](https://d32dm0rphc51dk.cloudfront.net/Jozu57rNty82BTln3aX6lA/normalized.jpg) | 1800 × 1445 | 1600 × 1284 | 50% 50% |
+
+## Roberto Matta addition
+
+*The Black Idea* is a 1942 oil painting on canvas, identified by [Cernuda Arte's artwork record](https://secure.cernudaarte.com/cgi-local/exhibitions.cgi?mode=show_image&id=5068) and [exhibition listing](https://secure.cernudaarte.com/exhibitions/important-cuban-artworks-volume-eleven/). The clean painting reproduction comes from the gallery's [Artsy listing](https://www.artsy.net/artwork/roberto-matta-the-black-idea-lidee-noir). Added November 1, 2026, `public/gallery/21-matta.webp` is 1600 × 1284 at quality 90; `21-matta-thumb.webp` is 160 × 128 at quality 85. Both retain the full composition without enlargement. The existing CSS applies the reviewed square crop at `50% 50%`.
 
 ## Archive selection
 
-The Maurizio Altieri reference points to a multi-image VOWI archive rather than a single image file. The selected photograph is its seventh image, the dark collapsed sack form: [original image](https://vowi.app/media/media/uploads/2024/11/maurizio-altieri-7.png). The user-supplied caption is retained. The archive does not provide individual work titles for its photographs; the choice follows the requested sack subject. The other nineteen images are the exact files at the supplied URLs.
+The Maurizio Altieri reference points to a multi-image VOWI archive rather than a single image file. The selected photograph is its seventh image, the dark collapsed sack form: [original image](https://vowi.app/media/media/uploads/2024/11/maurizio-altieri-7.png). The user-supplied caption is retained. The archive does not provide individual work titles for its photographs; the choice follows the requested sack subject. The other nineteen images from the original twenty-image selection are the exact files at the supplied URLs.
 
 The Bonalumi reference is a 500 × 400 Google-hosted thumbnail. Its original dimensions are retained; it has not been replaced by a different photograph or artificially enlarged.
 

@@ -1,10 +1,11 @@
 Third-party software and assets distributed with ahtar.dev
 
---- Shared Home and section gallery photographs ---
-The site owner selected the following twenty references. Display copies retain
+--- Shared Home and section gallery images ---
+The gallery contains twenty-one images: the original twenty supplied references
+and the requested Roberto Matta addition. Display copies retain
 the source aspect ratios and embedded credits; the browser applies square
 crops. These links document provenance and do not assert a license, photographer,
-or copyright year. The software licenses below do not cover these photographs.
+or copyright year. The software licenses below do not cover these images.
 
 1. The essence of things - Constantin Brancusi
 https://media.tate.org.uk/aztate-prd-ew-dg-wgtail-st1-ctr-data/images/.width-840_fK7Ago5.format-webp.webp
@@ -65,6 +66,17 @@ https://www.artforum.com/wp-content/uploads/2019/01/article03_large-5.jpg
 
 20. Graduation Collection, Royal Academy of Fine Arts - A.F. Vandervorst
 https://substackcdn.com/image/fetch/$s_!wS9J!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd771e304-27b4-48a8-8912-5510815f7982_2000x1372.jpeg
+
+21. The Black Idea - Roberto Matta
+Added November 1, 2026. Painting: 1942, oil on canvas.
+Artwork record: https://secure.cernudaarte.com/cgi-local/exhibitions.cgi?mode=show_image&id=5068
+Exhibition: https://secure.cernudaarte.com/exhibitions/important-cuban-artworks-volume-eleven/
+Gallery listing: https://www.artsy.net/artwork/roberto-matta-the-black-idea-lidee-noir
+Image source: https://d32dm0rphc51dk.cloudfront.net/Jozu57rNty82BTln3aX6lA/normalized.jpg
+Original 1800 x 1445; display WebP 1600 x 1284, quality 90;
+thumbnail 160 x 128, quality 85. Full aspect retained without enlargement;
+the browser applies the centered square crop. These are provenance records,
+not license or public-domain claims.
 
 The VOWI reference is a multi-image archive. The selected photograph is image 7:
 https://vowi.app/media/media/uploads/2024/11/maurizio-altieri-7.png

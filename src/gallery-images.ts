@@ -231,5 +231,16 @@ export const galleryImages: GalleryImage[] = [
     "objectPosition": "100% 50%",
     "sourceUrl": "https://substackcdn.com/image/fetch/$s_!wS9J!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd771e304-27b4-48a8-8912-5510815f7982_2000x1372.jpeg",
     "alt": "A black-and-white fashion photograph of a model standing beside a doorway."
+  },
+  {
+    "id": "matta",
+    "caption": "The Black Idea - Roberto Matta",
+    "src": "/gallery/21-matta.webp",
+    "thumbnail": "/gallery/21-matta-thumb.webp",
+    "width": 1600,
+    "height": 1284,
+    "objectPosition": "50% 50%",
+    "sourceUrl": "https://www.artsy.net/artwork/roberto-matta-the-black-idea-lidee-noir",
+    "alt": "Thin angular planes and pale floating forms across a smoky black painting with muted red accents."
   }
 ]

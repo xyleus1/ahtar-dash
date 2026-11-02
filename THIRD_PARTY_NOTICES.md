@@ -36,17 +36,23 @@ changed. [Pinned source](https://github.com/lucide-icons/lucide/blob/076b52527f0
 The ISC copyright and permission notice is retained in the distributed license
 file. The `lucide-react` package is not a dependency.
 
-## Gallery photographs
+## Gallery images
 
-The shared Home and section gallery distributes WebP copies of the twenty
-photographic references selected by the site owner, including the original Tate
-photograph. Images are proportionally resized, with their aspect ratios and
-embedded credits retained;
-the browser applies the square crop. Captions, source links, dimensions, and the
+The shared Home and section gallery distributes twenty-one WebP images: the
+original twenty references and the requested Roberto Matta addition, including
+the original Tate photograph. Images are proportionally resized, with their
+aspect ratios and embedded credits retained; the browser applies the square
+crop. Captions, source links, dimensions, and the
 selection from VOWI's multi-image archive are recorded in
 [`docs/gallery-assets.md`](docs/gallery-assets.md). These provenance records do
 not assert an image license, photographer, or copyright year. The software
-licenses below do not cover the photographs.
+licenses below do not cover the images.
+
+Added November 1, 2026, Matta's *The Black Idea* (1942, oil on canvas) is identified
+by [Cernuda Arte](https://secure.cernudaarte.com/cgi-local/exhibitions.cgi?mode=show_image&id=5068).
+The reproduction comes from the gallery's
+[Artsy listing](https://www.artsy.net/artwork/roberto-matta-the-black-idea-lidee-noir);
+its exact image URL and processing details appear in the gallery source notes.
 
 The former generated wireframe head is no longer shipped. Its prompts and
 reference history remain in [historical artwork notes](docs/artwork.md).
@@ -78,6 +84,6 @@ copyright year. The software licenses do not cover this artwork.
 Zygote informs the native serif typography. Gagosian's image viewer informs the
 carousel controls and preview strip. Xanadu, Kaliacc, and the other earlier
 references provide historical design context. Their site text and stylesheets
-are not distributed; the explicitly selected gallery photographs are documented
+are not distributed; the selected gallery images are documented
 above. Sources and interpretation are recorded in
 [`docs/design-direction.md`](docs/design-direction.md).
