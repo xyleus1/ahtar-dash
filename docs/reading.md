@@ -2,8 +2,8 @@
 
 The list in `src/content.ts` preserves the owner's order in two dated groups:
 **In progress as of September 20th, 2026** and **In progress as of November 6th, 2026**.
-The original heading stays unchanged. Entries are plain `Title - Author` text,
-except the unconfirmed title noted below. Sources confirm titles and authors.
+The original heading stays unchanged. Entries are plain `Title - Author` text.
+Sources confirm titles and authors; the owner's shortened label is noted below.
 
 ## September 20th, 2026
 
@@ -23,13 +23,16 @@ except the unconfirmed title noted below. Sources confirm titles and authors.
 | Title | Author | Source |
 | --- | --- | --- |
 | Visions of Excess: Selected Writings, 1927–1939 | Georges Bataille | [University of Minnesota Press](https://www.upress.umn.edu/9780816612833/visions-of-excess/) |
+| Bodies Without Organs | Gilles Deleuze and Félix Guattari | [Bloomsbury: A Thousand Plateaus](https://www.bloomsbury.com/uk/thousand-plateaus-9781780935379/) |
 | The Unbearable Lightness of Being | Milan Kundera | [Faber](https://www.faber.co.uk/journal/reading-list-writers-from-europe-and-writers-obsessed-with-europe/) |
 | Eichmann in Jerusalem: A Report on the Banality of Evil | Hannah Arendt | [Penguin](https://www.penguin.co.uk/books/62456/eichmann-in-jerusalem-by-arendt-hannah/9780141931593) |
 | Harassment Architecture | Mike Ma | [Australian Classification bibliographic record](https://www.classification.gov.au/titles/harassment-architecture) |
 
-**Bodies Without Organs** remains in the owner's requested second position,
-with the title as provided and no author added: the exact work and author are
-unconfirmed. “Banality of evil” is interpreted as Arendt's title listed above.
+**Bodies Without Organs** retains the owner's label and second position. The
+owner confirmed Guattari; the credit names both Gilles Deleuze and Félix Guattari.
+The publisher lists their chapter “How Do You Make Yourself a Body Without
+Organs?” in *A Thousand Plateaus*. “Banality of evil” is interpreted as Arendt's
+title listed above.
 
 The Enjoying Websites list links [Slate Star Codex](https://slatestarcodex.com/)
 to its original site, as identified by its [About page](https://slatestarcodex.com/about/).

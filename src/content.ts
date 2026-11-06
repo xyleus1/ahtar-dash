@@ -136,7 +136,7 @@ export const content: SiteContent = {
           label: 'In progress as of November 6th, 2026',
           entries: [
             { title: 'Visions of Excess: Selected Writings, 1927–1939 - Georges Bataille' },
-            { title: 'Bodies Without Organs' },
+            { title: 'Bodies Without Organs - Gilles Deleuze and Félix Guattari' },
             { title: 'The Unbearable Lightness of Being - Milan Kundera' },
             { title: 'Eichmann in Jerusalem: A Report on the Banality of Evil - Hannah Arendt' },
             { title: 'Harassment Architecture - Mike Ma' },
