@@ -220,6 +220,87 @@ feed artwork for Hunting the Suicide Salesman.
 Detailed source, identity, and processing notes:
 https://github.com/xyleus1/ahtar-dash/blob/main/docs/show-podcast-art.md
 
+--- Book covers ---
+Reading distributes thirteen actual front covers as local WebP copies,
+proportionally reduced to at most 360 x 540 pixels without cropping or upscaling.
+The existing dated groups and book order remain unchanged. Covers use the same
+portrait grid as the Enjoying movie and show artwork.
+These records document provenance without asserting an artwork license, artist,
+copyright holder, or copyright year. Software licenses do not cover these images.
+
+1. Remarks on Colour - Ludwig Wittgenstein
+Edition ISBN: 9780520251793
+Source page: https://www.ucpress.edu/books/remarks-on-colour-30th-anniversary-edition/paper
+Image source: https://webfiles.ucpress.edu/coverimage/isbn13/9780520251793.jpg
+
+2. Accelerando - Charles Stross
+Edition ISBN: 9780441014156
+Source page: https://www.penguinrandomhouse.com/books/294259/accelerando-by-charles-stross/
+Image source: https://images1.penguinrandomhouse.com/cover/9780441014156
+
+3. Torture Concrete: Jean-Luc Moulène and the Protocol of Abstraction - Reza Negarestani
+Edition ISBN: 9780983216971
+Source page: https://www.sequencepress.com/products/torture-concrete-jean-luc-moulene-and-the-protocol-of-abstraction
+Image source: https://cdn.shopify.com/s/files/1/0069/6232/products/TortureConcrete_01.jpg?v=1607562858
+
+4. Neverness - David Zindell
+Edition ISBN: 9781522798385
+Source page: https://www.davidzindell.com/neverness/
+Image source: https://www.davidzindell.com/wp-content/uploads/2014/08/zindell_neverness.jpg
+
+5. Permutation City - Greg Egan
+Edition ISBN: 9780575082076
+Source page: https://www.hachette.co.uk/titles/greg-egan/permutation-city/9780575082076/
+Image source: https://www.hachette.co.uk/wp-content/uploads/2018/07/hbg-title-permutation-city-2-159.jpg
+
+6. For Anatole’s Tomb - Stéphane Mallarmé
+Edition ISBN: 9781857546361
+Source page: https://www.carcanet.co.uk/9781857546361/for-anatoles-tomb/
+Image source: https://carcanetpress-uk.imgix.net/covers/9781857546361.jpg
+
+7. Slaughterhouse-Five - Kurt Vonnegut
+Edition ISBN: 9780385333849
+Source page: https://www.penguinrandomhouse.com/books/184345/slaughterhouse-five-by-kurt-vonnegut/
+Image source: https://images2.penguinrandomhouse.com/cover/9780385333849
+
+8. The Sorrows of Young Werther - Johann Wolfgang von Goethe
+Edition ISBN: 9780140445039
+Source page: https://www.penguin.co.uk/books/35131/the-sorrows-of-young-werther-by-johann-wolfgang-von-goethe-trans-intro-and-notes-by-michael-hulse/9780140445039
+Image source: https://cdn.penguin.co.uk/dam-assets/books/9780140445039/9780140445039-jacket-large.jpg
+
+9. Visions of Excess: Selected Writings, 1927–1939 - Georges Bataille
+Edition ISBN: 9780816612833
+Source page: https://www.upress.umn.edu/9780816612833/visions-of-excess/
+Image source: https://minnesota-us.imgix.net/covers/9780816612833.jpg
+
+10. Bodies Without Organs - Gilles Deleuze and Félix Guattari
+Edition ISBN: 9781780935379
+Source page: https://www.bloomsbury.com/uk/thousand-plateaus-9781780935379/
+Image source: https://media.bloomsbury.com/rep/bj/9781780935379.jpg
+
+11. The Unbearable Lightness of Being - Milan Kundera
+Edition ISBN: 9780571135394
+Source page: https://www.faber.co.uk/product/9780571135394-the-unbearable-lightness-of-being/
+Image source: https://www.faber.co.uk/wp-content/uploads/2024/12/Unbearable-Lightness-of-Being.jpg
+
+12. Eichmann in Jerusalem: A Report on the Banality of Evil - Hannah Arendt
+Edition ISBN: 9780241552292
+Source page: https://www.penguin.co.uk/books/62456/eichmann-in-jerusalem-by-arendt-hannah/9780241552292
+Image source: https://cdn.penguin.co.uk/dam-assets/books/9780241552292/9780241552292-jacket-large.jpg
+
+13. Harassment Architecture - Mike Ma
+Edition ISBN: 9781795641494
+Source page: https://www.theportobellobookshop.com/9781795641494
+Image source: https://cdn.theportobellobookshop.com/img/9781795641494.jpg
+
+The owner label Bodies Without Organs is represented by the cover of A Thousand
+Plateaus by Gilles Deleuze and Felix Guattari, ISBN 9781780935379. That volume
+contains How Do You Make Yourself a Body Without Organs?; this is not a separate
+book edition titled Bodies Without Organs.
+
+Detailed edition, image, and processing notes:
+https://github.com/xyleus1/ahtar-dash/blob/main/docs/book-covers.md
+
 --- react 19.3.0 / react-dom 19.3.0 / scheduler 0.28.0 ---
 MIT License
 

@@ -2,8 +2,13 @@
 
 The list in `src/content.ts` preserves the owner's order in two dated groups:
 **In progress as of September 20th, 2026** and **In progress as of November 6th, 2026**.
-The original heading stays unchanged. Entries are plain `Title - Author` text.
-Sources confirm titles and authors; the owner's shortened label is noted below.
+Both headings and the book order stay unchanged. Thirteen real book covers use
+the same `PosterGrid` and `posters` layout as Enjoying's movies and shows: 2:3
+portrait cells, 16px gaps, `object-fit: contain`, lazy local WebPs, and the muted
+red hover outline. Titles and authors remain in image alt text and native hover
+labels; covers have no links or extra captions. [Cover source notes](book-covers.md)
+record each edition's ISBN, source image, and dimensions. The sources below
+confirm titles and authors; the owner's shortened label is noted below.
 
 ## September 20th, 2026
 
@@ -31,8 +36,8 @@ Sources confirm titles and authors; the owner's shortened label is noted below.
 **Bodies Without Organs** retains the owner's label and second position. The
 owner confirmed Guattari; the credit names both Gilles Deleuze and Félix Guattari.
 The publisher lists their chapter “How Do You Make Yourself a Body Without
-Organs?” in *A Thousand Plateaus*. “Banality of evil” is interpreted as Arendt's
-title listed above.
+Organs?” in *A Thousand Plateaus*, whose actual front cover represents this
+entry. “Banality of evil” is interpreted as Arendt's title listed above.
 
 The Enjoying Websites list links [Slate Star Codex](https://slatestarcodex.com/)
 to its original site, as identified by its [About page](https://slatestarcodex.com/about/).

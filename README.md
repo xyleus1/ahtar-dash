@@ -14,8 +14,8 @@ Everything personal is in [`src/content.ts`](src/content.ts):
 - `sections`: each section's stable ID, display label, and entries.
 - `sections[].groups`: optional subheadings and their entries; `columns` enables a
   responsive text list with up to three columns.
-- `sections[].groups[].layout`: `posters` uses 2:3 portrait cells for movies and
-  shows; `covers` uses 1:1 square cells for podcasts. Each entry's optional
+- `sections[].groups[].layout`: `posters` uses 2:3 portrait cells for movies,
+  shows, and books; `covers` uses 1:1 square cells for podcasts. Each entry's optional
   `poster` supplies its local `src`, `width`, and `height`.
 - `contact`: the home page's email and profile links.
 
@@ -56,8 +56,14 @@ without cropping. Websites retain their links.
 verified. Images live in `public/posters/`; see [movie sources](docs/movie-posters.md)
 and [show and podcast sources](docs/show-podcast-art.md).
 
-Reading uses a dated subheading and plain `Title - Author` bullets. See
-[reading sources](docs/reading.md) for the verified titles and authors.
+Reading displays thirteen actual book covers under the unchanged September 20th
+and November 6th, 2026 headings. It uses the same `PosterGrid` and `posters`
+layout as Enjoying's movies and shows: 2:3 cells, 16px gaps, the muted red hover
+outline, and full artwork contained without cropping. Local WebPs load lazily;
+title-and-author alt text and native hover labels identify each book. Covers
+have no links or extra captions. “Bodies Without Organs” uses the cover of
+*A Thousand Plateaus*, which contains the Deleuze–Guattari chapter. See
+[reading sources](docs/reading.md) and [cover editions and image sources](docs/book-covers.md).
 
 Writing links to **Why do we need so much memory, anyway?** at
 `/writing/why-do-we-need-so-much-memory-anyway`. Its text and markup are in

@@ -79,6 +79,22 @@ uses its original season-one cover. Source pages and exact image URLs are in
 file. These records do not assert a license, artist, copyright holder, or
 copyright year. The software licenses do not cover this artwork.
 
+## Book covers
+
+Reading distributes thirteen local WebP covers sourced from the matching
+publisher, author, or bookseller edition pages. Copies preserve the full front
+cover, proportionally reduced to at most 360 × 540 pixels without cropping or
+upscaling. The dated groups and book order remain unchanged; Reading uses the
+same portrait grid as Enjoying's movies and shows. “Bodies Without Organs” uses
+the actual cover of Deleuze and Guattari's *A Thousand Plateaus*, which contains
+the requested chapter.
+
+Edition ISBNs, source pages, exact image URLs, and dimensions are recorded in
+[`docs/book-covers.md`](docs/book-covers.md); source links also ship in the
+distributed notice file. These records document provenance without asserting
+an artwork license, artist, copyright holder, or copyright year. The software
+licenses do not cover the book artwork.
+
 ## Other visual references
 
 Zygote informs the native serif typography. Gagosian's image viewer informs the
