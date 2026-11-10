@@ -108,6 +108,7 @@ export const content: SiteContent = {
             { title: 'Alamut', url: 'https://www.alamut.com/subj/subject_index.html' },
             { title: 'Extropy', url: 'https://lists.extropy.org/pipermail/extropy-chat/' },
             { title: 'Slate Star Codex', url: 'https://slatestarcodex.com/' },
+            { title: 'Typememetics Institute', url: 'https://www.typememetics.institute/' },
           ],
         },
       ],
