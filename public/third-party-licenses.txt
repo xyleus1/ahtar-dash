@@ -221,7 +221,7 @@ Detailed source, identity, and processing notes:
 https://github.com/xyleus1/ahtar-dash/blob/main/docs/show-podcast-art.md
 
 --- Book covers ---
-Reading distributes thirteen actual front covers as local WebP copies,
+Reading distributes fourteen actual front covers as local WebP copies,
 proportionally reduced to at most 360 x 540 pixels without cropping or upscaling.
 The existing dated groups and book order remain unchanged. Covers use the same
 portrait grid as the Enjoying movie and show artwork.
@@ -292,6 +292,17 @@ Image source: https://cdn.penguin.co.uk/dam-assets/books/9780241552292/978024155
 Edition ISBN: 9781795641494
 Source page: https://www.theportobellobookshop.com/9781795641494
 Image source: https://cdn.theportobellobookshop.com/img/9781795641494.jpg
+
+14. Sacred and Terrible Air - Robert Kurvitz
+Edition: owner-provided Group Ibex v4 PDF; no ISBN recorded
+Source file: Sacred_and_Terrible_Air_Group_Ibex_v4.pdf
+Source page: https://drive.google.com/file/d/10hNiOLPy_xGX5VSnNp0fTx6aU5NHPhBX/view
+Image source: complete embedded front-cover image on PDF page 1 (image XRef 5)
+Original image: 800 x 1243; local WebP: 348 x 540, quality 85, 28,908 bytes
+Verified November 16, 2026. All cover artwork, title lettering, author credit,
+and the ZA/UM logo are retained. Surrounding white PDF page margins are not
+part of the embedded image. Only the cover is distributed, not the full book.
+The original thirteen covers were visually verified on November 10, 2026.
 
 The owner label Bodies Without Organs is represented by the cover of A Thousand
 Plateaus by Gilles Deleuze and Felix Guattari, ISBN 9781780935379. That volume

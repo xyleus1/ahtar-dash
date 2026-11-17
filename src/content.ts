@@ -143,6 +143,7 @@ export const content: SiteContent = {
             { title: 'The Unbearable Lightness of Being - Milan Kundera', poster: { src: '/posters/book-11-the-unbearable-lightness-of-being.webp', width: 351, height: 540 } },
             { title: 'Eichmann in Jerusalem: A Report on the Banality of Evil - Hannah Arendt', poster: { src: '/posters/book-12-eichmann-in-jerusalem.webp', width: 326, height: 500 } },
             { title: 'Harassment Architecture - Mike Ma', poster: { src: '/posters/book-13-harassment-architecture.webp', width: 329, height: 500 } },
+            { title: 'Sacred and Terrible Air - Robert Kurvitz', poster: { src: '/posters/book-14-sacred-and-terrible-air.webp', width: 348, height: 540 } },
           ],
         },
       ],

@@ -56,13 +56,14 @@ without cropping. Websites retain their links.
 verified. Images live in `public/posters/`; see [movie sources](docs/movie-posters.md)
 and [show and podcast sources](docs/show-podcast-art.md).
 
-Reading displays thirteen actual book covers under the unchanged September 20th
+Reading displays fourteen actual book covers under the unchanged September 20th
 and November 6th, 2026 headings. It uses the same `PosterGrid` and `posters`
 layout as Enjoying's movies and shows: 2:3 cells, 16px gaps, the muted red hover
 outline, and full artwork contained without cropping. Local WebPs load lazily;
 title-and-author alt text and native hover labels identify each book. Covers
 have no links or extra captions. “Bodies Without Organs” uses the cover of
-*A Thousand Plateaus*, which contains the Deleuze–Guattari chapter. See
+*A Thousand Plateaus*, which contains the Deleuze–Guattari chapter. *Sacred and
+Terrible Air* uses the complete cover from the owner's Group Ibex v4 PDF. See
 [reading sources](docs/reading.md) and [cover editions and image sources](docs/book-covers.md).
 
 Writing links to **Why do we need so much memory, anyway?** at

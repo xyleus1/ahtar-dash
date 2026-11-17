@@ -81,15 +81,23 @@ copyright year. The software licenses do not cover this artwork.
 
 ## Book covers
 
-Reading distributes thirteen local WebP covers sourced from the matching
-publisher, author, or bookseller edition pages. Copies preserve the full front
-cover, proportionally reduced to at most 360 × 540 pixels without cropping or
+Reading distributes fourteen local WebP covers: thirteen sourced from matching
+publisher, author, or bookseller edition pages, and one from the owner's PDF.
+Copies preserve the full front cover, proportionally reduced to at most
+360 × 540 pixels without cropping or
 upscaling. The dated groups and book order remain unchanged; Reading uses the
 same portrait grid as Enjoying's movies and shows. “Bodies Without Organs” uses
 the actual cover of Deleuze and Guattari's *A Thousand Plateaus*, which contains
 the requested chapter.
 
-Edition ISBNs, source pages, exact image URLs, and dimensions are recorded in
+Added November 16, 2026, *Sacred and Terrible Air* by Robert Kurvitz uses the
+complete front-cover image embedded on page 1 of the owner's
+[Group Ibex v4 PDF](https://drive.google.com/file/d/10hNiOLPy_xGX5VSnNp0fTx6aU5NHPhBX/view),
+including its title, author credit, and ZA/UM logo. Only the cover is distributed.
+The original thirteen covers were visually verified on November 10, 2026;
+this additional cover was verified on November 16, 2026.
+
+Available edition ISBNs, source pages, image sources, and dimensions are in
 [`docs/book-covers.md`](docs/book-covers.md); source links also ship in the
 distributed notice file. These records document provenance without asserting
 an artwork license, artist, copyright holder, or copyright year. The software

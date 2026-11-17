@@ -2,12 +2,12 @@
 
 The list in `src/content.ts` preserves the owner's order in two dated groups:
 **In progress as of September 20th, 2026** and **In progress as of November 6th, 2026**.
-Both headings and the book order stay unchanged. Thirteen real book covers use
-the same `PosterGrid` and `posters` layout as Enjoying's movies and shows: 2:3
+Both headings and the existing book order stay unchanged. Fourteen real book
+covers use the same `PosterGrid` and `posters` layout as Enjoying's movies and shows: 2:3
 portrait cells, 16px gaps, `object-fit: contain`, lazy local WebPs, and the muted
 red hover outline. Titles and authors remain in image alt text and native hover
 labels; covers have no links or extra captions. [Cover source notes](book-covers.md)
-record each edition's ISBN, source image, and dimensions. The sources below
+record available edition ISBNs, source images, and dimensions. The sources below
 confirm titles and authors; the owner's shortened label is noted below.
 
 ## September 20th, 2026
@@ -32,6 +32,10 @@ confirm titles and authors; the owner's shortened label is noted below.
 | The Unbearable Lightness of Being | Milan Kundera | [Faber](https://www.faber.co.uk/journal/reading-list-writers-from-europe-and-writers-obsessed-with-europe/) |
 | Eichmann in Jerusalem: A Report on the Banality of Evil | Hannah Arendt | [Penguin](https://www.penguin.co.uk/books/62456/eichmann-in-jerusalem-by-arendt-hannah/9780141931593) |
 | Harassment Architecture | Mike Ma | [Australian Classification bibliographic record](https://www.classification.gov.au/titles/harassment-architecture) |
+| Sacred and Terrible Air | Robert Kurvitz | [Owner-provided Group Ibex v4 PDF, cover on page 1](https://drive.google.com/file/d/10hNiOLPy_xGX5VSnNp0fTx6aU5NHPhBX/view) |
+
+*Sacred and Terrible Air* was appended to the November 6th group on November 16,
+2026, using the complete cover from the owner's PDF. The heading stays unchanged.
 
 **Bodies Without Organs** retains the owner's label and second position. The
 owner confirmed Guattari; the credit names both Gilles Deleuze and Félix Guattari.

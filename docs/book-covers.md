@@ -1,6 +1,6 @@
 # Reading book covers
 
-The thirteen covers correspond to the existing Reading entries, preserving both dated groups and the owner's order. Title, author, and edition were checked against the sources below and every image was visually inspected on November 10, 2026. Local WebP copies are proportionally reduced to at most 360 × 540 pixels, quality 85, without cropping or upscaling.
+The fourteen covers correspond to the Reading entries, preserving both dated groups and the existing book order. The original thirteen covers were checked against the sources below and visually inspected on November 10, 2026. *Sacred and Terrible Air* was appended to the November 6th group and verified on November 16, 2026. Local WebP copies are proportionally reduced to at most 360 × 540 pixels, quality 85, without cropping or upscaling.
 
 Reading uses the exact shared PosterGrid component and posters layout used by Enjoying's movies and shows: 2:3 portrait cells, 16px gaps, object-fit: contain, native title labels, descriptive title-and-author alt text, lazy loading, and the existing muted red hover outline. No extra captions or links are added.
 
@@ -19,6 +19,9 @@ Reading uses the exact shared PosterGrid component and posters layout used by En
 | The Unbearable Lightness of Being - Milan Kundera | 9780571135394 | [Source](https://www.faber.co.uk/product/9780571135394-the-unbearable-lightness-of-being/) | [Image](https://www.faber.co.uk/wp-content/uploads/2024/12/Unbearable-Lightness-of-Being.jpg) | 351 × 540 |
 | Eichmann in Jerusalem: A Report on the Banality of Evil - Hannah Arendt | 9780241552292 | [Source](https://www.penguin.co.uk/books/62456/eichmann-in-jerusalem-by-arendt-hannah/9780241552292) | [Image](https://cdn.penguin.co.uk/dam-assets/books/9780241552292/9780241552292-jacket-large.jpg) | 326 × 500 |
 | Harassment Architecture - Mike Ma | 9781795641494 | [Source](https://www.theportobellobookshop.com/9781795641494) | [Image](https://cdn.theportobellobookshop.com/img/9781795641494.jpg) | 329 × 500 |
+| Sacred and Terrible Air - Robert Kurvitz | Not recorded | [Owner-provided Group Ibex v4 PDF](https://drive.google.com/file/d/10hNiOLPy_xGX5VSnNp0fTx6aU5NHPhBX/view) | Complete embedded front-cover image on PDF page 1 | 348 × 540 |
+
+*Sacred and Terrible Air* uses the exact cover in `Sacred_and_Terrible_Air_Group_Ibex_v4.pdf`, supplied by the owner. The complete 800 × 1243 embedded image was extracted from page 1 (image XRef 5), retaining all title lettering, Robert Kurvitz's author credit, and the ZA/UM logo. The surrounding white PDF page margins are not part of the embedded artwork. Its proportional 348 × 540 WebP copy is 28,908 bytes. No ISBN is assumed for this PDF edition; only the extracted cover is distributed, not the full book.
 
 “Bodies Without Organs” retains the owner's label. Its image is the actual cover of *A Thousand Plateaus* by Gilles Deleuze and Félix Guattari, which contains “How Do You Make Yourself a Body Without Organs?” It is not represented as a separate book edition.
 
